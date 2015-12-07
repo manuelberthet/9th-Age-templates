@@ -1,0 +1,65 @@
+\newgeometry{margin=1in}
+
+% Table options
+\arrayrulecolor{black!30}
+\setlength{\arrayrulewidth}{2pt}
+\renewcommand{\arraystretch}{1.2}
+
+\begin{titlepage}
+\begin{center}
+
+\ifdef{\booktitle}{}{\newcommand{\booktitle}{Missing title}}
+\ifdef{\version}{}{\newcommand{\version}{Missing version}}
+
+{\fontsize{50}{60}\fontfamily{pzc}\selectfont Batailles Fantastiques \\ Le 9\ieme Âge} \\
+\vspace{0.7cm}
+{\fontsize{20}{24}\selectfont \booktitle\/ - Beta v\version} \\
+\vspace{0.4cm}
+\ifdef{\frenchversion}{{\fontsize{14}{16.8}\selectfont \texttt{Version française \frenchversion}}\\}{}
+{\fontsize{14}{16.8}\selectfont \texttt{\today}} \\
+\vfill
+\includegraphics[width=9cm]{../Formatage/logo_9th.png}
+\vfill
+{\fontsize{12}{14.4}\selectfont \textit{Une collaboration des créateurs de l'ETC et du Swedish Comp System}} \\
+
+
+\end{center}
+
+\newpage
+
+\thispagestyle{empty}
+
+{\fontsize{12}{14.4}\selectfont
+\noindent {\LARGE \textbf{Note des traducteurs}}
+\vspace{0.5cm}
+
+Nous souhaitons remercier chaleureusement l'équipe à l'initiative du \emph{9\ieme Âge} pour leur motivation et leur travail continu pour faire vivre notre passion. Nous espérons que ce jeu saura développer les qualités pour plaire au plus grand nombre et réunir les joueurs, amateurs comme habitués des tournois, autour de règles amusantes et équilibrées, pour finalement s'imposer comme un standard du jeu de figurines. Une grande ambition qui ne pourra s'accomplir que grâce à vous, la communauté, via des retours constructifs, afin de modeler le jeu selon nos désirs. N'étant en aucun cas à but lucratif, le \emph{9\ieme Âge} part avec un avantage considérable. Les règles des éventuelles nouvelles sorties ne seront pas dictées par le besoin de vendre ces nouveautés. Vous pouvez choisir et acheter vos figurines où bon vous semble, il n'y a pas un unique revendeur toléré. Vous n'êtes pas bloqués dans une spirale infernale où pour continuer à jouer à un jeu, dans lequel vous vous êtes tant investis, vous devez payer toujours plus cher pour entretenir votre collection. Enfin, vous pouvez être assurés que tant que \emph{9\ieme Âge} sera joué, vous disposerez d'un support continu et régulier, celui-ci étant offert par la communauté.
+
+Nous attirons votre attention sur le fait que ce jeu en est encore à ses débuts et dans un stade de développement. Ce document correspond à une version de brouillon \og beta \fg , dont le but et de tester le jeu et le modifier jusqu'à atteindre une version satisfaisante. Attendez-vous donc à trouver des déséquilibres, des incohérences, et à obtenir des mises à jour régulières avec éventuellement des changements importants. N'hésitez pas à nous donner vos avis ! Ce livre d'armée n'est utilisable qu'en compagnie du livre de Règles et du livre de Magie.
+
+Concernant la traduction en elle-même, nous avons fait de notre mieux pour vous offrir une version de qualité, dont nous espérons qu'elle surpasse celle de la version originale ! Si vous constatez des coquilles, des erreurs, merci de nous les signaler en nous contactant sur le forum du \emph{9\ieme Âge}, qui dispose désormais d'un sous-forum français (\url{http://www.the-ninth-age.com/index.php?board/117-french/}). Vous y trouverez aussi les dernières mises à jour. En cas de conflit d'interprétation avec la version originale, la version originale fait référence.
+
+\vspace{0.5cm}
+Que ce jeu vous apporte d'innombrables heures de plaisir partagé !
+
+\vspace{0.7cm}
+\noindent {\LARGE \textbf{Les traducteurs}}
+\vspace{0.5cm}
+
+\ifdef{\translationteam}{
+	\begin{multicols}{2}
+	\begin{itemize}
+		\translationteam
+	\end{itemize}
+	\end{multicols}
+}{}
+
+\vfill
+
+\noindent {\LARGE \textbf{Document réalisé à l'aide de \LaTeX .}}
+}
+
+
+\end{titlepage}
+
+\restoregeometry
