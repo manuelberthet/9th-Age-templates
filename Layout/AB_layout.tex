@@ -8,7 +8,7 @@
 \ifxetex
   \usepackage{fontspec}
   \defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
-  \setmainfont{Caslon Antique}
+  \setmainfont{Casablanca Antique}
 \else
 	\usepackage[T1]{fontenc} 		% Font encoding.
 	\usepackage[utf8]{inputenc} 	% Document encoding.
@@ -68,6 +68,10 @@
 \ifdef{\labels@range}{}{\newcommand{\labels@range}{Range}}
 \ifdef{\labels@point}{}{\newcommand{\labels@point}{pt}}
 \ifdef{\labels@points}{}{\newcommand{\labels@points}{pts}}
+\ifdef{\labels@only}{}{\newcommand{\labels@only}{only}}
+\ifdef{\labels@magic}{}{\newcommand{\labels@magic}{Magic}}
+\ifdef{\labels@pathsused}{}{\newcommand{\labels@pathsused}{Generate spells from Paths of}}
+\ifdef{\labels@additionnalmodels}{}{\newcommand{\labels@additionnalmodels}{additionnal models}}
 
 % Unit entry labels
 
@@ -80,6 +84,16 @@
 \ifdef{\labels@commandgroup}{}{\newcommand{\labels@commandgroup}{Command Group}}
 \ifdef{\labels@mounts}{}{\newcommand{\labels@mounts}{Mounts}}
 \ifdef{\labels@specialequipment}{}{\newcommand{\labels@specialequipment}{Special Equipement}}
+
+% Command groups
+
+\ifdef{\labels@champion}{}{\newcommand{\labels@champion}{Champion}}
+\ifdef{\labels@standardbearer}{}{\newcommand{\labels@standardbearer}{Standard Bearer}}
+\ifdef{\labels@musician}{}{\newcommand{\labels@musician}{Musician}}
+\ifdef{\labels@singlebannerallowance}{}{\newcommand{\labels@singlebannerallowance}{One unit may take a Magic banner}}
+\ifdef{\labels@condsinglebannerallowance}{}{\newcommand{\labels@condsinglebannerallowance}{One unit may take a Magic banner if}}
+\ifdef{\labels@bannerallowance}{}{\newcommand{\labels@bannerallowance}{May take a Magic banner}}
+\ifdef{\labels@championallowance}{}{\newcommand{\labels@championallowance}{May take Magic items}}
 
 % Titles
 
@@ -111,6 +125,7 @@
 
 \ifdef{\free}{}{\newcommand{\free}{free}}
 \ifdef{\upto}{}{\newcommand{\upto}{up to}}
+\ifdef{\Upto}{}{\newcommand{\Upto}{Up to}}
 \ifdef{\unlimited}{}{\newcommand{\unlimited}{unlimited}}
 \ifdef{\permodel}{}{\newcommand{\permodel}{/model}}
 
@@ -340,7 +355,7 @@
 
 %%% Entry title command %%%
 
-\newcommand{\unitentry}[2]{\ifdefempty{#1}{}{\noindent #2 \medskip}} % Before there were \vbox, \vspace to get larger space between entries. Replaced by \medskip at the end of each entry.
+\newcommand{\unitentry}[2]{\ifdefempty{#1}{}{\noindent #2 \medskip}}
 \newcommand{\unitentrynoskip}[2]{\ifdefempty{#1}{}{\noindent #2}}
 
 
@@ -353,8 +368,7 @@
 
 % Formatting for a special rule. Currently italicized.
 \newcommand{\specialrule}[1]{\textit{#1}}
-\newcommand{\only}[1]{\textnormal{(#1 uniquement)}}
-\newcommand{\onlytitle}[1]{\textnormal{#1 uniquement}}
+\newcommand{\only}[1]{\textnormal{(#1 \labels@only)}}
 
 % Special rules listing for a unit.
 \newcommand{\ruleslist}[1]{%
@@ -379,7 +393,7 @@
 }
 
 % Magic entry.
-\newcommand{\magic}[2]{\unitentry{#2}{\textbf{Magie~: }\ifdefempty{#1}{}{\magiclevel{#1}. }Utilise les sorts des Disciplines\expandafter\pathslist\expandafter{#2}.}}
+\newcommand{\magic}[2]{\unitentry{#2}{\textbf{\labels@magic~: }\ifdefempty{#1}{}{\magiclevel{#1}. }\labels@pathsused\expandafter\pathslist\expandafter{#2}.}}
 
 
 %%% Equipment %%%
@@ -518,34 +532,34 @@
 		\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0cm, itemsep=0cm, parsep=0cm]%
 			% Command group title, including restrictions applying to all the command group
 			\item \textbf{\expandafter\ifblank\expandafter{\commandgroup@restriction}{}{ \only{\commandgroup@restriction}~: }} 
-			% Champion handling. 4 fields: the cost of a champion, the restrictions on taking it, the 
+			% Champion handling.
 			\ifdefempty{\commandgroup@champion}{}{% We have a champion!
-				\item \hspace*{-0.04cm}\option{Champion%
+				\item \hspace*{-0.04cm}\option{\labels@champion%
 					% Possible restrictions to taking a champion
 				    \expandafter\ifblank\expandafter{\commandgroup@championrestriction}{}{ \only{\commandgroup@championrestriction}}%
 				    % Cost of a champion
 				    }{\commandgroup@champion}%
 				    % Magical allowance of the champion. Should probably not be used, champion option can do it as well and is more flexible.
-					\ifdefempty{\commandgroup@championallowance}{}{\\\option[\upto]{vspace{0.3cm}- Peut recevoir des objets magiques}{\commandgroup@championallowance}}%
+					\ifdefempty{\commandgroup@championallowance}{}{\\\option[\upto]{vspace{0.3cm}- \labels@championallowance}{\commandgroup@championallowance}}%
 					% Any option available to the champion, in the form option:cost
 					\ifdefempty{\commandgroup@championoption}{}{%
 						\fullexpandarg\StrCut[1]{\commandgroup@championoption}{:}\local@option\local@cost%
 						\\\option{\hspace*{0.3cm}- \local@option}{\local@cost}}%
 			}% End of champion handling
 			\ifdefempty{\commandgroup@banner}{}{% We have a banner!
-				\item \hspace*{-0.04cm}\option{Porte-étendard%
+				\item \hspace*{-0.04cm}\option{\labels@standardbearer%
 					% Possible restrictions to taking a banner
 				    \expandafter\ifblank\expandafter{\commandgroup@bannerrestriction}{}{ \only{\commandgroup@bannerrestriction}}%
 				    % Cost of a banner
 				    }{\commandgroup@banner}%
 				    % Magical banner, if all units of this type can take one.
-					\ifdefempty{\commandgroup@bannerallowance}{}{\\\option[\upto]{\hspace*{0.3cm}- Peut recevoir une Bannière magique}{\commandgroup@bannerallowance}}%
+					\ifdefempty{\commandgroup@bannerallowance}{}{\\\option[\upto]{\hspace*{0.3cm}- \labels@bannerallowance}{\commandgroup@bannerallowance}}%
 					% Magical banner, if only one unit of this type can take one.
-					\ifdefempty{\commandgroup@singlebannerallowance}{}{\\\option[\upto]{\hspace*{0.3cm}- Une seule unité de ce type peut prendre une Bannière magique}{\commandgroup@singlebannerallowance}}%
+					\ifdefempty{\commandgroup@singlebannerallowance}{}{\\\option[\upto]{\hspace*{0.3cm}- \labels@singlebannerallowance}{\commandgroup@singlebannerallowance}}%
 					% Magical banner, if only one unit of this type can take one, but with condtions.
 					\ifdefempty{\commandgroup@condsinglebannerallowance}{}{%
 						\StrCut[1]{\commandgroup@condsinglebannerallowance}{:}\local@option\local@cost%
-						\\\option[\upto]{\hspace*{0.3cm}- Une seule unité de ce type peut prendre une Bannière magique si \local@option}{\local@cost}}%
+						\\\option[\upto]{\hspace*{0.3cm}- \labels@condsinglebannerallowance \local@option}{\local@cost}}%
 					% Additional option for the banner, such as Hill Goblin Lookouts for Ogres
 					\ifdefempty{\commandgroup@banneroption}{}{
 						\splitatstar{\commandgroup@banneroption}{\local@option}{\local@cost} 
@@ -553,7 +567,7 @@
 					}%
 			}%
 			\ifdefempty{\commandgroup@musician}{}{% We have a musician!
-				\item \hspace*{-0.04cm}\option{Musicien%
+				\item \hspace*{-0.04cm}\option{\labels@musician%
 					% Possible restrictions to taking a musician
 				    \expandafter\ifblank\expandafter{\commandgroup@musicianrestriction}{}{ \only{\commandgroup@musicianrestriction}}%
 				    % Cost of a musician
@@ -693,7 +707,7 @@
 		\specialrules{\unit@specialrules} \par
 		\magic{\unit@magiclevel}{\unit@magicpaths} \par
 		\equipment{\unit@equipment} \par
-		\expandafter\ifblank\expandafter{\unit@additionalmodels}{}{\preto{\unit@options}{Jusqu'à \unit@additionalmodels\/ figurines supplémentaires=\permodel: \unit@costpermodel,}}
+		\expandafter\ifblank\expandafter{\unit@additionalmodels}{}{\preto{\unit@options}{\Upto \unit@additionalmodels\/ \labels@aditionnalmodels =\permodel: \unit@costpermodel,}}
 		\options{\unit@options} \par
 		\mounts{\unit@mounts} \par
 		\unit@commandgroup \par
