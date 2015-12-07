@@ -1,0 +1,706 @@
+
+\documentclass[a4paper,8pt]{extarticle} % extarticle allows to use font size of 8pt.
+
+\usepackage[a4paper, top=1.6cm, bottom=2cm, left=1.6cm, right=1.6cm]{geometry} % Marge reduction.
+
+\usepackage{ifxetex}
+
+\ifxetex
+  \usepackage{fontspec}
+  \defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
+  \setmainfont{Caslon Antique}
+\else
+	\usepackage[T1]{fontenc} 		% Font encoding.
+	\usepackage[utf8]{inputenc} 	% Document encoding.
+	\usepackage{palatino} 			% Font.
+\fi
+
+\usepackage{microtype}			% Greatly improves general appearance of the text.
+\usepackage{SIunits}			% Unit appearance.
+\usepackage{array}				% Additionnal options for arrays.
+\usepackage{colortbl}			% Additionnal options for coloring arrays.
+\usepackage{multicol}			% Allows to divide a part of the page in multiple columns.
+\usepackage{framed}				% Boxes.
+\usepackage[inline]{enumitem}   % Display inline lists.
+\usepackage{etoolbox}           % General utility. Good for lists for instance.
+\usepackage{newfloat}			% Used to create new flottable environnements.
+	\DeclareFloatingEnvironment[placement=htbp!]{unitframeFlot}
+\usepackage{keyval}             % Used to create maps of commands/labels/objects.
+	\makeatletter                  % Mandatory for the usage of keyval.
+\usepackage{xstring}            % String parsing, cutting, etc.
+\usepackage{xparse}             % List utilities.
+\usepackage{xspace}				% Define commands that appear not to eat spaces.
+\usepackage{textcomp} 			% for the straight single quote \textquotesingle.
+\usepackage[colorlinks=true]{hyperref} % Links in PDF.
+\usepackage[framemethod=TikZ]{mdframed}% For fancy frames.
+\usepackage{tikz}				% For fancy frames.
+
+%%% Language specific stuff
+
+% \include{language_specific_FR.tex}
+
+%%% Command to split strings, better than StrCut to handle commands inside the strings %%%
+
+\newcommand{\splitatstar}[3]{%
+  \protected@edef\split@temp{#1}%
+  \saveexpandmode
+  \expandarg\StrCut{\split@temp}{*}#2#3%
+  \restoreexpandmode
+}
+
+%%% Labels %%%
+
+% Profile
+
+\ifdef{\labels@profile}{}{\newcommand{\labels@profile}{Profile}}
+\ifdef{\labels@M}{}{\newcommand{\labels@M}{M}}
+\ifdef{\labels@WS}{}{\newcommand{\labels@WS}{WS}}
+\ifdef{\labels@BS}{}{\newcommand{\labels@BS}{BS}}
+\ifdef{\labels@S}{}{\newcommand{\labels@S}{S}}
+\ifdef{\labels@T}{}{\newcommand{\labels@T}{T}}
+\ifdef{\labels@W}{}{\newcommand{\labels@W}{W}}
+\ifdef{\labels@I}{}{\newcommand{\labels@I}{I}}
+\ifdef{\labels@A}{}{\newcommand{\labels@A}{A}}
+\ifdef{\labels@Ld}{}{\newcommand{\labels@Ld}{Ld}}
+
+% Technical
+
+\ifdef{\labels@range}{}{\newcommand{\labels@range}{Range}}
+\ifdef{\labels@point}{}{\newcommand{\labels@point}{pt}}
+\ifdef{\labels@points}{}{\newcommand{\labels@points}{pts}}
+
+% Unit entry labels
+
+\ifdef{\labels@unitsize}{}{\newcommand{\labels@unitsize}{Unit size}}
+\ifdef{\labels@basesize}{}{\newcommand{\labels@basesize}{Base size}}
+\ifdef{\labels@trooptype}{}{\newcommand{\labels@trooptype}{Troop type}}
+\ifdef{\labels@specialrules}{}{\newcommand{\labels@specialrules}{Special rules}}
+\ifdef{\labels@equipment}{}{\newcommand{\labels@equipment}{Equipment}}
+\ifdef{\labels@options}{}{\newcommand{\labels@options}{Options}}
+\ifdef{\labels@commandgroup}{}{\newcommand{\labels@commandgroup}{Command Group}}
+\ifdef{\labels@mounts}{}{\newcommand{\labels@mounts}{Mounts}}
+\ifdef{\labels@specialequipment}{}{\newcommand{\labels@specialequipment}{Special Equipement}}
+
+% Titles
+
+\ifdef{\labels@lords}{}{\newcommand{\labels@lords}{Lords}}
+\ifdef{\labels@heroes}{}{\newcommand{\labels@heroes}{Heroes}}
+\ifdef{\labels@baseunits}{}{\newcommand{\labels@baseunits}{Base units}}
+\ifdef{\labels@specialunits}{}{\newcommand{\labels@specialunits}{Special units}}
+\ifdef{\labels@rareunits}{}{\newcommand{\labels@rareunits}{Rare units}}
+\ifdef{\labels@armyspecialrules}{}{\newcommand{\labels@armyspecialrules}{Army special rules}}
+\ifdef{\labels@armoury}{}{\newcommand{\labels@armoury}{Armoury}}
+\ifdef{\labels@magicitems}{}{\newcommand{\labels@magicitems}{Magic items}}
+
+% Titlepage
+
+\ifdef{\labels@fantasybattles}{}{\newcommand{\labels@fantasybattles}{Fantasy Battles}}
+\ifdef{\labels@NinthAge}{}{\newcommand{\labels@NinthAge}{The 9th Age}}
+\ifdef{\labels@creators}{}{\newcommand{\labels@creators}{A collaboration between ETC and Swedish Comp System}}
+\ifdef{\labels@latexcredit}{}{\newcommand{\labels@latexcredit}{Layout designed using \LaTeX .}}
+
+
+%%% Technical commands %%%
+
+\newcommand{\diceresult}[1] {\textquotesingle #1\textquotesingle}
+\newcommand{\inch}{\arcsecond}
+\newcommand{\foot}{\arcminute}
+\newcommand{\range}[1] {\labels@range~\unit{#1}{\inch}}
+\newcommand{\distance}[1] {\unit{#1}{\inch}}
+\newcommand{\pts}[1]{\unit{#1}{\expandafter\ifstrequal\expandafter{#1}{1}{\labels@point}{\labels@points}}}
+
+\ifdef{\free}{}{\newcommand{\free}{free}}
+\ifdef{\upto}{}{\newcommand{\upto}{up to}}
+\ifdef{\unlimited}{}{\newcommand{\unlimited}{unlimited}}
+\ifdef{\permodel}{}{\newcommand{\permodel}{/model}}
+
+
+%%% Special rules %%%
+
+\ifdef{\ambush}{}{\newcommand{\ambush}{\specialrule{Ambush}\xspace}}
+\ifdef{\armourpiercing}{}{\newcommand{\armourpiercing}[1]{\specialrule{Armour Piercing\ifblank{#1}{}{~(#1)}}\xspace}}
+\ifdef{\blurry}{}{\newcommand{\blurry}{\specialrule{Blurry}\xspace}}
+\ifdef{\bodyguard}{}{\newcommand{\bodyguard}[1]{\specialrule{Bodyguard\ifblank{#1}{}{~(#1)}}\xspace}}
+\ifdef{\breathweapon}{}{\newcommand{\breathweapon}[1]{\specialrule{Breath Weapon\ifblank{#1}{}{ (#1)}}\xspace}}
+\ifdef{\channel}{}{\newcommand{\channel}{\specialrule{Channel}\xspace}}
+\ifdef{\crushattack}{}{\newcommand{\crushattack}{\specialrule{Crush Attack}\xspace}}
+\ifdef{\devastatingcharge}{}{\newcommand{\devastatingcharge}{\specialrule{Devastating Charge}\xspace}}
+\ifdef{\distracting}{}{\newcommand{\distracting}{\specialrule{Distracting}\xspace}}
+\ifdef{\engineer}{}{\newcommand{\engineer}{\specialrule{Engineer}\xspace}}
+\ifdef{\ethereal}{}{\newcommand{\ethereal}{\specialrule{Ethereal}\xspace}}
+\ifdef{\fastcavalry}{}{\newcommand{\fastcavalry}{\specialrule{Fast Cavalry}\xspace}}
+\ifdef{\fear}{}{\newcommand{\fear}{\specialrule{Fear}\xspace}}
+\ifdef{\fightinextrarank}{}{\newcommand{\fightinextrarank}{\specialrule{Fight in Extra Rank}\xspace}}
+\ifdef{\fireborn}{}{\newcommand{\fireborn}{\specialrule{Fireborn}\xspace}}
+\ifdef{\flamingattacks}{}{\newcommand{\flamingattacks}{\specialrule{Flaming Attacks}\xspace}}
+\ifdef{\flammable}{}{\newcommand{\flammable}{\specialrule{Flammable}\xspace}}
+\ifdef{\freereform}{}{\newcommand{\freereform}{\specialrule{Free Reform}\xspace}}
+\ifdef{\frenzy}{}{\newcommand{\frenzy}{\specialrule{Frenzy}\xspace}}
+\ifdef{\fly}{}{\newcommand{\fly}[1]{\specialrule{Fly\ifblank{#1}{}{~(#1)}}\xspace}}
+\ifdef{\grindingattacks}{}{\newcommand{\grindingattacks}[1]{\specialrule{Grinding Attacks\ifblank{#1}{}{~(#1)}}\xspace}}
+\ifdef{\hatred}{}{\newcommand{\hatred}{\specialrule{Hatred}\xspace}}
+\ifdef{\hellfire}{}{\newcommand{\hellfire}{\specialrule{Hellfire}\xspace}}
+\ifdef{\hidden}{}{\newcommand{\hidden}{\specialrule{Hidden}\xspace}}
+\ifdef{\holyattacks}{}{\newcommand{\holyattacks}{\specialrule{Holy Attacks}\xspace}}
+\ifdef{\immunetopsychology}{}{\newcommand{\immunetopsychology}{\specialrule{Immune to Psychology}\xspace}}
+\ifdef{\impacthits}{}{\newcommand{\impacthits}[1]{\specialrule{Impact Hits\ifblank{#1}{}{~(#1)}}\xspace}}
+\ifdef{\insignificant}{}{\newcommand{\insignificant}{\specialrule{Insignificant}\xspace}}
+\ifdef{\largetarget}{}{\newcommand{\largetarget}{\specialrule{Large Target}\xspace}}
+\ifdef{\lethalstrike}{}{\newcommand{\lethalstrike}{\specialrule{Lethal Strike}\xspace}}
+\ifdef{\lightningattacks}{}{\newcommand{\lightningattacks}{\specialrule{Ligthning Attacks}\xspace}}
+\ifdef{\lightningreflexes}{}{\newcommand{\lightningreflexes}{\specialrule{Lightning Reflexes}\xspace}}
+\ifdef{\magicresistance}{}{\newcommand{\magicresistance}[1]{\specialrule{Magic Resistance\ifblank{#1}{}{~(#1)}}\xspace}}
+\ifdef{\magicalattacks}{}{\newcommand{\magicalattacks}{\specialrule{Magical Attacks}\xspace}}
+\ifdef{\metalshifting}{}{\newcommand{\metalshifting}{\specialrule{Metalshifting}\xspace}}
+\ifdef{\moveorfire}{}{\newcommand{\moveorfire}{\specialrule{Move or Fire}\xspace}}
+\ifdef{\multipleshots}{}{\newcommand{\multipleshots}[1]{\specialrule{Multiple Shots\ifblank{#1}{}{ (#1)}}\xspace}}
+\ifdef{\multiplewounds}{}{\newcommand{\multiplewounds}[2]{\specialrule{Multiple Wounds\ifblank{#1}{}{ (#1\ifblank{#2}{)}{, #2)}}\xspace}}}
+\ifdef{\notaleader}{}{\newcommand{\notaleader}{\specialrule{Not a Leader}\xspace}}
+\ifdef{\otherworldly}{}{\newcommand{\otherworldly}{\specialrule{Otherworldly}\xspace}}
+\ifdef{\pathmaster}{}{\newcommand{\pathmaster}[1]{\specialrule{Pathmaster\ifblank{#1}{}{ (#1)}}\xspace}}
+\ifdef{\poisonedattacks}{}{\newcommand{\poisonedattacks}{\specialrule{Poisoned Attacks}\xspace}}
+\ifdef{\quicktofire}{}{\newcommand{\quicktofire}{\specialrule{Quick to Fire}\xspace}}
+\ifdef{\randommovement}{}{\newcommand{\randommovement}[1]{\specialrule{Random Movement\ifblank{#1}{}{~(#1)}}\xspace}}
+\ifdef{\randomattacks}{}{\newcommand{\randomattacks}[1]{\specialrule{Random Attacks\ifblank{#1}{}{~(#1)}}\xspace}}
+\ifdef{\regeneration}{}{\newcommand{\regeneration}[1]{\specialrule{Regeneration\ifblank{#1}{}{ (#1+)}}\xspace}}
+\ifdef{\requirestwohands}{}{\newcommand{\requirestwohands}{\specialrule{Requires Two Hands}\xspace}}
+\ifdef{\scythes}{}{\newcommand{\scythes}{\specialrule{Scythes}\xspace}}
+\ifdef{\scout}{}{\newcommand{\scout}{\specialrule{Scout}\xspace}}
+\ifdef{\scouts}{}{\newcommand{\scouts}{\specialrule{Scouts}\xspace}}
+\ifdef{\slowtofire}{}{\newcommand{\slowtofire}{\specialrule{Slow to Fire}\xspace}}
+\ifdef{\stomp}{}{\newcommand{\stomp}[1]{\specialrule{Stomp\ifblank{#1}{}{~(#1)}}\xspace}}
+\ifdef{\strider}{}{\newcommand{\strider}[1]{\specialrule{Strider\ifblank{#1}{}{~(#1)}}\xspace}}
+\ifdef{\stubborn}{}{\newcommand{\stubborn}{\specialrule{Stubborn}\xspace}}
+\ifdef{\stupidity}{}{\newcommand{\stupidity}{\specialrule{Stupidity}\xspace}}
+\ifdef{\skirmisher}{}{\newcommand{\skirmisher}{\specialrule{Skirmisher}\xspace}}
+\ifdef{\skirmishers}{}{\newcommand{\skirmishers}{\specialrule{Skirmishers}\xspace}}
+\ifdef{\swiftstride}{}{\newcommand{\swiftstride}{\specialrule{Swiftstride}\xspace}}
+\ifdef{\thunderouscharge}{}{\newcommand{\thunderouscharge}{\specialrule{Thunderous Charge}\xspace}}
+\ifdef{\terror}{}{\newcommand{\terror}{\specialrule{Terror}\xspace}}
+\ifdef{\toxicattacks}{}{\newcommand{\toxicattacks}{\specialrule{Toxic Attacks}\xspace}}
+\ifdef{\unbreakable}{}{\newcommand{\unbreakable}{\specialrule{Unbreakable}\xspace}}
+\ifdef{\undead}{}{\newcommand{\undead}{\specialrule{Undead}\xspace}}
+\ifdef{\unstable}{}{\newcommand{\unstable}{\specialrule{Unstable}\xspace}}
+\ifdef{\unwieldy}{}{\newcommand{\unwieldy}{\specialrule{Unwieldy}\xspace}}
+\ifdef{\vanguard}{}{\newcommand{\vanguard}{\specialrule{Vanguard}\xspace}}
+\ifdef{\volleyfire}{}{\newcommand{\volleyfire}{\specialrule{Volley Fire}\xspace}}
+\ifdef{\warplatform}{}{\newcommand{\warplatform}{\specialrule{War Platform}\xspace}}
+\ifdef{\wardsave}{}{\newcommand{\wardsave}[1]{\specialrule{Ward Save\ifblank{#1}{}{~(#1+)}}\xspace}}
+\ifdef{\weaponmaster}{}{\newcommand{\weaponmaster}{\specialrule{Weapon Master}\xspace}}
+\ifdef{\wizardconclave}{}{\newcommand{\wizardconclave}[1]{\specialrule{Wizard Conclave\ifblank{#1}{}{ (#1)}}\xspace}}
+
+
+%%% Magic %%%
+
+\ifdef{\battle}{}{\newcommand\battle{Battle\xspace}}
+\ifdef{\alchemy}{}{\newcommand\alchemy{Alchemy\xspace}}
+\ifdef{\death}{}{\newcommand\death{Death\xspace}}
+\ifdef{\fire}{}{\newcommand\fire{Fire\xspace}}
+\ifdef{\heavens}{}{\newcommand\heavens{Heavens\xspace}}
+\ifdef{\light}{}{\newcommand\light{Light\xspace}}
+\ifdef{\nature}{}{\newcommand\nature{Nature\xspace}}
+\ifdef{\shadows}{}{\newcommand\shadows{Shadows\xspace}}
+\ifdef{\wilderness}{}{\newcommand\wilderness{Wilderness\xspace}}
+\ifdef{\butchery}{}{\newcommand\butchery{Butchery\xspace}}
+\ifdef{\change}{}{\newcommand\change{Change\xspace}}
+\ifdef{\thebiggreengods}{}{\newcommand\thebiggreengods{the Big Green Gods\xspace}}
+\ifdef{\thelittlegreengods}{}{\newcommand\thelittlegreengods{the Little Green Gods\xspace}}
+\ifdef{\blackmagic}{}{\newcommand\blackmagic{Black Magic\xspace}}
+\ifdef{\disease}{}{\newcommand\disease{Disease\xspace}}
+\ifdef{\lust}{}{\newcommand\lust{Lust\xspace}}
+\ifdef{\necromancy}{}{\newcommand\necromancy{Necromancy\xspace}}
+\ifdef{\ruin}{}{\newcommand\ruin{Ruin\xspace}}
+\ifdef{\forge}{}{\newcommand\forge{the Forge\xspace}}
+\ifdef{\sands}{}{\newcommand\sands{the Sands\xspace}}
+\ifdef{\whitemagic}{}{\newcommand\whitemagic{White Magic\xspace}}
+
+\ifdef{\magiclevel}{}{\newcommand{\magiclevel}[1]{Wizard level #1}}
+
+
+%%% Other rules %%%
+
+\ifdef{\armoursave}{}{\newcommand{\armoursave}{Armour Save\xspace}}
+\ifdef{\firstinrank}{}{\newcommand{\firstinrank}{\specialrule{First in Rank}\xspace}}
+\ifdef{\hardcover}{}{\newcommand{\hardcover}{Hard Cover\xspace}}
+\ifdef{\holdyourground}{}{\newcommand{\holdyourground}{\specialrule{Hold your Ground}\xspace}}
+\ifdef{\innatedefence}{}{\newcommand{\innatedefence}[1]{Innate Defence\ifblank{#1}{}{~(#1+)}\xspace}}
+\ifdef{\inspiringpresence}{}{\newcommand{\inspiringpresence}{\specialrule{Inspiring Presence}\xspace}}
+\ifdef{\lightcover}{}{\newcommand{\lightcover}{Light Cover\xspace}}
+\ifdef{\monstrousrank}{}{\newcommand{\monstrousrank}{Monstrous Rank\xspace}}
+\ifdef{\naturalarmor}{}{\newcommand{\naturalarmor}{Natural Armor\xspace}}
+\ifdef{\oneofakind}{}{\newcommand{\oneofakind}{One of a kind\xspace}}
+\ifdef{\ordnance}{}{\newcommand{\ordnance}{Ordnance\xspace}}
+\ifdef{\parry}{}{\newcommand{\parry}{Parry\xspace}}
+\ifdef{\raisewounds}{}{\newcommand{\raisewounds}{Raise Wounds\xspace}}
+\ifdef{\recoverwounds}{}{\newcommand{\recoverwounds}{Recover Wounds\xspace}}
+
+
+%%% Titles %%%
+
+\newcommand{\armytitle}[1]{\noindent\begin{center}\Huge{\textbf{\expandafter\uppercase\expandafter{#1}}}\end{center}\medskip}
+\newcommand{\lordstitle}{\armytitle{\labels@lords}}
+\newcommand{\heroestitle}{\clearpage\armytitle{\labels@heroes}}
+\newcommand{\baseunitstitle}{\clearpage\armytitle{\labels@baseunits}}
+\newcommand{\specialunitstitle}{\clearpage\armytitle{\labels@specialunits}}
+\newcommand{\rareunitstitle}{\clearpage\armytitle{\labels@rareunits}}
+\newcommand{\mountstitle}{\clearpage\armytitle{\labels@mounts}}
+
+\newcommand{\armyspecialrules}{\newpage\twocolumn\noindent\begin{center}\LARGE{\textbf{\labels@armyspecialrules}}\end{center}}
+\newcommand{\armyspecialruleentry}[1]{\subsection*{\textit{#1}}}
+
+\newcommand{\armyarmoury}{\newpage\noindent\begin{center}\LARGE{\textbf{\labels@armoury}}\end{center}}
+
+\newcommand{\armymagicitems}{\newpage\noindent\begin{center}\LARGE{\textbf{\labels@magicitems}}\end{center}}
+
+\newcommand{\armynewsection}[1]{\newpage\noindent\begin{center}\LARGE{\textbf{#1}}\end{center}}
+
+\newcommand{\armynewsubsection}[1]{\subsection*{#1}}
+\newcommand{\armynewsubsubsection}[1]{\subsubsection*{#1}}
+
+\newcommand{\armylist}{\clearpage\onecolumn}
+
+
+%%% Custom lists and description for first sections of the army books
+
+\newenvironment{customdescription}{\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0.1cm]}{\end{description}}
+\newenvironment{customitemize}{\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0cm]}{\end{description}}
+\newenvironment{customsubitemize}{\begin{itemize}[label={-}, labelsep=0.1cm, topsep=0cm, parsep=0cm, itemsep=0cm, leftmargin=0.4cm, labelindent=0cm]}{\end{itemize}}
+
+
+%%% Table parameters %%%
+
+\newcolumntype{M}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+%%%  Lists handling %%%
+
+\newcommand{\addlocallist}{\listadd\locallists@dummy}
+\NewDocumentCommand{\parsespacelist}{ >{\SplitList{ }} m } {%
+	\ProcessList{#1}{\addlocallist}%
+}
+\NewDocumentCommand{\parsecommalist}{ >{\SplitList{,}} m } {%
+	\ProcessList{#1}{\addlocallist}%
+}
+\newcommand{\parselist}[3][,]{%
+	\renewcommand\addlocallist{\listadd#3}%
+  	\undef#3%
+  	\ifstrequal{#1}{ }{\parsespacelist{#2}}{\parsecommalist{#2}}%
+}
+
+
+%%% Profiles handling %%%
+
+% Element of a table that contains the characteristics of a model (or part of a model)
+\newcommand\caraclist[1]{
+	\parselist[ ]{#1}{\locallists@caraclist}%
+	\forlistloop{&}{\locallists@caraclist}%
+}
+
+% Line of a profile table, including bottom line. It is meant to contain the name of the model (or part), its characteristics (preferably, the second argument should contain the \carac macro), troop type and base size.
+\newcommand{\profilefirstline}[4]{#1 & #2 &   & #3 & #4 }
+
+% Start of a profile table. Includes the table commands, and the column labels. \profilecellsize is the size of the characteristics cells in the profile.
+\newcommand{\profilecellsize}{0.45cm}
+\newcommand{\profilestart}{%
+	\noindent %
+	\begin{tabular}{@{}p{4.5cm}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}p{1cm}@{}p{3.8cm}@{}p{2cm}@{}}%
+	\textbf{\labels@profile} &%
+	\textbf{\labels@M} & \textbf{\labels@WS} & \textbf{\labels@BS} & \textbf{\labels@S} & \textbf{\labels@T} & \textbf{\labels@W} & \textbf{\labels@I} & \textbf{\labels@A} & \textbf{\labels@Ld} &%
+	&%
+	\textbf{\labels@trooptype} &%
+	\textbf{\labels@basesize}%
+}
+
+% End of a profile table.
+\newcommand{\profileend}{\end{tabular}}
+
+% Algorithm to automatically use and fill previous command, with coherence check.
+\providebool{profilefirst}
+\newcommand{\profileitem}[1]{%
+	\tabularnewline%
+	\StrCut[1]{#1}{:}\local@unitname\local@unitprofile%
+	\local@unitname \expandafter\caraclist\expandafter{\local@unitprofile}%
+	&%
+	& \ifbool{profilefirst}{\unit@type}{}%
+	& \ifbool{profilefirst}{\unit{\unit@basesize}{\milli\meter}}{}%
+	\global\boolfalse{profilefirst}%
+}
+\newcommand{\profile}[1]{%
+	\parselist{#1}{\locallists@profileslist}%
+	\profilestart%
+	\global\booltrue{profilefirst}%
+	\forlistloop{\profileitem}{\locallists@profileslist}%
+	\profileend%
+}
+
+
+%%%%%%%%%%%%%%%%%%
+%%% Unit rules %%%
+%%%%%%%%%%%%%%%%%%
+
+%%% Entry title command %%%
+
+\newcommand{\unitentry}[2]{\ifdefempty{#1}{}{\noindent #2 \medskip}} % Before there were \vbox, \vspace to get larger space between entries. Replaced by \medskip at the end of each entry.
+\newcommand{\unitentrynoskip}[2]{\ifdefempty{#1}{}{\noindent #2}}
+
+
+%%% Unit size %%%
+
+\newcommand{\unitsize}[1]{\unitentry{#1}{\textbf{\labels@unitsize}~: #1}}
+
+
+%%% Special rules %%%
+
+% Formatting for a special rule. Currently italicized.
+\newcommand{\specialrule}[1]{\textit{#1}}
+\newcommand{\only}[1]{\textnormal{(#1 uniquement)}}
+\newcommand{\onlytitle}[1]{\textnormal{#1 uniquement}}
+
+% Special rules listing for a unit.
+\newcommand{\ruleslist}[1]{%
+	\parselist[,]{#1}{\locallists@ruleslist}%
+	\begin{itemize*}[label={}, itemjoin={,}]%
+		\forlistloop{\item\specialrule}{\locallists@ruleslist}%
+	\end{itemize*}%
+}
+
+% Special rules entry.
+\newcommand{\specialrules}[1]{\unitentry{#1}{\textbf{\labels@specialrules~:}\expandafter\ruleslist\expandafter{#1}.}}
+
+
+%%% Magical abilities %%%
+
+% Paths listing for a unit.
+\newcommand{\pathslist}[1]{%
+	\parselist[,]{#1}{\locallists@pathslist}%
+	\begin{itemize*}[label={}, itemjoin={,}, itemjoin*={\ ou}]%
+		\forlistloop{\item}{\locallists@pathslist}%
+	\end{itemize*}%
+}
+
+% Magic entry.
+\newcommand{\magic}[2]{\unitentry{#2}{\textbf{Magie~: }\ifdefempty{#1}{}{\magiclevel{#1}. }Utilise les sorts des Disciplines\expandafter\pathslist\expandafter{#2}.}}
+
+
+%%% Equipment %%%
+
+% Equipment listing.
+\newcommand{\equipmentlist}[1]{%
+	\parselist[,]{#1}{\locallists@equipmentlist}%
+	\begin{itemize*}[label={}, itemjoin={,}]%
+	\forlistloop{\item}{\locallists@equipmentlist}%
+	\end{itemize*}%
+}
+
+% Equipment entry.
+\newcommand{\equipment}[1]{\unitentry{#1}{\textbf{\labels@equipment~:}\expandafter\equipmentlist\expandafter{#1}.}}
+
+
+%%% Options %%%
+
+% Frame commands.
+\newcommand{\optionsframestart}{\begin{innerframe}[\labels@options]}
+\newcommand{\optionsframeend}{\end{innerframe}}
+
+% Options listing.
+\newcommand{\optionslist}[1]{%
+	\parselist[,]{#1}{\locallists@optionslist}%
+	\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0cm, itemsep=0cm, parsep=0cm]%
+		\forlistloop{\item\setoption}{\locallists@optionslist}%
+	\end{description}%
+}
+
+% Options entry.
+\newcommand{\options}[1]{\ifdefempty{#1}{}{\optionsframestart\vspace*{-0.4cm}\unitentrynoskip{#1}{\expandafter\optionslist\expandafter{#1}}\optionsframeend}}
+
+% Option specific commands.
+\newcommand{\setoption}[1]{%
+	\noexpandarg\StrCut{#1}{=}\optiontext\optionvalue%
+	\expandafter\ifstrequal\expandafter{\optionvalue}{}{%
+		\optiontext%
+	}{%
+	\fullexpandarg\IfSubStr{\optionvalue}{\free}{%
+		\option[\free]{\optiontext}{\optionvalue}%
+	}{%
+	\fullexpandarg\IfSubStr{\optionvalue}{\unlimited}{%
+		\option[\unlimited]{\optiontext}{\optionvalue}%
+	}{%
+	\fullexpandarg\IfSubStr{\optionvalue}{\upto}{%
+		\fullexpandarg\StrCut{\optionvalue}{:}\myoption\myvalue%
+		\option[\upto]{\optiontext}{\myvalue}%
+	}{%
+	\fullexpandarg\IfSubStr{\optionvalue}{\permodel}{%
+		\fullexpandarg\StrCut{\optionvalue}{:}\myoption\myvalue%
+		\option[\permodel]{\optiontext}{\myvalue}%
+	}{%
+		\option{\optiontext}{\optionvalue}%
+	}}}}}%
+}
+
+\newcommand{\option}[3][]{#2\dotfill%
+	% Add \upto token if necessary.
+	\ifstrequal{#1}{\upto}{\upto~}{}%
+	% The option can be free, have an unlimited cost, or have a points cost.
+	\ifstrequal{#1}{\free}{\free}{\ifstrequal{#1}{\unlimited}{\unlimited}{\pts{#3}}}%
+	% Add \permodel if necessary.
+	\ifstrequal{#1}{\permodel}{\permodel}{}%
+}
+\newcommand\optionschoice[2]{%
+	\parselist[,]{#2}{\locallists@optionschoice}%
+	#1~:%
+	\begin{itemize}[label={}, parsep=0cm, labelindent=0cm, labelwidth=0cm, noitemsep, topsep=0em, leftmargin=0.3cm]%
+	\forlistloop{\item\setoption}{\locallists@optionschoice}%
+	\end{itemize}%
+}
+
+% Option description in army desc.
+\newcommand{\optiondef}[3]{\option{\textbf{#1}}{#2}\ifblank{#3}{}{\\{#3}}}
+
+
+%%% Mount options %%%
+
+% Frame commands.
+\newcommand{\mountsframestart}{\begin{innerframe}[\labels@mounts]}
+\newcommand{\mountsframeend}{\end{innerframe}}
+
+% Mount listing.
+\newcommand{\mountslist}[1]{%
+	\parselist[,]{#1}{\locallists@mountslist}%
+	\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0cm, itemsep=0cm, parsep=0cm]%
+		\forlistloop{\item\setmount}{\locallists@mountslist}%
+	\end{description}%
+}
+
+% Mount specific command.
+\newcommand{\setmount}[1]{%
+	\noexpandarg\StrCut{#1}{=}\mountname\mountvalue%
+	\expandafter\ifstrequal\expandafter{\mountvalue}{}%
+		{\mountname}%
+		{\option{\mountname}{\mountvalue}}%
+}
+
+% Mount entry.
+\newcommand{\mounts}[1]{\ifdefempty{#1}{}{\mountsframestart\vspace*{-0.4cm}\unitentrynoskip{#1}{\expandafter\mountslist\expandafter{#1}}\mountsframeend}}
+
+
+%%% Command group %%%
+
+% Command group specific commands.
+\define@key{commandgroup}{restriction}            {\def\commandgroup@restriction{#1}}
+\define@key{commandgroup}{champion}               {\def\commandgroup@champion{#1}}
+\define@key{commandgroup}{championallowance}      {\def\commandgroup@championallowance{#1}}
+\define@key{commandgroup}{championoption}         {\def\commandgroup@championoption{#1}}
+\define@key{commandgroup}{championrestriction}    {\def\commandgroup@championrestriction{#1}}
+\define@key{commandgroup}{banner}                 {\def\commandgroup@banner{#1}}
+\define@key{commandgroup}{bannerallowance}        {\def\commandgroup@bannerallowance{#1}}
+\define@key{commandgroup}{singlebannerallowance}  {\def\commandgroup@singlebannerallowance{#1}}
+\define@key{commandgroup}{condsinglebannerallowance}  {\def\commandgroup@condsinglebannerallowance{#1}}
+\define@key{commandgroup}{banneroption}           {\def\commandgroup@banneroption{#1}}
+\define@key{commandgroup}{bannerrestriction}      {\def\commandgroup@bannerrestriction{#1}}
+\define@key{commandgroup}{musician}               {\def\commandgroup@musician{#1}}
+\define@key{commandgroup}{musicianrestriction}    {\def\commandgroup@musicianrestriction{#1}}
+\newcommand{\defcommandgroup}{%
+	\setkeys{commandgroup}{restriction=,
+	                       champion=, championallowance=, championoption=, championrestriction=,
+	                       banner=, bannerallowance=, singlebannerallowance=, condsinglebannerallowance=, banneroption=, bannerrestriction=,
+	                       musician=, musicianrestriction=}%
+	\setkeys{commandgroup}%
+}
+
+% Frame commands.
+\newcommand{\commandgroupframestart}{\begin{innerframe}[\labels@commandgroup]}
+\newcommand{\commandgroupframeend}{\end{innerframe}}
+
+% Command group entry.
+\newcommand{\commandgroup}[1]{%
+	\defcommandgroup{#1}%
+	\ifstrempty{#1}{}{\commandgroupframestart\vspace*{-0.2cm}%
+		\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0cm, itemsep=0cm, parsep=0cm]%
+			% Command group title, including restrictions applying to all the command group
+			\item \textbf{\expandafter\ifblank\expandafter{\commandgroup@restriction}{}{ \only{\commandgroup@restriction}~: }} 
+			% Champion handling. 4 fields: the cost of a champion, the restrictions on taking it, the 
+			\ifdefempty{\commandgroup@champion}{}{% We have a champion!
+				\item \hspace*{-0.04cm}\option{Champion%
+					% Possible restrictions to taking a champion
+				    \expandafter\ifblank\expandafter{\commandgroup@championrestriction}{}{ \only{\commandgroup@championrestriction}}%
+				    % Cost of a champion
+				    }{\commandgroup@champion}%
+				    % Magical allowance of the champion. Should probably not be used, champion option can do it as well and is more flexible.
+					\ifdefempty{\commandgroup@championallowance}{}{\\\option[\upto]{vspace{0.3cm}- Peut recevoir des objets magiques}{\commandgroup@championallowance}}%
+					% Any option available to the champion, in the form option:cost
+					\ifdefempty{\commandgroup@championoption}{}{%
+						\fullexpandarg\StrCut[1]{\commandgroup@championoption}{:}\local@option\local@cost%
+						\\\option{\hspace*{0.3cm}- \local@option}{\local@cost}}%
+			}% End of champion handling
+			\ifdefempty{\commandgroup@banner}{}{% We have a banner!
+				\item \hspace*{-0.04cm}\option{Porte-étendard%
+					% Possible restrictions to taking a banner
+				    \expandafter\ifblank\expandafter{\commandgroup@bannerrestriction}{}{ \only{\commandgroup@bannerrestriction}}%
+				    % Cost of a banner
+				    }{\commandgroup@banner}%
+				    % Magical banner, if all units of this type can take one.
+					\ifdefempty{\commandgroup@bannerallowance}{}{\\\option[\upto]{\hspace*{0.3cm}- Peut recevoir une Bannière magique}{\commandgroup@bannerallowance}}%
+					% Magical banner, if only one unit of this type can take one.
+					\ifdefempty{\commandgroup@singlebannerallowance}{}{\\\option[\upto]{\hspace*{0.3cm}- Une seule unité de ce type peut prendre une Bannière magique}{\commandgroup@singlebannerallowance}}%
+					% Magical banner, if only one unit of this type can take one, but with condtions.
+					\ifdefempty{\commandgroup@condsinglebannerallowance}{}{%
+						\StrCut[1]{\commandgroup@condsinglebannerallowance}{:}\local@option\local@cost%
+						\\\option[\upto]{\hspace*{0.3cm}- Une seule unité de ce type peut prendre une Bannière magique si \local@option}{\local@cost}}%
+					% Additional option for the banner, such as Hill Goblin Lookouts for Ogres
+					\ifdefempty{\commandgroup@banneroption}{}{
+						\splitatstar{\commandgroup@banneroption}{\local@option}{\local@cost} 
+						\par\option{\hspace*{0.3cm}- \local@option}{\local@cost}
+					}%
+			}%
+			\ifdefempty{\commandgroup@musician}{}{% We have a musician!
+				\item \hspace*{-0.04cm}\option{Musicien%
+					% Possible restrictions to taking a musician
+				    \expandafter\ifblank\expandafter{\commandgroup@musicianrestriction}{}{ \only{\commandgroup@musicianrestriction}}%
+				    % Cost of a musician
+				    }{\commandgroup@musician}%
+			}%
+		\end{description}%
+	\commandgroupframeend%
+	 }%
+}
+
+
+%%% Unit rules %%%
+
+% Frame commands.
+\newcommand{\unitrulesframestart}{\begin{innerframe}[\labels@specialrules]}
+\newcommand{\unitrulesframeend}{\end{innerframe}}
+
+% Unit rules specific commands.
+\newcommand{\unitrule}[2]{\item[#1~:]#2}
+
+% Unit rule entry.
+\newcommand{\unitrules}[1]{\ifdefempty{#1}{}{\unitrulesframestart\vspace*{-0.05cm}\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0.1cm, itemsep=0cm, parsep=0cm]#1\end{description}\unitrulesframeend}}
+
+
+%%% Special equipment %%%
+
+% Frame commands.
+\newcommand{\unitequipmentframestart}{\begin{innerframe}[\labels@specialequipment]}
+\newcommand{\unitequipmentframeend}{\end{innerframe}}
+
+% Special equipment specific commands.
+\newcommand{\equipmentdef}[2]{\item[#1~:]#2}
+
+% Special equipment entry.
+\newcommand{\unitequipment}[1]{\ifdefempty{#1}{}{\unitequipmentframestart\vspace*{-0.05cm}\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0.1cm, itemsep=0cm, parsep=0cm]#1\end{description}\unitequipmentframeend}}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Profile input and layout %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Input parameters %%%
+
+\define@key{unit}{name}{\def\unit@name{#1}}
+\define@key{unit}{profile}{\def\unit@profile{#1}}
+\define@key{unit}{cost}{\def\unit@cost{#1}}
+\define@key{unit}{costpermodel}{\def\unit@costpermodel{#1}}
+\define@key{unit}{additionalmodels}{\def\unit@additionalmodels{#1}}
+\define@key{unit}{type}{\def\unit@type{#1}}
+\define@key{unit}{unitsize}{\def\unit@unitsize{#1}}
+\define@key{unit}{basesize}{\def\unit@basesize{#1}}
+\define@key{unit}{specialrules}{\def\unit@specialrules{#1}}
+\define@key{unit}{magiclevel}{\def\unit@magiclevel{#1}}
+\define@key{unit}{magicpaths}{\def\unit@magicpaths{#1}}
+\define@key{unit}{equipment}{\def\unit@equipment{#1}}
+\define@key{unit}{unitequipment}{\def\unit@unitequipment{#1}}
+\define@key{unit}{options}{\def\unit@options{#1}}
+\define@key{unit}{mounts}{\def\unit@mounts{#1}}
+\define@key{unit}{commandgroup}{\def\unit@commandgroup{#1}}
+\define@key{unit}{unitrules}{\def\unit@unitrules{#1}}
+\define@key{unit}{additional}{\def\unit@additional{#1}}
+
+
+%%% Frames definition %%%
+
+% Unit's big frame.
+\tikzset{unittitle/.style={draw=black, fill=white, rectangle, rounded corners, right, minimum height=0.7cm, font=\bfseries}}
+
+\newenvironment{unitframe}[2][]{%
+	\mdfsetup{%
+	          linewidth=1pt,%
+	          roundcorner=5pt,%
+	          backgroundcolor=white,%
+	          innertopmargin=1.2\baselineskip,
+	          innerbottommargin=1.2\baselineskip,
+			  singleextra={
+				\node[unittitle,anchor=east,xshift=-0.5cm] at (P)%
+					{\large\pts{\unit@cost}};
+				\node[unittitle,xshift=0.5cm] at (P-|O)%
+					{\large\uppercase\expandafter{\unit@name}};
+			  }
+	}%
+	\begin{mdframed}[]\relax%
+}%
+{%
+\end{mdframed}%
+}
+
+% Inner small frames for options, special rules definition, ...
+\tikzset{innertitle/.style={fill=white, rectangle, rounded corners, right, minimum height=8pt, font=\bfseries, xshift=0.5cm}}
+
+\newenvironment{innerframe}[1][]{%
+	\mdfsetup{%
+				innerleftmargin=5pt,%
+				innerrightmargin=5pt,%
+	          linewidth=0.5pt,%
+	          roundcorner=5pt,%
+	          backgroundcolor=white,%
+	          innertopmargin=\baselineskip,
+			  singleextra={
+				\node[innertitle] at (P-|O)%
+					{#1};
+			  }
+	}%
+	\vspace*{-0.2cm}\begin{mdframed}[]\relax%
+}%
+{%
+\end{mdframed}%
+}
+
+%%% Command to add a new unit definition %%%
+
+\newcommand{\defunit}{
+	\setkeys{unit}{%
+		name=, profile=, cost=, costpermodel=, additionalmodels=, type=, unitsize=, basesize=, specialrules=, magiclevel=, magicpaths=, equipment=, unitequipment=, options=, mounts=, commandgroup=, unitrules=, additional=%
+	}%
+	\setkeys{unit}%
+}
+
+\newcommand{\showunit}[1]{
+	\defunit{#1}
+	\begin{unitframeFlot}[!htbp]
+	\begin{unitframe}[\large\uppercase\expandafter{\unit@name}]{\unit@cost}
+	\mdfsetup{style=defaultoptions}
+	\begin{mdframed}
+		\expandafter\profile\expandafter{\unit@profile}
+	\end{mdframed}
+	\vspace*{-0.2cm}
+	\setlength\multicolsep{0pt}
+	\begin{multicols}{2}
+		% \raggedcolumns	
+		\unitsize{\unit@unitsize} \par
+		\specialrules{\unit@specialrules} \par
+		\magic{\unit@magiclevel}{\unit@magicpaths} \par
+		\equipment{\unit@equipment} \par
+		\expandafter\ifblank\expandafter{\unit@additionalmodels}{}{\preto{\unit@options}{Jusqu'à \unit@additionalmodels\/ figurines supplémentaires=\permodel: \unit@costpermodel,}}
+		\options{\unit@options} \par
+		\mounts{\unit@mounts} \par
+		\unit@commandgroup \par
+		\unitrules{\unit@unitrules} \par
+		\unitequipment{\unit@unitequipment} \par
+	\end{multicols}
+	\unit@additional \par
+	\end{unitframe}
+	\end{unitframeFlot}
+}

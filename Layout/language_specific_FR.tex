@@ -1,0 +1,173 @@
+\usepackage[french]{babel}
+
+\frenchbsetup{StandardLists=true} % Necessary to use enumitem with babel/french.
+
+% This has to disappear.
+
+\newcommand{\pouce}{\inch}
+\newcommand{\pied}{\foot}
+\newcommand{\portee}{\range}
+
+% Labels
+
+\newcommand{\labels@range}{Portée}
+\newcommand{\labels@profile}{Profil}
+\newcommand{\labels@M}{M}
+\newcommand{\labels@WS}{CC}
+\newcommand{\labels@BS}{CT}
+\newcommand{\labels@S}{F}
+\newcommand{\labels@T}{E}
+\newcommand{\labels@W}{PV}
+\newcommand{\labels@I}{I}
+\newcommand{\labels@A}{A}
+\newcommand{\labels@Ld}{Cd}
+\newcommand{\labels@unitsize}{Taille de l'unité}
+\newcommand{\labels@basesize}{Taille du socle}
+\newcommand{\labels@trooptype}{Type de troupe}
+\newcommand{\labels@specialrules}{Règles spéciales}
+\newcommand{\labels@equipment}{Équipement}
+\newcommand{\labels@options}{Options}
+\newcommand{\labels@commandgroup}{État-Major}
+\newcommand{\labels@lords}{Seigneurs}
+\newcommand{\labels@heroes}{Héros}
+\newcommand{\labels@baseunits}{Unités de base}
+\newcommand{\labels@specialunits}{Unités spéciales}
+\newcommand{\labels@rareunits}{Unités rares}
+\newcommand{\labels@mounts}{Montures}
+\newcommand{\labels@specialequipment}{Équipement spécial}
+\newcommand{\labels@fantasybattles}{Batailles Fantastiques}
+\newcommand{\labels@NinthAge}{Le 9\ieme Âge}
+\newcommand{\labels@creators}{Une collaboration des créateurs de l'ETC et du Swedish Comp System}
+\newcommand{\labels@latexcredit}{Document réalisé à l'aide de \LaTeX .}
+
+\newcommand{\labels@point}{pt}
+\newcommand{\labels@points}{pts}
+
+\newcommand{\labels@armyspecialrules}{Règles spéciales de l'armée}
+\newcommand{\labels@armoury}{Armurerie}
+\newcommand{\labels@magicitems}{Objets magiques}
+
+% Technical
+
+\newcommand{\free}{gratuit}
+\newcommand{\upto}{jusqu'à}
+\newcommand{\unlimited}{sans limite de pts}
+\newcommand{\permodel}{/fig.}
+
+% Special rules
+
+\newcommand{\ambush}{\specialrule{Embuscade}\xspace}
+\newcommand{\armourpiercing}[1]{\specialrule{Perforant\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\blurry}{\specialrule{Camouflé}\xspace}
+\newcommand{\bodyguard}[1]{\specialrule{Garde du Corps\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\breathweapon}[1]{\specialrule{Attaque de Souffle\ifblank{#1}{}{ (#1)}}\xspace}
+\newcommand{\channel}{\specialrule{Canalisation}\xspace}
+\newcommand{\crushattack}{\specialrule{Attaque Écrasante}\xspace}
+\newcommand{\devastatingcharge}{\specialrule{Charge Dévastatrice}\xspace}
+\newcommand{\distracting}{\specialrule{Distrayant}\xspace}
+\newcommand{\engineer}{\specialrule{Ingénieur}\xspace}
+\newcommand{\ethereal}{\specialrule{Éthéré}\xspace}
+\newcommand{\fastcavalry}{\specialrule{Cavalerie Légère}\xspace}
+\newcommand{\fear}{\specialrule{Peur}\xspace}
+\newcommand{\fightinextrarank}{\specialrule{Combat avec un Rang Supplémentaire}\xspace}
+\newcommand{\fireborn}{\specialrule{Né du Feu}\xspace}
+\newcommand{\flamingattacks}{\specialrule{Attaques Enflammées}\xspace}
+\newcommand{\flammable}{\specialrule{Inflammable}\xspace}
+\newcommand{\freereform}{\specialrule{Reformation Gratuite}\xspace}
+\newcommand{\frenzy}{\specialrule{Frénésie}\xspace}
+\newcommand{\fly}[1]{\specialrule{Vol\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\grindingattacks}[1]{\specialrule{Attaques de Broyage\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\hatred}{\specialrule{Haine}\xspace}
+\newcommand{\hellfire}{\specialrule{Flammes de l'Enfer}\xspace}
+\newcommand{\hidden}{\specialrule{Caché}\xspace}
+\newcommand{\holyattacks}{\specialrule{Attaques Sacrées}\xspace}
+\newcommand{\immunetopsychology}{\specialrule{Immunisé à la Psychologie}\xspace}
+\newcommand{\impacthits}[1]{\specialrule{Touches d'Impact\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\insignificant}{\specialrule{Insignifiant}\xspace}
+\newcommand{\largetarget}{\specialrule{Grande Cible}\xspace}
+\newcommand{\lethalstrike}{\specialrule{Coup Fatal}\xspace}
+\newcommand{\lightningattacks}{\specialrule{Attaques Foudroyantes}\xspace}
+\newcommand{\lightningreflexes}{\specialrule{Réflexes Foudroyants}\xspace}
+\newcommand{\magicresistance}[1]{\specialrule{Résistance à la Magie\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\magicalattacks}{\specialrule{Attaques Magiques}\xspace}
+\newcommand{\metalshifting}{\specialrule{Fusion du Métal}\xspace}
+\newcommand{\moveorfire}{\specialrule{Mouvement ou Tir}\xspace}
+\newcommand{\multipleshots}[1]{\specialrule{Tirs Multiples\ifblank{#1}{}{ (#1)}}\xspace}
+\newcommand{\multiplewounds}[2]{\specialrule{Blessures Multi\-ples\ifblank{#1}{}{ (#1\ifblank{#2}{)}{, #2)}}\xspace}}
+\newcommand{\notaleader}{\specialrule{Pas un Meneur}\xspace}
+\newcommand{\otherworldly}{\specialrule{D'Outre-Monde}\xspace}
+\newcommand{\pathmaster}[1]{\specialrule{Maître de la Discipline\ifblank{#1}{}{ (#1)}}\xspace}
+\newcommand{\poisonedattacks}{\specialrule{Attaques Empoisonnées}\xspace}
+\newcommand{\quicktofire}{\specialrule{Tir Rapide}\xspace}
+\newcommand{\randommovement}[1]{\specialrule{Mouvement Aléatoire\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\randomattacks}[1]{\specialrule{Attaques Aléatoires\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\regeneration}[1]{\specialrule{Régénération\ifblank{#1}{}{ (#1+)}}\xspace}
+\newcommand{\requirestwohands}{\specialrule{Arme à deux Mains}\xspace}
+\newcommand{\scythes}{\specialrule{Faux}\xspace}
+\newcommand{\scout}{\specialrule{Éclaireur}\xspace}
+\newcommand{\scouts}{\specialrule{Éclaireurs}\xspace}
+\newcommand{\slowtofire}{\specialrule{Tir Lent}\xspace}
+\newcommand{\stomp}[1]{\specialrule{Piétinement\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\strider}[1]{\specialrule{Guide\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\stubborn}{\specialrule{Tenace}\xspace}
+\newcommand{\stupidity}{\specialrule{Stupide}\xspace}
+\newcommand{\skirmisher}{\specialrule{Tirailleur}\xspace}
+\newcommand{\skirmishers}{\specialrule{Tirailleurs}\xspace}
+\newcommand{\swiftstride}{\specialrule{Rapide}\xspace}
+\newcommand{\thunderouscharge}{\specialrule{Charge Tonitruante}\xspace}
+\newcommand{\terror}{\specialrule{Terreur}\xspace}
+\newcommand{\toxicattacks}{\specialrule{Attaques Toxiques}\xspace}
+\newcommand{\unbreakable}{\specialrule{Indémoralisable}\xspace}
+\newcommand{\undead}{\specialrule{Mort-Vivant}\xspace}
+\newcommand{\unstable}{\specialrule{Instable}\xspace}
+\newcommand{\unwieldy}{\specialrule{Encombrant}\xspace}
+\newcommand{\vanguard}{\specialrule{Avant-Garde}\xspace}
+\newcommand{\volleyfire}{\specialrule{Tir de Volée}\xspace}
+\newcommand{\warplatform}{\specialrule{Plateforme de Guerre}\xspace}
+\newcommand{\wardsave}[1]{\specialrule{Sauvegarde Invulnérable\ifblank{#1}{}{~(#1+)}}\xspace}
+\newcommand{\weaponmaster}{\specialrule{Maître d'Ar\-mes}\xspace}
+\newcommand{\wizardconclave}[1]{\specialrule{Conclave de Sorciers\ifblank{#1}{}{ (#1)}}\xspace}
+
+
+%%% Magic %%%
+
+\newcommand\battle{de Bataille\xspace}
+\newcommand\alchemy{de l'Alchimie\xspace}
+\newcommand\death{de la Mort\xspace}
+\newcommand\fire{du Feu\xspace}
+\newcommand\heavens{des Cieux\xspace}
+\newcommand\light{de la Lumière\xspace}
+\newcommand\nature{de la Nature\xspace}
+\newcommand\shadows{des Ombres\xspace}
+\newcommand\wilderness{de la Sauvagerie Bestiale\xspace}
+\newcommand\butchery{de la Boucherie\xspace}
+\newcommand\change{du Changement\xspace}
+\newcommand\thebiggreengods{des Grands Dieux Verts\xspace}
+\newcommand\thelittlegreengods{des Petits Dieux Verts\xspace}
+\newcommand\blackmagic{de la Magie Noire\xspace}
+\newcommand\disease{de la Maladie\xspace}
+\newcommand\lust{de la Luxure\xspace}
+\newcommand\necromancy{de la Nécromancie\xspace}
+\newcommand\ruin{de la Ruine\xspace}
+\newcommand\forge{de la Forge\xspace}
+\newcommand\sands{des Sables\xspace}
+\newcommand\whitemagic{de la Magie Blanche\xspace}
+
+\newcommand{\magiclevel}[1]{Sorcier niveau #1}
+
+%%% Other rules %%%
+
+\newcommand{\armoursave}{Sauvegarde d'Armure\xspace}
+\newcommand{\firstinrank}{\specialrule{Au Premier Rang}\xspace}
+\newcommand{\hardcover}{Couvert Lourd\xspace}
+\newcommand{\holdyourground}{\specialrule{Tenir la Position}\xspace}
+\newcommand{\innatedefence}[1]{Protection innée\ifblank{#1}{}{~(#1+)}\xspace}
+\newcommand{\inspiringpresence}{\specialrule{Présence Charismatique}\xspace}
+\newcommand{\lightcover}{Couvert Léger\xspace}
+\newcommand{\monstrousrank}{Rang Monstrueux\xspace}
+\newcommand{\naturalarmor}{Armure Naturelle\xspace}
+\newcommand{\oneofakind}{Unique\xspace}
+\newcommand{\ordnance}{Artillerie\xspace}
+\newcommand{\parry}{Parade\xspace}
+\newcommand{\raisewounds}{Ressusciter des Figurines\xspace}
+\newcommand{\recoverwounds}{Récupérer des PVs\xspace}

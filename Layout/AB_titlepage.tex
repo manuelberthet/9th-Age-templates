@@ -1,0 +1,44 @@
+\newgeometry{margin=1in}
+
+% Table options
+\arrayrulecolor{black!30}
+\setlength{\arrayrulewidth}{2pt}
+\renewcommand{\arraystretch}{1.2}
+
+\begin{titlepage}
+\begin{center}
+
+\ifdef{\booktitle}{}{\newcommand{\booktitle}{Missing title}}
+\ifdef{\version}{}{\newcommand{\version}{Missing version}}
+
+{\fontsize{50}{60}\fontfamily{pzc}\selectfont \labels@fantasybattles \\ \labels@NinthAge} \\
+\vspace{0.7cm}
+{\fontsize{20}{24}\selectfont \booktitle\/ - Beta v\version} \\
+\vspace{0.4cm}
+\ifdef{\frenchversion}{{\fontsize{14}{16.8}\selectfont \texttt{Version française \frenchversion}}\\}{}
+{\fontsize{14}{16.8}\selectfont \texttt{\today}} \\
+\vfill
+\includegraphics[width=9cm]{../Layout/logo_9th.png}
+\vfill
+{\fontsize{12}{14.4}\selectfont \textit{\labels@creators}} \\
+
+
+\end{center}
+
+\newpage
+
+\thispagestyle{empty}
+
+{\fontsize{12}{14.4}\selectfont
+
+\vspace{0.5cm}
+
+\vfill
+
+\noindent {\LARGE \textbf{\labels@latexcredit}}
+}
+
+
+\end{titlepage}
+
+\restoregeometry
