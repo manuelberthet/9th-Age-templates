@@ -8,11 +8,12 @@
 \ifxetex
   \usepackage{fontspec}
   \defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
-  \setmainfont{Casablanca Antique}
+  \setmainfont{Caslon Antique}
 \else
 	\usepackage[T1]{fontenc} 		% Font encoding.
 	\usepackage[utf8]{inputenc} 	% Document encoding.
 	\usepackage{palatino} 			% Font.
+	\usepackage{textcomp} 			% for the straight single quote \textquotesingle.
 \fi
 
 \usepackage{microtype}			% Greatly improves general appearance of the text.
@@ -30,7 +31,6 @@
 \usepackage{xstring}            % String parsing, cutting, etc.
 \usepackage{xparse}             % List utilities.
 \usepackage{xspace}				% Define commands that appear not to eat spaces.
-\usepackage{textcomp} 			% for the straight single quote \textquotesingle.
 \usepackage[colorlinks=true]{hyperref} % Links in PDF.
 \usepackage[framemethod=TikZ]{mdframed}% For fancy frames.
 \usepackage{tikz}				% For fancy frames.
@@ -116,7 +116,14 @@
 
 %%% Technical commands %%%
 
-\newcommand{\diceresult}[1] {\textquotesingle #1\textquotesingle}
+\ifxetex
+	\newcommand{\result}[1] {'#1'}
+\else
+	\newcommand{\result}[1] {\textquotesingle #1\textquotesingle}
+\fi
+
+\newcommand{\newrule}{\textcolor{green}}
+
 \newcommand{\inch}{\arcsecond}
 \newcommand{\foot}{\arcminute}
 \newcommand{\range}[1] {\labels@range~\unit{#1}{\inch}}
