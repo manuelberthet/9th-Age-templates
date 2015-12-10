@@ -1,0 +1,219 @@
+%%% Labels %%%
+
+% Profile
+
+\newcommand{\labels@profile}{Profile}
+\newcommand{\labels@M}{M}
+\newcommand{\labels@WS}{WS}
+\newcommand{\labels@BS}{BS}
+\newcommand{\labels@S}{S}
+\newcommand{\labels@T}{T}
+\newcommand{\labels@W}{W}
+\newcommand{\labels@I}{I}
+\newcommand{\labels@A}{A}
+\newcommand{\labels@Ld}{Ld}
+
+% Technical
+
+\newcommand{\labels@range}{Range}
+\newcommand{\labels@point}{pt}
+\newcommand{\labels@points}{pts}
+\newcommand{\labels@only}{only}
+\newcommand{\labels@magic}{Magic}
+\newcommand{\labels@pathsused}{Generate spells from Path of}
+\newcommand{\labels@additionnalmodels}{additional models}
+
+% Unit entry labels
+
+\newcommand{\labels@unitsize}{Unit size}
+\newcommand{\labels@basesize}{Base size}
+\newcommand{\labels@trooptype}{Troop type}
+\newcommand{\labels@specialrules}{Special rules}
+\newcommand{\labels@equipment}{Equipment}
+\newcommand{\labels@options}{Options}
+\newcommand{\labels@commandgroup}{Command Group}
+\newcommand{\labels@mounts}{Mounts}
+\newcommand{\labels@specialequipment}{Special Equipment}
+
+% Command groups
+
+\newcommand{\labels@champion}{Champion}
+\newcommand{\labels@standardbearer}{Standard Bearer}
+\newcommand{\labels@musician}{Musician}
+\newcommand{\labels@singlebannerallowance}{One unit may take a Magic banner}
+\newcommand{\labels@condsinglebannerallowance}{One unit may take a Magic banner if}
+\newcommand{\labels@bannerallowance}{May take a Magic banner}
+\newcommand{\labels@championallowance}{May take Magic items}
+
+% Titles
+
+\newcommand{\labels@lords}{Lords}
+\newcommand{\labels@heroes}{Heroes}
+\newcommand{\labels@baseunits}{Base units}
+\newcommand{\labels@specialunits}{Special units}
+\newcommand{\labels@rareunits}{Rare units}
+\newcommand{\labels@armyspecialrules}{Army special rules}
+\newcommand{\labels@armoury}{Armoury}
+\newcommand{\labels@magicitems}{Magic items}
+\newcommand{\labels@magicweapons}{Magic weapons}
+\newcommand{\labels@magicarmor}{Magic armor}
+\newcommand{\labels@talismans}{Talismans}
+\newcommand{\labels@enchanteditems}{Enchanted items}
+\newcommand{\labels@arcaneitems}{Arcane items}
+\newcommand{\labels@magicbanners}{Magic banners}
+
+% Titlepage
+
+\newcommand{\labels@fantasybattles}{Fantasy Battles}
+\newcommand{\labels@NinthAge}{The 9th Age}
+\newcommand{\labels@creators}{A collaboration between ETC and Swedish Comp System}
+\newcommand{\labels@latexcredit}{Layout designed using \LaTeX .}
+
+
+%%% Technical commands
+
+\newcommand{\free}{free}
+\newcommand{\upto}{up to}
+\newcommand{\Upto}{Up to}
+\newcommand{\unlimited}{unlimited}
+\newcommand{\permodel}{/model}
+
+
+%%% Special rules %%%
+
+\newnamemacro{\ambush}{\specialrule{Ambush}}
+\newcommand{\armourpiercing}[1]{\specialrule{Armour Piercing\ifblank{#1}{}{~(#1)}}\xspace}
+\newnamemacro{\blurry}{\specialrule{Blurry}}
+\newcommand{\bodyguard}[1]{\specialrule{Bodyguard\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\breathweapon}[1]{\specialrule{Breath Weapon\ifblank{#1}{}{ (#1)}}\xspace}
+\newnamemacro{\channel}{\specialrule{Channel}}
+\newnamemacro{\crushattack}{\specialrule{Crush Attack}}
+\newnamemacro{\devastatingcharge}{\specialrule{Devastating Charge}}
+\newnamemacro{\distracting}{\specialrule{Distracting}}
+\newnamemacro{\engineer}{\specialrule{Engineer}}
+\newnamemacro{\ethereal}{\specialrule{Ethereal}}
+\newnamemacro{\fastcavalry}{\specialrule{Fast Cavalry}}
+\newnamemacro{\fear}{\specialrule{Fear}}
+\newnamemacro{\fightinextrarank}{\specialrule{Fight in Extra Rank}}
+\newnamemacro{\fireborn}{\specialrule{Fireborn}}
+\newnamemacro{\flamingattacks}{\specialrule{Flaming Attacks}}
+\newnamemacro{\flammable}{\specialrule{Flammable}}
+\newnamemacro{\freereform}{\specialrule{Free Reform}}
+\newnamemacro{\frenzy}{\specialrule{Frenzy}}
+\newcommand{\fly}[1]{\specialrule{Fly\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\grindingattacks}[1]{\specialrule{Grinding Attacks\ifblank{#1}{}{~(#1)}}\xspace}
+\newnamemacro{\hatred}{\specialrule{Hatred}}
+\newnamemacro{\hellfire}{\specialrule{Hellfire}}
+\newnamemacro{\hidden}{\specialrule{Hidden}}
+\newnamemacro{\holyattacks}{\specialrule{Holy Attacks}}
+\newnamemacro{\immunetopsychology}{\specialrule{Immune to Psychology}}
+\newcommand{\impacthits}[1]{\specialrule{Impact Hits\ifblank{#1}{}{~(#1)}}\xspace}
+\newnamemacro{\insignificant}{\specialrule{Insignificant}}
+\newnamemacro{\largetarget}{\specialrule{Large Target}}
+\newnamemacro{\lethalstrike}{\specialrule{Lethal Strike}}
+\newnamemacro{\lightningattacks}{\specialrule{Lightning Attacks}}
+\newnamemacro{\lightningreflexes}{\specialrule{Lightning Reflexes}}
+\newcommand{\magicresistance}[1]{\specialrule{Magic Resistance\ifblank{#1}{}{~(#1)}}\xspace}
+\newnamemacro{\magicalattacks}{\specialrule{Magical Attacks}}
+\newnamemacro{\metalshifting}{\specialrule{Metalshifting}}
+\newnamemacro{\moveorfire}{\specialrule{Move or Fire}}
+\newcommand{\multipleshots}[1]{\specialrule{Multiple Shots\ifblank{#1}{}{ (#1)}}\xspace}
+\newcommand{\multiplewounds}[2]{\specialrule{Multiple Wounds\ifblank{#1}{}{ (#1\ifblank{#2}{)}{, #2)}}\xspace}}
+\newnamemacro{\notaleader}{\specialrule{Not a Leader}}
+\newnamemacro{\otherworldly}{\specialrule{Otherworldly}}
+\newcommand{\pathmaster}[1]{\specialrule{Pathmaster\ifblank{#1}{}{ (#1)}}\xspace}
+\newnamemacro{\poisonedattacks}{\specialrule{Poisoned Attacks}}
+\newnamemacro{\quicktofire}{\specialrule{Quick to Fire}}
+\newcommand{\randommovement}[1]{\specialrule{Random Movement\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\randomattacks}[1]{\specialrule{Random Attacks\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\regeneration}[1]{\specialrule{Regeneration\ifblank{#1}{}{ (#1+)}}\xspace}
+\newnamemacro{\requirestwohands}{\specialrule{Requires Two Hands}}
+\newnamemacro{\scythes}{\specialrule{Scythes}}
+\newnamemacro{\scout}{\specialrule{Scout}}
+\newnamemacro{\scouts}{\specialrule{Scouts}}
+\newnamemacro{\slowtofire}{\specialrule{Slow to Fire}}
+\newcommand{\stomp}[1]{\specialrule{Stomp\ifblank{#1}{}{~(#1)}}\xspace}
+\newcommand{\strider}[1]{\specialrule{Strider\ifblank{#1}{}{~(#1)}}\xspace}
+\newnamemacro{\stubborn}{\specialrule{Stubborn}}
+\newnamemacro{\stupidity}{\specialrule{Stupidity}}
+\newnamemacro{\skirmisher}{\specialrule{Skirmisher}}
+\newnamemacro{\skirmishers}{\specialrule{Skirmishers}}
+\newnamemacro{\swiftstride}{\specialrule{Swiftstride}}
+\newnamemacro{\thunderouscharge}{\specialrule{Thunderous Charge}}
+\newnamemacro{\terror}{\specialrule{Terror}}
+\newnamemacro{\toxicattacks}{\specialrule{Toxic Attacks}}
+\newnamemacro{\unbreakable}{\specialrule{Unbreakable}}
+\newnamemacro{\undead}{\specialrule{Undead}}
+\newnamemacro{\unstable}{\specialrule{Unstable}}
+\newnamemacro{\unwieldy}{\specialrule{Unwieldy}}
+\newnamemacro{\vanguard}{\specialrule{Vanguard}}
+\newnamemacro{\volleyfire}{\specialrule{Volley Fire}}
+\newnamemacro{\warplatform}{\specialrule{War Platform}}
+\newcommand{\wardsave}[1]{\specialrule{Ward Save\ifblank{#1}{}{~(#1+)}}\xspace}
+\newnamemacro{\weaponmaster}{\specialrule{Weapon Master}}
+\newcommand{\wizardconclave}[1]{\specialrule{Wizard Conclave\ifblank{#1}{}{ (#1)}}\xspace}
+
+
+%%% Magic %%%
+
+\newnamemacro\battle{Battle}
+\newnamemacro\alchemy{Alchemy}
+\newnamemacro\death{Death}
+\newnamemacro\fire{Fire}
+\newnamemacro\heavens{Heavens}
+\newnamemacro\light{Light}
+\newnamemacro\nature{Nature}
+\newnamemacro\shadows{Shadows}
+\newnamemacro\wilderness{Wilderness}
+\newnamemacro\butchery{Butchery}
+\newnamemacro\change{Change}
+\newnamemacro\thebiggreengods{the Big Green Gods}
+\newnamemacro\thelittlegreengods{the Little Green Gods}
+\newnamemacro\blackmagic{Black Magic}
+\newnamemacro\disease{Disease}
+\newnamemacro\lust{Lust}
+\newnamemacro\necromancy{Necromancy}
+\newnamemacro\ruin{Ruin}
+\newnamemacro\forge{the Forge}
+\newnamemacro\sands{the Sands}
+\newnamemacro\whitemagic{White Magic}
+
+\newcommand{\magiclevel}[1]{Wizard level #1}
+
+\newnamemacro{\wizard}{Wizard}
+
+\newcommand{\boundspell}[1]{Bound Spell, Power Level #1}
+
+
+%%% Other rules %%%
+
+\newnamemacro{\armoursave}{Armour Save}
+\newnamemacro{\firstinrank}{First in Rank}
+\newnamemacro{\hardcover}{Hard Cover}
+\newnamemacro{\holdyourground}{\specialrule{Hold your Ground}}
+\newnamemacro{\inspiringpresence}{\specialrule{Inspiring Presence}}
+\newnamemacro{\lightcover}{Light Cover}
+\newnamemacro{\monstrousrank}{Monstrous Rank}
+\newnamemacro{\oneofakind}{One of a kind}
+\newnamemacro{\ordnance}{Ordnance}
+\newnamemacro{\parry}{Parry}
+\newnamemacro{\raisewounds}{Raise Wounds}
+\newnamemacro{\recoverwounds}{Recover Wounds}
+\newnamemacro{\aideddispel}{Aided Dispel}
+\newnamemacro{\rnf}{R\&{}F}
+
+
+%%% Equipment %%%
+
+\newcommand{\innatedefence}[1]{Innate Defence\ifblank{#1}{}{~(#1+)}\xspace}
+\newnamemacro{\platearmour}{Plate Armour}
+\newnamemacro{\hw}{Hand Weapon}
+\newnamemacro{\ahw}{Additional Hand Weapon}
+\newnamemacro{\halberd}{Halberd}
+\newnamemacro{\gw}{Great Weapon}
+\newnamemacro{\lance}{Lance}
+\newnamemacro{\shield}{Shield}
+\newnamemacro{\throwingweapons}{Throwing Weapons}
+
+\newnamemacro{\boltthrower}{Bolt Thrower}
+\newnamemacro{\artilleryweapon}{Artillery Weapon}

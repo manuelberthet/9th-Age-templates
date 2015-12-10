@@ -1,12 +1,12 @@
 \input{../Layout/AB_layout.tex}
 
 \newcommand{\booktitle}{Vampire Covenant}
-\newcommand{\version}{0.10.0}
+\newcommand{\version}{0.10.1}
 \newcommand{\englishversion}{0.1}
 
 % Army special rules
 
-\newnamemacro{\mastersoftheundead}{\specialrule{Masters of the Undead}}
+\newnamemacro{\masterofundeath}{\specialrule{Master of Undeath}}
 \newnamemacro{\ashestoashes}{\specialrule{Ashes to Ashes}}
 \newcommand{\chillingshriek}[1]{\specialrule{Chilling Shriek\ifblank{#1}{}{ (#1)}}\xspace}
 \newcommand{\awaken}[1]{\specialrule{Awaken\ifblank{#1}{}{ (#1)}}\xspace}
@@ -103,13 +103,15 @@
 
 \armyspecialrules
 
-\armyspecialruleentry{\mastersoftheundead}
+\armyspecialruleentry{\masterofundeath}
 
-The model chosen as the General of the army is automatically designated as the \newrule{Master} and \textbf{must} exchange one known spell for \necromancysignaturespell, regardless of which Path it uses. At the start of any Player turn in which the army does not have a living \newrule{Master}, you may nominate a single character that uses the Path of Necromancy. If the character passes a Leadership test, the model becomes the new \newrule{Master}. If the test is failed, apply \ashestoashes .
+\newrule{Only models with this special rule can be chosen as General. The General is automatically designated as Master and must exchange one spell for \necromancysignaturespell , regardless of which Path it uses.}
+
+\newrule{At the start of any of your player turns in which the army does not have a living Master you must nominate a character with this special rule and knowledge of at least one spell from the Path of \necromancy . If that character passes a Leadership test it immediately becomes the new Master.}
 
 \armyspecialruleentry{\ashestoashes}
 
-At the start of any player turn in which the army does not have a living \newrule{Master} and failed to designate a new one, every unit who possess the \ashestoashes special rule must pass a Leadership test or suffer a number of wounds equal to the value by which they test was failed. These wounds are distributed following the rules for \unstable . Units suffer 1 less Wound than they normally would due to the \unstable and \ashestoashes special rules if within the range of the Battle Standard Bearer's \holdyourground . At the end of any phase in which the General is removed as casualty, units with this rule must automatically test for Leadership in the way described above.
+\newrule{At the end of the phase in which the General is killed, and each time a Leadership test is failed for gaining a new Master (or if there is no eligible character to take the test), all units with the majority of the models having this special rule must take a Leadership Test. If failed the unit suffers 1 wound for each point by which the test was failed with. These wounds are distributed following the rules for \unstable but can never be assigned to models without this special rule.}
 
 \armyspecialruleentry{\newrule{\chillingshriek{X, Y}}}
 
@@ -125,21 +127,21 @@ Models with this special rule can heal wounds back with \necromancysignaturespel
 
 \armyspecialruleentry{\reaper}
 
-\newrule{Units consisting solely of models with this special rule may move through enemy units during the Remaining Moves Sub-Phase. All Models in such units can make a single Close Combat attack against a single unengaged enemy unit which has been moved through. These attacks hit automatically and are distributed towards the unit as a whole.}
+\newrule{Units consisting solely of models with this special rule may move through \removedrule{enemy} units during the Remaining Moves Sub-Phase. All Models in such units can make a single close combat attack against a single unengaged enemy unit which has been moved through. These attacks hit automatically and are distributed towards the unit as a whole.}
 
 \armyspecialruleentry{\vampiric{X}}
 
-Models with this special rule \newrule{have the \fear special rule} and can make march moves as normal even when outside the range of the General's \inspiringpresence . They still have to test Leadership if they are within \distance{8} of enemy units. 
+Models with this special rule can make march moves as normal even when outside the range of the General's \inspiringpresence . They still have to test Leadership if they are within \distance{8} of enemy units. 
 
-\newrule{At the end of the Close Combat phase, roll a D6 for each unit with this special rule that caused at least one wound during the phase. On the roll of X+ a single wound is Raised to the unit, where X is the number stated within the brackets. Characters must cause wounds and roll for Raised wounds separately from any unit they are joined to.}
+\newrule{At the end of the close combat phase, units with this special rule can make a single \vampiric{} roll if a model part with this special rule caused at least one wound during the phase. Roll a D6 for each \vampiric{} roll. On the roll of X+ a single wound is Raised to the unit, where X is the number stated within the brackets (a \result{1} is always a failure). Characters must cause wounds and roll for Raised wounds separately from any unit they are joined to.}
 
 \armyspecialruleentry{\wakethedead}
 
-Each time after an Augment spell from Path of \necromancy (including the \necromancyattribute) is resolved against a model with this rule, you may select a single unit within \distance{6} of it. Until the end of the following player turn, all Models in the chosen units have the \lightningreflexes special rule.
+Each time after an Augment spell from Path of \necromancy (including the \necromancyattribute) is resolved against a unit containing at least one model with this rule, you may select a single unit within \distance{6} of it. Until the end of the following player turn, all models in the chosen units have the \lightningreflexes special rule.
 
 \armyspecialruleentry{\necromanticaura}
 
-Units within \distance{6} of one or more models with this special rule suffer 1 less Wound than they normally would due to the \unstable , \ashestoashes special rules. Models with this special rule cannot benefit from the effects of this special rule.
+\newrule{Units with this special rule and friendly units within range reduce the number of wounds caused by the \ashestoashes and \unstable special rules by 1. Units with this special rule has a range equal to \distance{6}. The Battle Standard Bearer automatically has this special rule but with the range of its \holdyourground instead.}
 
 
 \armynewsection{\bloodlines}
@@ -267,7 +269,7 @@ A \nosferatu Vampire may generate spells from more than one Path of Magic. Which
 
 \pricelistitem{\newrule{Bow of Nepharet}}{45} This is \boltthrower \artilleryweapon with the following profile: \range{36}, Strength 6, \armourpiercing{1}, \multiplewounds{D3}{}.
 
-\pricelistitem{Blade of Red Thirst}{40} Type: \hw . Can only be taken by Models with the \vampiric{} special rule. \newrule{The Model gains \vampiric{5} if mounted on a \largetarget} and \vampiric{3} otherwise. The Model rolls 1D6 for each \newrule{unsaved} wound inflicted when rolling for wounds Raised by \vampiric{}. Any excess wounds Raised can be used to \raisewounds on the unit that the Model is part of.
+\pricelistitem{Blade of Red Thirst}{40} \newrule{Vampires only}. Type: \hw . \newrule{The model gains \vampiric{5} if mounted on a \largetarget and \vampiric{3} otherwise}. The Model part makes a \vampiric{} roll for each \newrule{unsaved} wound cause by this weapon instead of just one. Any excess wounds Raised can be used to \raisewounds on the unit that the model is part of.
 
 \endpricelist
 

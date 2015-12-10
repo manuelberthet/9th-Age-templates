@@ -3,42 +3,50 @@
 
 \usepackage[a4paper, top=1.6cm, bottom=2cm, left=1.6cm, right=1.6cm]{geometry} % Marge reduction.
 
-\usepackage{ifxetex}
-
-\ifxetex
-  \usepackage{fontspec}
-%  \setmainfont[Ligatures=TeX]{Arial} % default is Latin Modern
-  \newfontfamily\antiquefont[Ligatures=TeX]{Caslon Antique} % GW like font
-\else
-	\usepackage[T1]{fontenc} 		% Font encoding.
-	\usepackage[utf8]{inputenc} 	% Document encoding.
-	\usepackage{palatino} 			% Font.
-	\usepackage{textcomp} 			% for the straight single quote \textquotesingle.
-\fi
-
+%% Font and typing packages
+\usepackage{fontspec}
+% \setmainfont[Ligatures=TeX]{Arial} % default is Latin Modern
+\newfontfamily\antiquefont[Ligatures=TeX]{Caslon Antique} % GW like font
 \usepackage{microtype}			% Greatly improves general appearance of the text.
 \usepackage{SIunits}			% Unit appearance.
+\usepackage{xspace}				% Define commands that appear not to eat spaces.
+\usepackage{ulem}				% To cross words out. Use \sout{}.
+
+%% Array utilities
 \usepackage{array}				% Additionnal options for arrays.
 \usepackage{colortbl}			% Additionnal options for coloring arrays.
-\usepackage{multicol}			% Allows to divide a part of the page in multiple columns.
-\usepackage{framed}				% Boxes.
+
+%% List utilities
 \usepackage[inline]{enumitem}   % Display inline lists.
 \usepackage{etoolbox}           % General utility. Good for lists for instance.
+\usepackage{xparse}             % List utilities.
+
+%% Frames
+\usepackage{framed}				% Boxes.
+\usepackage[framemethod=TikZ]{mdframed}% For fancy frames.
+\usepackage{tikz}				% For fancy frames.
+
+%% Page utilities
+\usepackage{multicol}			% Allows to divide a part of the page in multiple columns.
 \usepackage{newfloat}			% Used to create new flottable environnements.
 	\DeclareFloatingEnvironment[placement=htbp!]{unitframeFlot}
+	
+%% Others
 \usepackage{keyval}             % Used to create maps of commands/labels/objects.
 	\makeatletter                  % Mandatory for the usage of keyval.
 \usepackage{xstring}            % String parsing, cutting, etc.
-\usepackage{xparse}             % List utilities.
-\usepackage{xspace}				% Define commands that appear not to eat spaces.
 \usepackage[colorlinks=true]{hyperref} % Links in PDF.
-\usepackage[framemethod=TikZ]{mdframed}% For fancy frames.
-\usepackage{tikz}				% For fancy frames.
-\usepackage{ulem}				% To cross words out. Use \sout{}.
+
+
+
+
+%%% Command to avoid typing \xspace when creating a new name macro
+
+\newcommand{\newnamemacro}[2]{\newcommand{#1}{#2\xspace}}
 
 %%% Language specific stuff
 
-% \include{language_specific_FR.tex}
+\input{../Layout/AB_language_specific_EN.tex}
 
 %%% Command to split strings, better than StrCut to handle commands inside the strings %%%
 
@@ -49,89 +57,8 @@
   \restoreexpandmode
 }
 
-%%% Command to avoid typing \xspace when creating a new name macro
-
-\newcommand{\newnamemacro}[2]{\newcommand{#1}{#2\xspace}}
-
-%%% Labels %%%
-
-% Profile
-
-\ifdef{\labels@profile}{}{\newcommand{\labels@profile}{Profile}}
-\ifdef{\labels@M}{}{\newcommand{\labels@M}{M}}
-\ifdef{\labels@WS}{}{\newcommand{\labels@WS}{WS}}
-\ifdef{\labels@BS}{}{\newcommand{\labels@BS}{BS}}
-\ifdef{\labels@S}{}{\newcommand{\labels@S}{S}}
-\ifdef{\labels@T}{}{\newcommand{\labels@T}{T}}
-\ifdef{\labels@W}{}{\newcommand{\labels@W}{W}}
-\ifdef{\labels@I}{}{\newcommand{\labels@I}{I}}
-\ifdef{\labels@A}{}{\newcommand{\labels@A}{A}}
-\ifdef{\labels@Ld}{}{\newcommand{\labels@Ld}{Ld}}
-
-% Technical
-
-\ifdef{\labels@range}{}{\newcommand{\labels@range}{Range}}
-\ifdef{\labels@point}{}{\newcommand{\labels@point}{pt}}
-\ifdef{\labels@points}{}{\newcommand{\labels@points}{pts}}
-\ifdef{\labels@only}{}{\newcommand{\labels@only}{only}}
-\ifdef{\labels@magic}{}{\newcommand{\labels@magic}{Magic}}
-\ifdef{\labels@pathsused}{}{\newcommand{\labels@pathsused}{Generate spells from Paths of}}
-\ifdef{\labels@additionnalmodels}{}{\newcommand{\labels@additionnalmodels}{additionnal models}}
-
-% Unit entry labels
-
-\ifdef{\labels@unitsize}{}{\newcommand{\labels@unitsize}{Unit size}}
-\ifdef{\labels@basesize}{}{\newcommand{\labels@basesize}{Base size}}
-\ifdef{\labels@trooptype}{}{\newcommand{\labels@trooptype}{Troop type}}
-\ifdef{\labels@specialrules}{}{\newcommand{\labels@specialrules}{Special rules}}
-\ifdef{\labels@equipment}{}{\newcommand{\labels@equipment}{Equipment}}
-\ifdef{\labels@options}{}{\newcommand{\labels@options}{Options}}
-\ifdef{\labels@commandgroup}{}{\newcommand{\labels@commandgroup}{Command Group}}
-\ifdef{\labels@mounts}{}{\newcommand{\labels@mounts}{Mounts}}
-\ifdef{\labels@specialequipment}{}{\newcommand{\labels@specialequipment}{Special Equipement}}
-
-% Command groups
-
-\ifdef{\labels@champion}{}{\newcommand{\labels@champion}{Champion}}
-\ifdef{\labels@standardbearer}{}{\newcommand{\labels@standardbearer}{Standard Bearer}}
-\ifdef{\labels@musician}{}{\newcommand{\labels@musician}{Musician}}
-\ifdef{\labels@singlebannerallowance}{}{\newcommand{\labels@singlebannerallowance}{One unit may take a Magic banner}}
-\ifdef{\labels@condsinglebannerallowance}{}{\newcommand{\labels@condsinglebannerallowance}{One unit may take a Magic banner if}}
-\ifdef{\labels@bannerallowance}{}{\newcommand{\labels@bannerallowance}{May take a Magic banner}}
-\ifdef{\labels@championallowance}{}{\newcommand{\labels@championallowance}{May take Magic items}}
-
-% Titles
-
-\ifdef{\labels@lords}{}{\newcommand{\labels@lords}{Lords}}
-\ifdef{\labels@heroes}{}{\newcommand{\labels@heroes}{Heroes}}
-\ifdef{\labels@baseunits}{}{\newcommand{\labels@baseunits}{Base units}}
-\ifdef{\labels@specialunits}{}{\newcommand{\labels@specialunits}{Special units}}
-\ifdef{\labels@rareunits}{}{\newcommand{\labels@rareunits}{Rare units}}
-\ifdef{\labels@armyspecialrules}{}{\newcommand{\labels@armyspecialrules}{Army special rules}}
-\ifdef{\labels@armoury}{}{\newcommand{\labels@armoury}{Armoury}}
-\ifdef{\labels@magicitems}{}{\newcommand{\labels@magicitems}{Magic items}}
-\ifdef{\labels@magicweapons}{}{\newcommand{\labels@magicweapons}{Magic weapons}}
-\ifdef{\labels@magicarmor}{}{\newcommand{\labels@magicarmor}{Magic armor}}
-\ifdef{\labels@talismans}{}{\newcommand{\labels@talismans}{Talismans}}
-\ifdef{\labels@enchanteditems}{}{\newcommand{\labels@enchanteditems}{Enchanted items}}
-\ifdef{\labels@arcaneitems}{}{\newcommand{\labels@arcaneitems}{Arcane items}}
-\ifdef{\labels@magicbanners}{}{\newcommand{\labels@magicbanners}{Magic banners}}
-
-% Titlepage
-
-\ifdef{\labels@fantasybattles}{}{\newcommand{\labels@fantasybattles}{Fantasy Battles}}
-\ifdef{\labels@NinthAge}{}{\newcommand{\labels@NinthAge}{The 9th Age}}
-\ifdef{\labels@creators}{}{\newcommand{\labels@creators}{A collaboration between ETC and Swedish Comp System}}
-\ifdef{\labels@latexcredit}{}{\newcommand{\labels@latexcredit}{Layout designed using \LaTeX .}}
-
 
 %%% Technical commands %%%
-
-\ifxetex
-	\newcommand{\result}[1] {'#1'}
-\else
-	\newcommand{\result}[1] {\textquotesingle #1\textquotesingle}
-\fi
 
 \newcommand{\newrule}{\textcolor{green!50!black}}
 \newcommand{\removedrule}[1]{\textcolor{green!50!black}{\sout{#1}}}
@@ -140,152 +67,8 @@
 \newcommand{\foot}{\arcminute}
 \newcommand{\range}[1] {\labels@range~\unit{#1}{\inch}}
 \newcommand{\distance}[1] {\unit{#1}{\inch}}
+\newcommand{\result}[1] {\texttt{'}$ #1 $\texttt{'}}
 \newcommand{\pts}[1]{\unit{#1}{\expandafter\ifstrequal\expandafter{#1}{1}{\labels@point}{\labels@points}}}
-
-\ifdef{\free}{}{\newcommand{\free}{free}}
-\ifdef{\upto}{}{\newcommand{\upto}{up to}}
-\ifdef{\Upto}{}{\newcommand{\Upto}{Up to}}
-\ifdef{\unlimited}{}{\newcommand{\unlimited}{unlimited}}
-\ifdef{\permodel}{}{\newcommand{\permodel}{/model}}
-
-
-%%% Special rules %%%
-
-\ifdef{\ambush}{}{\newcommand{\ambush}{\specialrule{Ambush}\xspace}}
-\ifdef{\armourpiercing}{}{\newcommand{\armourpiercing}[1]{\specialrule{Armour Piercing\ifblank{#1}{}{~(#1)}}\xspace}}
-\ifdef{\blurry}{}{\newcommand{\blurry}{\specialrule{Blurry}\xspace}}
-\ifdef{\bodyguard}{}{\newcommand{\bodyguard}[1]{\specialrule{Bodyguard\ifblank{#1}{}{~(#1)}}\xspace}}
-\ifdef{\breathweapon}{}{\newcommand{\breathweapon}[1]{\specialrule{Breath Weapon\ifblank{#1}{}{ (#1)}}\xspace}}
-\ifdef{\channel}{}{\newcommand{\channel}{\specialrule{Channel}\xspace}}
-\ifdef{\crushattack}{}{\newcommand{\crushattack}{\specialrule{Crush Attack}\xspace}}
-\ifdef{\devastatingcharge}{}{\newcommand{\devastatingcharge}{\specialrule{Devastating Charge}\xspace}}
-\ifdef{\distracting}{}{\newcommand{\distracting}{\specialrule{Distracting}\xspace}}
-\ifdef{\engineer}{}{\newcommand{\engineer}{\specialrule{Engineer}\xspace}}
-\ifdef{\ethereal}{}{\newcommand{\ethereal}{\specialrule{Ethereal}\xspace}}
-\ifdef{\fastcavalry}{}{\newcommand{\fastcavalry}{\specialrule{Fast Cavalry}\xspace}}
-\ifdef{\fear}{}{\newcommand{\fear}{\specialrule{Fear}\xspace}}
-\ifdef{\fightinextrarank}{}{\newcommand{\fightinextrarank}{\specialrule{Fight in Extra Rank}\xspace}}
-\ifdef{\fireborn}{}{\newcommand{\fireborn}{\specialrule{Fireborn}\xspace}}
-\ifdef{\flamingattacks}{}{\newcommand{\flamingattacks}{\specialrule{Flaming Attacks}\xspace}}
-\ifdef{\flammable}{}{\newcommand{\flammable}{\specialrule{Flammable}\xspace}}
-\ifdef{\freereform}{}{\newcommand{\freereform}{\specialrule{Free Reform}\xspace}}
-\ifdef{\frenzy}{}{\newcommand{\frenzy}{\specialrule{Frenzy}\xspace}}
-\ifdef{\fly}{}{\newcommand{\fly}[1]{\specialrule{Fly\ifblank{#1}{}{~(#1)}}\xspace}}
-\ifdef{\grindingattacks}{}{\newcommand{\grindingattacks}[1]{\specialrule{Grinding Attacks\ifblank{#1}{}{~(#1)}}\xspace}}
-\ifdef{\hatred}{}{\newcommand{\hatred}{\specialrule{Hatred}\xspace}}
-\ifdef{\hellfire}{}{\newcommand{\hellfire}{\specialrule{Hellfire}\xspace}}
-\ifdef{\hidden}{}{\newcommand{\hidden}{\specialrule{Hidden}\xspace}}
-\ifdef{\holyattacks}{}{\newcommand{\holyattacks}{\specialrule{Holy Attacks}\xspace}}
-\ifdef{\immunetopsychology}{}{\newcommand{\immunetopsychology}{\specialrule{Immune to Psychology}\xspace}}
-\ifdef{\impacthits}{}{\newcommand{\impacthits}[1]{\specialrule{Impact Hits\ifblank{#1}{}{~(#1)}}\xspace}}
-\ifdef{\insignificant}{}{\newcommand{\insignificant}{\specialrule{Insignificant}\xspace}}
-\ifdef{\largetarget}{}{\newcommand{\largetarget}{\specialrule{Large Target}\xspace}}
-\ifdef{\lethalstrike}{}{\newcommand{\lethalstrike}{\specialrule{Lethal Strike}\xspace}}
-\ifdef{\lightningattacks}{}{\newcommand{\lightningattacks}{\specialrule{Ligthning Attacks}\xspace}}
-\ifdef{\lightningreflexes}{}{\newcommand{\lightningreflexes}{\specialrule{Lightning Reflexes}\xspace}}
-\ifdef{\magicresistance}{}{\newcommand{\magicresistance}[1]{\specialrule{Magic Resistance\ifblank{#1}{}{~(#1)}}\xspace}}
-\ifdef{\magicalattacks}{}{\newcommand{\magicalattacks}{\specialrule{Magical Attacks}\xspace}}
-\ifdef{\metalshifting}{}{\newcommand{\metalshifting}{\specialrule{Metalshifting}\xspace}}
-\ifdef{\moveorfire}{}{\newcommand{\moveorfire}{\specialrule{Move or Fire}\xspace}}
-\ifdef{\multipleshots}{}{\newcommand{\multipleshots}[1]{\specialrule{Multiple Shots\ifblank{#1}{}{ (#1)}}\xspace}}
-\ifdef{\multiplewounds}{}{\newcommand{\multiplewounds}[2]{\specialrule{Multiple Wounds\ifblank{#1}{}{ (#1\ifblank{#2}{)}{, #2)}}\xspace}}}
-\ifdef{\notaleader}{}{\newcommand{\notaleader}{\specialrule{Not a Leader}\xspace}}
-\ifdef{\otherworldly}{}{\newcommand{\otherworldly}{\specialrule{Otherworldly}\xspace}}
-\ifdef{\pathmaster}{}{\newcommand{\pathmaster}[1]{\specialrule{Pathmaster\ifblank{#1}{}{ (#1)}}\xspace}}
-\ifdef{\poisonedattacks}{}{\newcommand{\poisonedattacks}{\specialrule{Poisoned Attacks}\xspace}}
-\ifdef{\quicktofire}{}{\newcommand{\quicktofire}{\specialrule{Quick to Fire}\xspace}}
-\ifdef{\randommovement}{}{\newcommand{\randommovement}[1]{\specialrule{Random Movement\ifblank{#1}{}{~(#1)}}\xspace}}
-\ifdef{\randomattacks}{}{\newcommand{\randomattacks}[1]{\specialrule{Random Attacks\ifblank{#1}{}{~(#1)}}\xspace}}
-\ifdef{\regeneration}{}{\newcommand{\regeneration}[1]{\specialrule{Regeneration\ifblank{#1}{}{ (#1+)}}\xspace}}
-\ifdef{\requirestwohands}{}{\newcommand{\requirestwohands}{\specialrule{Requires Two Hands}\xspace}}
-\ifdef{\scythes}{}{\newcommand{\scythes}{\specialrule{Scythes}\xspace}}
-\ifdef{\scout}{}{\newcommand{\scout}{\specialrule{Scout}\xspace}}
-\ifdef{\scouts}{}{\newcommand{\scouts}{\specialrule{Scouts}\xspace}}
-\ifdef{\slowtofire}{}{\newcommand{\slowtofire}{\specialrule{Slow to Fire}\xspace}}
-\ifdef{\stomp}{}{\newcommand{\stomp}[1]{\specialrule{Stomp\ifblank{#1}{}{~(#1)}}\xspace}}
-\ifdef{\strider}{}{\newcommand{\strider}[1]{\specialrule{Strider\ifblank{#1}{}{~(#1)}}\xspace}}
-\ifdef{\stubborn}{}{\newcommand{\stubborn}{\specialrule{Stubborn}\xspace}}
-\ifdef{\stupidity}{}{\newcommand{\stupidity}{\specialrule{Stupidity}\xspace}}
-\ifdef{\skirmisher}{}{\newcommand{\skirmisher}{\specialrule{Skirmisher}\xspace}}
-\ifdef{\skirmishers}{}{\newcommand{\skirmishers}{\specialrule{Skirmishers}\xspace}}
-\ifdef{\swiftstride}{}{\newcommand{\swiftstride}{\specialrule{Swiftstride}\xspace}}
-\ifdef{\thunderouscharge}{}{\newcommand{\thunderouscharge}{\specialrule{Thunderous Charge}\xspace}}
-\ifdef{\terror}{}{\newcommand{\terror}{\specialrule{Terror}\xspace}}
-\ifdef{\toxicattacks}{}{\newcommand{\toxicattacks}{\specialrule{Toxic Attacks}\xspace}}
-\ifdef{\unbreakable}{}{\newcommand{\unbreakable}{\specialrule{Unbreakable}\xspace}}
-\ifdef{\undead}{}{\newcommand{\undead}{\specialrule{Undead}\xspace}}
-\ifdef{\unstable}{}{\newcommand{\unstable}{\specialrule{Unstable}\xspace}}
-\ifdef{\unwieldy}{}{\newcommand{\unwieldy}{\specialrule{Unwieldy}\xspace}}
-\ifdef{\vanguard}{}{\newcommand{\vanguard}{\specialrule{Vanguard}\xspace}}
-\ifdef{\volleyfire}{}{\newcommand{\volleyfire}{\specialrule{Volley Fire}\xspace}}
-\ifdef{\warplatform}{}{\newcommand{\warplatform}{\specialrule{War Platform}\xspace}}
-\ifdef{\wardsave}{}{\newcommand{\wardsave}[1]{\specialrule{Ward Save\ifblank{#1}{}{~(#1+)}}\xspace}}
-\ifdef{\weaponmaster}{}{\newcommand{\weaponmaster}{\specialrule{Weapon Master}\xspace}}
-\ifdef{\wizardconclave}{}{\newcommand{\wizardconclave}[1]{\specialrule{Wizard Conclave\ifblank{#1}{}{ (#1)}}\xspace}}
-
-
-%%% Magic %%%
-
-\ifdef{\battle}{}{\newcommand\battle{Battle\xspace}}
-\ifdef{\alchemy}{}{\newcommand\alchemy{Alchemy\xspace}}
-\ifdef{\death}{}{\newcommand\death{Death\xspace}}
-\ifdef{\fire}{}{\newcommand\fire{Fire\xspace}}
-\ifdef{\heavens}{}{\newcommand\heavens{Heavens\xspace}}
-\ifdef{\light}{}{\newcommand\light{Light\xspace}}
-\ifdef{\nature}{}{\newcommand\nature{Nature\xspace}}
-\ifdef{\shadows}{}{\newcommand\shadows{Shadows\xspace}}
-\ifdef{\wilderness}{}{\newcommand\wilderness{Wilderness\xspace}}
-\ifdef{\butchery}{}{\newcommand\butchery{Butchery\xspace}}
-\ifdef{\change}{}{\newcommand\change{Change\xspace}}
-\ifdef{\thebiggreengods}{}{\newcommand\thebiggreengods{the Big Green Gods\xspace}}
-\ifdef{\thelittlegreengods}{}{\newcommand\thelittlegreengods{the Little Green Gods\xspace}}
-\ifdef{\blackmagic}{}{\newcommand\blackmagic{Black Magic\xspace}}
-\ifdef{\disease}{}{\newcommand\disease{Disease\xspace}}
-\ifdef{\lust}{}{\newcommand\lust{Lust\xspace}}
-\ifdef{\necromancy}{}{\newcommand\necromancy{Necromancy\xspace}}
-\ifdef{\ruin}{}{\newcommand\ruin{Ruin\xspace}}
-\ifdef{\forge}{}{\newcommand\forge{the Forge\xspace}}
-\ifdef{\sands}{}{\newcommand\sands{the Sands\xspace}}
-\ifdef{\whitemagic}{}{\newcommand\whitemagic{White Magic\xspace}}
-
-\ifdef{\magiclevel}{}{\newcommand{\magiclevel}[1]{Wizard level #1}}
-\ifdef{\wizard}{}{\newcommand{\wizard}{Wizard}}
-
-\ifdef{\boundspell}{}{\newcommand{\boundspell}[1]{Bound Spell, Power Level #1}}
-
-
-%%% Other rules %%%
-
-\ifdef{\armoursave}{}{\newcommand{\armoursave}{Armour Save\xspace}}
-\ifdef{\firstinrank}{}{\newcommand{\firstinrank}{\specialrule{First in Rank}\xspace}}
-\ifdef{\hardcover}{}{\newcommand{\hardcover}{Hard Cover\xspace}}
-\ifdef{\holdyourground}{}{\newcommand{\holdyourground}{\specialrule{Hold your Ground}\xspace}}
-\ifdef{\inspiringpresence}{}{\newcommand{\inspiringpresence}{\specialrule{Inspiring Presence}\xspace}}
-\ifdef{\lightcover}{}{\newcommand{\lightcover}{Light Cover\xspace}}
-\ifdef{\monstrousrank}{}{\newcommand{\monstrousrank}{Monstrous Rank\xspace}}
-\ifdef{\oneofakind}{}{\newcommand{\oneofakind}{One of a kind\xspace}}
-\ifdef{\ordnance}{}{\newcommand{\ordnance}{Ordnance\xspace}}
-\ifdef{\parry}{}{\newcommand{\parry}{Parry\xspace}}
-\ifdef{\raisewounds}{}{\newcommand{\raisewounds}{Raise Wounds\xspace}}
-\ifdef{\recoverwounds}{}{\newcommand{\recoverwounds}{Recover Wounds\xspace}}
-\ifdef{\aideddispel}{}{\newcommand{\aideddispel}{Aided Dispel\xspace}}
-\ifdef{\rnf}{}{\newcommand{\rnf}{R\&{}F\xspace}}
-
-
-%%% Equipment %%%
-
-\ifdef{\innatedefence}{}{\newcommand{\innatedefence}[1]{Innate Defence\ifblank{#1}{}{~(#1+)}\xspace}}
-\ifdef{\platearmour}{}{\newcommand{\platearmour}{Plate Armour\xspace}}
-\ifdef{\hw}{}{\newcommand{\hw}{Hand Weapon\xspace}}
-\ifdef{\ahw}{}{\newcommand{\ahw}{Additional Hand Weapon\xspace}}
-\ifdef{\halberd}{}{\newcommand{\halberd}{Halberd\xspace}}
-\ifdef{\gw}{}{\newcommand{\gw}{Great Weapon\xspace}}
-\ifdef{\lance}{}{\newcommand{\lance}{Lance\xspace}}
-\ifdef{\shield}{}{\newcommand{\shield}{Shield\xspace}}
-\ifdef{\throwingweapons}{}{\newcommand{\throwingweapons}{Throwing Weapons\xspace}}
-
-\ifdef{\boltthrower}{}{\newcommand{\boltthrower}{Bolt Thrower\xspace}}
-\ifdef{\artilleryweapon}{}{\newcommand{\artilleryweapon}{Artillery Weapon\xspace}}
 
 
 %%% Titles %%%
