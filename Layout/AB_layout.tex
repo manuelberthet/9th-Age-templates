@@ -7,8 +7,8 @@
 
 \ifxetex
   \usepackage{fontspec}
-  \defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
-  \setmainfont{Caslon Antique}
+%  \setmainfont[Ligatures=TeX]{Arial} % default is Latin Modern
+  \newfontfamily\antiquefont[Ligatures=TeX]{Caslon Antique} % GW like font
 \else
 	\usepackage[T1]{fontenc} 		% Font encoding.
 	\usepackage[utf8]{inputenc} 	% Document encoding.
@@ -34,6 +34,7 @@
 \usepackage[colorlinks=true]{hyperref} % Links in PDF.
 \usepackage[framemethod=TikZ]{mdframed}% For fancy frames.
 \usepackage{tikz}				% For fancy frames.
+\usepackage{ulem}				% To cross words out. Use \sout{}.
 
 %%% Language specific stuff
 
@@ -47,6 +48,10 @@
   \expandarg\StrCut{\split@temp}{*}#2#3%
   \restoreexpandmode
 }
+
+%%% Command to avoid typing \xspace when creating a new name macro
+
+\newcommand{\newnamemacro}[2]{\newcommand{#1}{#2\xspace}}
 
 %%% Labels %%%
 
@@ -105,6 +110,12 @@
 \ifdef{\labels@armyspecialrules}{}{\newcommand{\labels@armyspecialrules}{Army special rules}}
 \ifdef{\labels@armoury}{}{\newcommand{\labels@armoury}{Armoury}}
 \ifdef{\labels@magicitems}{}{\newcommand{\labels@magicitems}{Magic items}}
+\ifdef{\labels@magicweapons}{}{\newcommand{\labels@magicweapons}{Magic weapons}}
+\ifdef{\labels@magicarmor}{}{\newcommand{\labels@magicarmor}{Magic armor}}
+\ifdef{\labels@talismans}{}{\newcommand{\labels@talismans}{Talismans}}
+\ifdef{\labels@enchanteditems}{}{\newcommand{\labels@enchanteditems}{Enchanted items}}
+\ifdef{\labels@arcaneitems}{}{\newcommand{\labels@arcaneitems}{Arcane items}}
+\ifdef{\labels@magicbanners}{}{\newcommand{\labels@magicbanners}{Magic banners}}
 
 % Titlepage
 
@@ -122,7 +133,8 @@
 	\newcommand{\result}[1] {\textquotesingle #1\textquotesingle}
 \fi
 
-\newcommand{\newrule}{\textcolor{green}}
+\newcommand{\newrule}{\textcolor{green!50!black}}
+\newcommand{\removedrule}[1]{\textcolor{green!50!black}{\sout{#1}}}
 
 \newcommand{\inch}{\arcsecond}
 \newcommand{\foot}{\arcminute}
@@ -239,6 +251,8 @@
 \ifdef{\magiclevel}{}{\newcommand{\magiclevel}[1]{Wizard level #1}}
 \ifdef{\wizard}{}{\newcommand{\wizard}{Wizard}}
 
+\ifdef{\boundspell}{}{\newcommand{\boundspell}[1]{Bound Spell, Power Level #1}}
+
 
 %%% Other rules %%%
 
@@ -246,21 +260,37 @@
 \ifdef{\firstinrank}{}{\newcommand{\firstinrank}{\specialrule{First in Rank}\xspace}}
 \ifdef{\hardcover}{}{\newcommand{\hardcover}{Hard Cover\xspace}}
 \ifdef{\holdyourground}{}{\newcommand{\holdyourground}{\specialrule{Hold your Ground}\xspace}}
-\ifdef{\innatedefence}{}{\newcommand{\innatedefence}[1]{Innate Defence\ifblank{#1}{}{~(#1+)}\xspace}}
 \ifdef{\inspiringpresence}{}{\newcommand{\inspiringpresence}{\specialrule{Inspiring Presence}\xspace}}
 \ifdef{\lightcover}{}{\newcommand{\lightcover}{Light Cover\xspace}}
 \ifdef{\monstrousrank}{}{\newcommand{\monstrousrank}{Monstrous Rank\xspace}}
-\ifdef{\naturalarmor}{}{\newcommand{\naturalarmor}{Natural Armor\xspace}}
 \ifdef{\oneofakind}{}{\newcommand{\oneofakind}{One of a kind\xspace}}
 \ifdef{\ordnance}{}{\newcommand{\ordnance}{Ordnance\xspace}}
 \ifdef{\parry}{}{\newcommand{\parry}{Parry\xspace}}
 \ifdef{\raisewounds}{}{\newcommand{\raisewounds}{Raise Wounds\xspace}}
 \ifdef{\recoverwounds}{}{\newcommand{\recoverwounds}{Recover Wounds\xspace}}
+\ifdef{\aideddispel}{}{\newcommand{\aideddispel}{Aided Dispel\xspace}}
+\ifdef{\rnf}{}{\newcommand{\rnf}{R\&{}F\xspace}}
+
+
+%%% Equipment %%%
+
+\ifdef{\innatedefence}{}{\newcommand{\innatedefence}[1]{Innate Defence\ifblank{#1}{}{~(#1+)}\xspace}}
+\ifdef{\platearmour}{}{\newcommand{\platearmour}{Plate Armour\xspace}}
+\ifdef{\hw}{}{\newcommand{\hw}{Hand Weapon\xspace}}
+\ifdef{\ahw}{}{\newcommand{\ahw}{Additional Hand Weapon\xspace}}
+\ifdef{\halberd}{}{\newcommand{\halberd}{Halberd\xspace}}
+\ifdef{\gw}{}{\newcommand{\gw}{Great Weapon\xspace}}
+\ifdef{\lance}{}{\newcommand{\lance}{Lance\xspace}}
+\ifdef{\shield}{}{\newcommand{\shield}{Shield\xspace}}
+\ifdef{\throwingweapons}{}{\newcommand{\throwingweapons}{Throwing Weapons\xspace}}
+
+\ifdef{\boltthrower}{}{\newcommand{\boltthrower}{Bolt Thrower\xspace}}
+\ifdef{\artilleryweapon}{}{\newcommand{\artilleryweapon}{Artillery Weapon\xspace}}
 
 
 %%% Titles %%%
 
-\newcommand{\armytitle}[1]{\noindent\begin{center}\Huge{\textbf{\expandafter\uppercase\expandafter{#1}}}\end{center}\medskip}
+\newcommand{\armytitle}[1]{\noindent\begin{center}\Huge{\textbf{\antiquefont\expandafter\uppercase\expandafter{#1}}}\end{center}\medskip}
 \newcommand{\lordstitle}{\armytitle{\labels@lords}}
 \newcommand{\heroestitle}{\clearpage\armytitle{\labels@heroes}}
 \newcommand{\baseunitstitle}{\clearpage\armytitle{\labels@baseunits}}
@@ -268,24 +298,35 @@
 \newcommand{\rareunitstitle}{\clearpage\armytitle{\labels@rareunits}}
 \newcommand{\mountstitle}{\clearpage\armytitle{\labels@mounts}}
 
-\newcommand{\armyspecialrules}{\newpage\twocolumn\noindent\begin{center}\LARGE{\textbf{\labels@armyspecialrules}}\end{center}}
-\newcommand{\armyspecialruleentry}[1]{\subsection*{\textit{#1}}}
+\newcommand{\armyspecialrules}{\newpage\twocolumn\noindent\begin{center}\LARGE{\textbf{\antiquefont\labels@armyspecialrules}}\end{center}}
+\newcommand{\armyspecialruleentry}[1]{\subsection*{\antiquefont\textit{#1}}}
 
-\newcommand{\armyarmoury}{\newpage\noindent\begin{center}\LARGE{\textbf{\labels@armoury}}\end{center}}
+\newcommand{\armyarmoury}{\newpage\noindent\begin{center}\LARGE{\textbf{\antiquefont\labels@armoury}}\end{center}}
 
-\newcommand{\armymagicitems}{\newpage\noindent\begin{center}\LARGE{\textbf{\labels@magicitems}}\end{center}}
+\newcommand{\armymagicitems}{\newpage\noindent\begin{center}\LARGE{\textbf{\antiquefont\labels@magicitems}}\end{center}}
+\newcommand{\armymagicweapons}{\subsection*{\antiquefont\labels@magicweapons}}
+\newcommand{\armymagicarmor}{\subsection*{\antiquefont\labels@magicarmor}}
+\newcommand{\armytalismans}{\subsection*{\antiquefont\labels@talismans}}
+\newcommand{\armyenchanteditems}{\subsection*{\antiquefont\labels@enchanteditems}}
+\newcommand{\armyarcaneitems}{\subsection*{\antiquefont\labels@arcaneitems}}
+\newcommand{\armymagicbanners}{\subsection*{\antiquefont\labels@magicbanners}}
 
-\newcommand{\armynewsection}[1]{\newpage\noindent\begin{center}\LARGE{\textbf{#1}}\end{center}}
+\newcommand{\armynewsection}[1]{\newpage\noindent\begin{center}\LARGE{\textbf{\antiquefont#1}}\end{center}\vspace*{0.2cm}}
 
-\newcommand{\armynewsubsection}[1]{\subsection*{#1}}
-\newcommand{\armynewsubsubsection}[1]{\subsubsection*{#1}}
+\newcommand{\armynewsubsection}[1]{\subsection*{\antiquefont#1}}
+\newcommand{\armynewsubsubsection}[1]{\subsubsection*{\antiquefont#1}}
 
 \newcommand{\armylist}{\clearpage\onecolumn}
+
+\newcommand{\separator}{\noindent\textcolor{black!30}{\rule{\columnwidth}{1pt}}}
 
 
 %%% Custom lists and description for first sections of the army books
 
-\newenvironment{customdescription}{\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0.1cm]}{\end{description}}
+\newcommand{\startpricelist}{\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0.1cm]}
+\def\endpricelist{\end{description}}
+\newcommand{\pricelistitem}[2]{\item \option{\textbf{#1}}{#2}\newline}
+
 \newenvironment{customitemize}{\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0cm]}{\end{description}}
 \newenvironment{customsubitemize}{\begin{itemize}[label={-}, labelsep=0.1cm, topsep=0cm, parsep=0cm, itemsep=0cm, leftmargin=0.4cm, labelindent=0cm]}{\end{itemize}}
 
