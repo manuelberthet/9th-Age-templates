@@ -1,15 +1,11 @@
 
 %%% TO DO LIST %%%
 
-% Alphabetical order in special rules ? -> works when no formatting.
-
 % Placement of the different entries in the layout frame. Try to automatize it to improve space occupation.
 
 % Placement of different profiles not reliable. Sometimes OK, sometimes one on top on of the bottom, sometimes ast the center of the page ...
 
 % Automatic characteristics sheet at the end of the armybook ?
-
-% Special rules categories.
 
 
 \documentclass[a4paper,8pt]{extarticle} % extarticle allows to use font size of 8pt.
@@ -215,7 +211,7 @@
 \newcommand{\profilecellsize}{0.50cm}
 \newcommand{\profilestart}{%
 	\noindent %
-	\begin{tabular}{@{}p{4cm}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}p{1cm}@{}p{3.8cm}@{}p{2cm}@{}}%
+	\begin{tabular}{@{}p{3cm}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}p{2.7cm}@{}p{3.3cm}@{}p{2cm}@{}}%
 	\textbf{\labels@profile} &%
 	\labels@M & \labels@WS & \labels@BS & \labels@S & \labels@T & \labels@W & \labels@I & \labels@A & \labels@Ld &%
 	&%
@@ -242,6 +238,37 @@
 	\profilestart%
 	\global\booltrue{profilefirst}%
 	\forlistloop{\profileitem}{\locallists@profileslist}%
+	\profileend%
+}
+
+
+%%% Profiles handling in case of invocation %%%
+
+\newcommand{\invocprofilestart}{%
+	\noindent %
+	\begin{tabular}{@{}p{3cm}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{2.2cm}@{}p{0.5cm}@{}p{3.3cm}@{}p{2cm}@{}}%
+	\textbf{\labels@profile} &%
+	\labels@M & \labels@WS & \labels@BS & \labels@S & \labels@T & \labels@W & \labels@I & \labels@A & \labels@Ld & \textbf{\labels@Invocation} &%
+	&%
+	\textbf{\labels@trooptype} &%
+	\textbf{\labels@basesize}%
+}
+
+\newcommand{\invocprofileitem}[1]{%
+	\tabularnewline%
+	\splitatinf{#1}\local@unitname\local@unitprofile%
+	\local@unitname \expandafter\caraclist\expandafter{\local@unitprofile}%
+	& \ifbool{profilefirst}{\unit@invocation}{} &%
+	& \ifbool{profilefirst}{\unit@type}{}%
+	& \ifbool{profilefirst}{\unit{\unit@basesize}{\milli\meter}}{}%
+	\global\boolfalse{profilefirst}%
+}
+
+\newcommand{\invocprofile}[1]{%
+	\parselist{#1}{\locallists@profileslist}%
+	\invocprofilestart%
+	\global\booltrue{profilefirst}%
+	\forlistloop{\invocprofileitem}{\locallists@profileslist}%
 	\profileend%
 }
 
@@ -277,6 +304,7 @@
 
 % Special rules entry.
 \newcommand{\specialrules}[1]{\unitentry{#1}{\textbf{\labels@specialrules :}\expandafter\ruleslist\expandafter{#1}.}}
+\newcommand{\commonspecialrules}[2]{\unitentry{#2}{\textbf{#1:}\expandafter\ruleslist\expandafter{#2}.}}
 
 
 %%% Magical abilities %%%
@@ -515,11 +543,14 @@
 \define@key{unit}{name}{\def\unit@name{#1}}
 \define@key{unit}{profile}{\def\unit@profile{#1}}
 \define@key{unit}{cost}{\def\unit@cost{#1}}
+\define@key{unit}{invocation}{\def\unit@invocation{#1}}
 \define@key{unit}{costpermodel}{\def\unit@costpermodel{#1}}
 \define@key{unit}{additionalmodels}{\def\unit@additionalmodels{#1}}
 \define@key{unit}{type}{\def\unit@type{#1}}
 \define@key{unit}{unitsize}{\def\unit@unitsize{#1}}
 \define@key{unit}{basesize}{\def\unit@basesize{#1}}
+\define@key{unit}{commonspecialrules}{\def\unit@commonspecialrules{#1}}
+\define@key{unit}{commontype}{\def\unit@commontype{#1}}
 \define@key{unit}{specialrules}{\def\unit@specialrules{#1}}
 \define@key{unit}{magiclevel}{\def\unit@magiclevel{#1}}
 \define@key{unit}{magicpaths}{\def\unit@magicpaths{#1}}
@@ -587,7 +618,7 @@
 
 \newcommand{\defunit}{
 	\setkeys{unit}{%
-		name=, profile=, cost=, costpermodel=, additionalmodels=, type=, unitsize=, basesize=, specialrules=, magiclevel=, magicpaths=, equipment=, unitequipment=, options=, mounts=, commandgroup=, unitrules=, additional=%
+		name=, profile=, cost=, invocation=, costpermodel=, additionalmodels=, type=, unitsize=, basesize=, commonspecialrules=, commontype=, specialrules=, magiclevel=, magicpaths=, equipment=, unitequipment=, options=, mounts=, commandgroup=, unitrules=, additional=%
 	}%
 	\setkeys{unit}%
 }
@@ -599,13 +630,18 @@
 	\mdfsetup{style=defaultoptions}
 	\vspace*{0.25cm}
 	\begin{mdframed}
-		\expandafter\profile\expandafter{\unit@profile}
+		\expandafter\ifblank\expandafter{\unit@invocation}{%
+			\expandafter\profile\expandafter{\unit@profile}
+		}{%
+			\expandafter\invocprofile\expandafter{\unit@profile}
+		}
 	\end{mdframed}
 	\vspace*{-0.2cm}
 	\setlength\multicolsep{0pt}
 	\begin{multicols}{2}
 		% \raggedcolumns	
 		\unitsize{\unit@unitsize} \par
+		\commonspecialrules{\unit@commontype}{\unit@commonspecialrules} \par
 		\specialrules{\unit@specialrules} \par
 		\magic{\unit@magiclevel}{\unit@magicpaths} \par
 		\equipment{\unit@equipment} \par

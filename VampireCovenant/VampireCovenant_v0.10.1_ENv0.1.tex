@@ -16,6 +16,11 @@
 \newnamemacro{\wakethedead}{\specialrule{Wake the Dead}}
 \newnamemacro{\necromanticaura}{\specialrule{\newrule{Necromantic} Aura}}
 
+% Army common type special rules
+
+\newcommand{\vampiriccommonrules}{Vampiric special rules\xspace}
+\newcommand{\undeadcommonrules}{Undead special rules\xspace}
+
 % Vampiric Bloodlines
 
 \newnamemacro{\bloodpower}{Blood Power}
@@ -354,7 +359,9 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 	type=\infantry ,
 	basesize=20x20,
 	unitsize=1,
-	specialrules={\undead,\fear,\vampiric{6},\awaken{\zombies},\masterofundeath},
+	commontype=\vampiriccommonrules ,
+	commonspecialrules={\undead,\fear,\vampiric{6}},
+	specialrules={\awaken{\zombies},\masterofundeath},
 	magiclevel=1,
 	magicpaths={\necromancy, \shadows, \death},
 	options={
@@ -387,7 +394,9 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 	type= \infantry ,
 	basesize=20x20,
 	unitsize=1,
-	specialrules={\undead, \awaken{\zombies , \skeletons}, \masterofundeath},
+	commontype=\undeadcommonrules ,
+	commonspecialrules={\undead},
+	specialrules={\awaken{\zombies , \skeletons}, \masterofundeath},
 	magiclevel=3,
 	magicpaths={\necromancy, \fire, \death},
 	options={
@@ -407,7 +416,9 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 	type=\infantry ,
 	basesize=20x20,
 	unitsize=1,
-	specialrules={\undead, \fear, \awaken{\zombies}, \vampiric{6}, \masterofundeath},
+	commontype=\vampiriccommonrules ,
+	commonspecialrules={\undead,\fear,\vampiric{6}},
+	specialrules={\awaken{\zombies}, \masterofundeath},
 	magicpaths={\necromancy, \shadows, \death},
 	options={
 		\bloodlinechoice =\unlimited,
@@ -441,7 +452,9 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 	type= \infantry ,
 	basesize=20x20,
 	unitsize=1,
-	specialrules={\undead, \awaken{\zombies, \skeletons}, \masterofundeath},
+	commontype=\undeadcommonrules ,
+	commonspecialrules={\undead},
+	specialrules={\awaken{\zombies, \skeletons}, \masterofundeath},
 	magiclevel=1,
 	magicpaths={\necromancy, \fire, \death},
 	options={
@@ -503,12 +516,14 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 	name={\zombies},
 	cost=60,
 	profile={ < 4 1 0 3 3 1 1 1 2},
+	invocation={2D6+3},
 	type=\infantry ,
 	basesize=20x20,
 	unitsize=20,
 	additionalmodels=40,
 	costpermodel=3,
-	specialrules={\invocation{2D6+3}, \undead, \ashestoashes},
+	commontype=\undeadcommonrules ,
+	commonspecialrules={\undead, \ashestoashes},
 	commandgroup={musician=10, banner=10}
 }
 
@@ -588,12 +603,15 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 	profile={\knight < 4 3 - 4 4 1 3 1 6,
 		\steed < 8 2 - 3 3 1 2 1 3
 	},
+	invocation= 2 ,
 	type=\cavalry ,
 	basesize=25x50,
 	unitsize=5,
 	additionalmodels=10,
 	costpermodel=24,
-	specialrules={\invocation{2}, \magicalattacks, \multiplewounds{2}{\infantry , \cavalry , \warbeasts}, \lethalstrike{} \only{\knight}, \ethereal{} \only{\steed}, \undead, \ashestoashes},
+	commontype=\undeadcommonrules ,
+	commonspecialrules={\undead, \ashestoashes},
+	specialrules={\magicalattacks, \multiplewounds{2}{\infantry , \cavalry , \warbeasts}, \lethalstrike{} \only{\knight}, \ethereal{} \only{\steed}},
 	equipment={\ha , \shield , \lance , \mountsprotection{5}},
 	commandgroup={champion=10, musician=10, banner=10, bannerallowance=50}
 }
@@ -729,13 +747,15 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 		\knight < 4 5 3 5 4 2 5 2 8,
 		\steed < 8 3 0 4 3 1 2 1 3
 	},
+	invocation= 2 ,
 	type=\cavalry ,
 	basesize=25x50,
 	unitsize=5,
 	additionalmodels=5,
 	costpermodel=45,
-	specialrules={\invocation{2}, \undead, \fear, \vampiric{6}},
-	equipment={\lance , \ha , \shield , \barding},
+	commontype=\vampiriccommonrules ,
+	commonspecialrules={\undead,\fear,\vampiric{6}},
+	equipment={\lance , \ha , \shield , \mountsprotection{6}, \barding},
 	options={
 		\platearmour{} \wordand{} \devastatingcharge{} \only{\bloodtie{\brotherhood}}=\permodel < 15
 	},
@@ -905,7 +925,9 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 	type=\cavalry ,
 	basesize=25x50,
 	unitsize=1,
-	specialrules={\ethereal{} \only{\steed}, \undead},
+	commontype=\undeadcommonrules ,
+	commonspecialrules={\undead},
+	specialrules={\ethereal{} \only{\steed}},
 	equipment={\mountsprotection{6}},
 	options={
 		\mountsprotection{5} =10,
