@@ -1,11 +1,11 @@
 
 %%% TO DO LIST %%%
 
-% Placement of the different entries in the layout frame. Try to automatize it to improve space occupation.
-
 % Placement of different profiles not reliable. Sometimes OK, sometimes one on top on of the bottom, sometimes ast the center of the page ...
 
-% Automatic characteristics sheet at the end of the armybook ?
+% Automatic characteristics sheet at the end of the armybook.
+
+% Changelog routines.
 
 
 \documentclass[a4paper,8pt]{extarticle} % extarticle allows to use font size of 8pt.
@@ -162,6 +162,9 @@
 
 \newcommand{\armylist}{\clearpage\onecolumn}
 
+\newcommand{\quickrefsheettitle}{\clearpage\armytitle{\labels@quickrefsheet}}
+\newcommand{\changelogtitle}{\clearpage\armytitle{\labels@changelog}}
+
 \newcommand{\separator}{\noindent\textcolor{black!30}{\rule{\columnwidth}{1pt}}}
 
 
@@ -279,7 +282,7 @@
 
 %%% Entry title command %%%
 
-\newcommand{\unitentry}[2]{\ifdefempty{#1}{}{\noindent #2 \medskip}}
+\newcommand{\unitentry}[2]{\ifdefempty{#1}{}{\noindent #2}}
 \newcommand{\unitentrynoskip}[2]{\ifdefempty{#1}{}{\noindent #2}}
 
 
@@ -639,18 +642,26 @@
 	\vspace*{-0.2cm}
 	\setlength\multicolsep{0pt}
 	\begin{multicols}{2}
-		% \raggedcolumns	
-		\unitsize{\unit@unitsize} \par
-		\commonspecialrules{\unit@commontype}{\unit@commonspecialrules} \par
-		\specialrules{\unit@specialrules} \par
-		\magic{\unit@magiclevel}{\unit@magicpaths} \par
-		\equipment{\unit@equipment} \par
+		\raggedcolumns
+		{\setlength{\parskip}{0.1cm}
+		\vspace*{0.02cm}
+		\unitsize{\unit@unitsize}
+
+		\commonspecialrules{\unit@commontype}{\unit@commonspecialrules}
+		
+		\specialrules{\unit@specialrules}
+		
+		\magic{\unit@magiclevel}{\unit@magicpaths}
+		
+		\equipment{\unit@equipment}
+		}
 		\expandafter\ifblank\expandafter{\unit@additionalmodels}{}{\preto{\unit@options}{\Upto{ }\unit@additionalmodels\/ \labels@additionalmodels =\permodel < \unit@costpermodel,}}
-		\options{\unit@options} \par
-		\mounts{\unit@mounts} \par
-		\expandafter\ifblank\expandafter{\unit@commandgroup}{}{\expandafter\commandgroup\expandafter{\unit@commandgroup} \par}
-		\unitrules{\unit@unitrules} \par
-		\unitequipment{\unit@unitequipment} \par
+		\vspace*{0.15cm}
+		\mounts{\unit@mounts}
+		\options{\unit@options}
+		\expandafter\ifblank\expandafter{\unit@commandgroup}{}{\expandafter\commandgroup\expandafter{\unit@commandgroup}}
+		\unitrules{\unit@unitrules}
+		\unitequipment{\unit@unitequipment}
 	\end{multicols}
 	\unit@additional \par
 	\end{unitframe}
