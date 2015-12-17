@@ -1,8 +1,6 @@
 
 %%% TO DO LIST %%%
 
-% Placement of different profiles not reliable. Sometimes OK, sometimes one on top on of the bottom, sometimes at the center of the page ...
-
 % Automatic characteristics sheet at the end of the armybook.
 
 
@@ -36,8 +34,6 @@
 
 %% Page utilities
 \usepackage{multicol}			% Allows to divide a part of the page in multiple columns.
-\usepackage{newfloat}			% Used to create new flottable environnements.
-	\DeclareFloatingEnvironment[placement=htbp!]{unitframeFlot}
 	
 %% Others
 \usepackage{keyval}             % Used to create maps of commands/labels/objects.
@@ -588,6 +584,7 @@
 
 \newenvironment{unitframe}[2][]{%
 	\mdfsetup{%
+			  nobreak=true,%
 	          linewidth=1pt,%
 	          roundcorner=5pt,%
 	          backgroundcolor=white,%
@@ -641,7 +638,6 @@
 
 \newcommand{\showunit}[1]{
 	\defunit{#1}
-	\begin{unitframeFlot}[!htbp]
 	\begin{unitframe}[\unit@name]{\unit@cost}
 	\mdfsetup{style=defaultoptions}
 	\vspace*{0.25cm}
@@ -678,7 +674,6 @@
 	\end{multicols}
 	\unit@additional
 	\end{unitframe}
-	\end{unitframeFlot}
 }
 
 
