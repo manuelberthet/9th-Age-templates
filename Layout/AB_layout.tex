@@ -1,11 +1,9 @@
 
 %%% TO DO LIST %%%
 
-% Placement of different profiles not reliable. Sometimes OK, sometimes one on top on of the bottom, sometimes ast the center of the page ...
+% Placement of different profiles not reliable. Sometimes OK, sometimes one on top on of the bottom, sometimes at the center of the page ...
 
 % Automatic characteristics sheet at the end of the armybook.
-
-% Changelog routines.
 
 
 \documentclass[a4paper,8pt]{extarticle} % extarticle allows to use font size of 8pt.
@@ -283,7 +281,6 @@
 %%% Entry title command %%%
 
 \newcommand{\unitentry}[2]{\ifdefempty{#1}{}{\noindent #2}}
-\newcommand{\unitentrynoskip}[2]{\ifdefempty{#1}{}{\noindent #2}}
 
 
 %%% Unit size %%%
@@ -353,7 +350,7 @@
 }
 
 % Options entry.
-\newcommand{\options}[1]{\ifdefempty{#1}{}{\optionsframestart\vspace*{-0.4cm}\unitentrynoskip{#1}{\expandafter\optionslist\expandafter{#1}}\optionsframeend}}
+\newcommand{\options}[1]{\ifdefempty{#1}{}{\optionsframestart\vspace*{-0.4cm}\unitentry{#1}{\expandafter\optionslist\expandafter{#1}}\optionsframeend}}
 
 % Option specific commands.
 \newcommand{\setoption}[1]{%
@@ -422,7 +419,7 @@
 }
 
 % Mount entry.
-\newcommand{\mounts}[1]{\ifdefempty{#1}{}{\mountsframestart\vspace*{-0.4cm}\unitentrynoskip{#1}{\expandafter\mountslist\expandafter{#1}}\mountsframeend}}
+\newcommand{\mounts}[1]{\ifdefempty{#1}{}{\mountsframestart\vspace*{-0.4cm}\unitentry{#1}{\expandafter\mountslist\expandafter{#1}}\mountsframeend}}
 
 
 %%% Command group %%%
@@ -432,9 +429,11 @@
 \define@key{commandgroup}{champion}               {\def\commandgroup@champion{#1}}
 \define@key{commandgroup}{championallowance}      {\def\commandgroup@championallowance{#1}}
 \define@key{commandgroup}{championoption}         {\def\commandgroup@championoption{#1}}
+\define@key{commandgroup}{championprerestriction} {\def\commandgroup@championprerestriction{#1}}
 \define@key{commandgroup}{championrestriction}    {\def\commandgroup@championrestriction{#1}}
 \define@key{commandgroup}{banner}                 {\def\commandgroup@banner{#1}}
 \define@key{commandgroup}{bannerallowance}        {\def\commandgroup@bannerallowance{#1}}
+\define@key{commandgroup}{veteranbannerallowance}  	  {\def\commandgroup@veteranbannerallowance{#1}}
 \define@key{commandgroup}{singlebannerallowance}  {\def\commandgroup@singlebannerallowance{#1}}
 \define@key{commandgroup}{condsinglebannerallowance}  {\def\commandgroup@condsinglebannerallowance{#1}}
 \define@key{commandgroup}{banneroption}           {\def\commandgroup@banneroption{#1}}
@@ -443,9 +442,10 @@
 \define@key{commandgroup}{musicianrestriction}    {\def\commandgroup@musicianrestriction{#1}}
 \newcommand{\defcommandgroup}{%
 	\setkeys{commandgroup}{restriction=,
-	                       champion=, championallowance=, championoption=, championrestriction=,
-	                       banner=, bannerallowance=, singlebannerallowance=, condsinglebannerallowance=, banneroption=, bannerrestriction=,
-	                       musician=, musicianrestriction=}%
+	                       champion=, championallowance=, championoption=, championprerestriction=, 
+	                       championrestriction=, banner=, bannerallowance=, veteranbannerallowance=, 
+	                       singlebannerallowance=, condsinglebannerallowance=, banneroption=, 
+	                       bannerrestriction=, musician=, musicianrestriction=}%
 	\setkeys{commandgroup}%
 }
 
@@ -462,6 +462,7 @@
 			\item \textbf{\expandafter\ifblank\expandafter{\commandgroup@restriction}{}{ \only{\commandgroup@restriction}~: }} 
 			% Champion handling.
 			\ifdefempty{\commandgroup@champion}{}{% We have a champion!
+			\ifdefempty{\commandgroup@championprerestriction}{% There is no prerestriction to have a champion
 				\item \hspace*{-0.04cm}\option{\labels@champion%
 					% Possible restrictions to taking a champion
 				    \expandafter\ifblank\expandafter{\commandgroup@championrestriction}{}{ \only{\commandgroup@championrestriction}}%
@@ -473,6 +474,16 @@
 					\ifdefempty{\commandgroup@championoption}{}{%
 						\splitatinf{\commandgroup@championoption}\local@option\local@cost%
 						\par\option{\hspace*{0.3cm}- \local@option}{\local@cost}}%
+			}{% There is a pre-restriction to have a champion
+				\item \hspace*{-0.04cm}\commandgroup@championprerestriction	\newline%
+				\option{\labels@champion}{\commandgroup@champion}%
+				% Magical allowance of the champion. Should probably not be used, champion option can do it as well and is more flexible.
+				\ifdefempty{\commandgroup@championallowance}{}{\par\option[\upto]{vspace{0.3cm}- \labels@championallowance}{\commandgroup@championallowance}}%
+				% Any option available to the champion, in the form option:cost
+				\ifdefempty{\commandgroup@championoption}{}{%
+					\splitatinf{\commandgroup@championoption}\local@option\local@cost%
+					\par\option{\hspace*{0.3cm}- \local@option}{\local@cost}}%
+			} %End of the prerestriction of not condition
 			}% End of champion handling
 			\ifdefempty{\commandgroup@banner}{}{% We have a banner!
 				\item \hspace*{-0.04cm}\option{\labels@standardbearer%
@@ -482,6 +493,8 @@
 				    }{\commandgroup@banner}%
 				    % Magical banner, if all units of this type can take one.
 					\ifdefempty{\commandgroup@bannerallowance}{}{\par\option[\upto]{\hspace*{0.3cm}- \labels@bannerallowance}{\commandgroup@bannerallowance}}%
+					% Magical banner, if Veteran.
+					\ifdefempty{\commandgroup@veteranbannerallowance}{}{\par\option[\upto]{\hspace*{0.3cm}- \labels@veteranbannerallowance}{\commandgroup@veteranbannerallowance}}%
 					% Magical banner, if only one unit of this type can take one.
 					\ifdefempty{\commandgroup@singlebannerallowance}{}{\par\option[\upto]{\hspace*{0.3cm}- \labels@singlebannerallowance}{\commandgroup@singlebannerallowance}}%
 					% Magical banner, if only one unit of this type can take one, but with condtions.
@@ -663,7 +676,21 @@
 		\unitrules{\unit@unitrules}
 		\unitequipment{\unit@unitequipment}
 	\end{multicols}
-	\unit@additional \par
+	\unit@additional
 	\end{unitframe}
 	\end{unitframeFlot}
 }
+
+
+%%% Changelogcommands %%%
+
+\newcommand{\newlog}[2]{%
+\vspace*{0.2cm}\noindent{\antiquefont\Large\textbf{V#1}}
+\parselist[,]{#2}{\locallists@changelist}%
+\begin{itemize}[itemsep=0pt]%
+\forlistloop{\item[-]}{\locallists@changelist}%
+\end{itemize}%
+}
+
+\newcommand{\startchangelog}{\begin{multicols}{2}\vspace*{-0.2cm}}
+\def\endchangelog{\end{multicols}}
