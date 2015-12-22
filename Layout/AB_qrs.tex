@@ -1,2 +1,7 @@
 % Script to automatically draw the Quick Ref Sheet
 
+  \begin{itemize}[label={-}]%
+    \DTLforeach*{profiles}{\testname=name, \testtrooptype=trooptype, \testprofilename=profilename, \testcategory=category, \testcaraclist=caraclist}{%
+      \item\theDTLrowi . \textbf{\testname} - \testtrooptype{} - \testprofilename{} - \testcategory{}
+    }
+  \end{itemize}%

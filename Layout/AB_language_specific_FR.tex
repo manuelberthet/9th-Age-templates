@@ -1,0 +1,276 @@
+%%% Labels %%%
+
+% Profile
+
+\newcommand{\labels@profile}{Profil}
+\newcommand{\labels@M}{M}
+\newcommand{\labels@WS}{CC}
+\newcommand{\labels@BS}{CT}
+\newcommand{\labels@S}{F}
+\newcommand{\labels@T}{E}
+\newcommand{\labels@W}{PV}
+\newcommand{\labels@I}{I}
+\newcommand{\labels@A}{A}
+\newcommand{\labels@Ld}{Cd}
+\newcommand{\labels@Invocation}{Invocation} % For Vampire Covenant profiles
+
+\newcommand{\Strength}{Force}
+
+% Technical
+
+\newcommand{\labels@range}{Portée}
+\newcommand{\labels@point}{pt}
+\newcommand{\labels@points}{pts}
+\newcommand{\labels@only}{uniquement}
+\newcommand{\labels@magic}{Magie}
+\newcommand{\labels@pathsused}{Génère ses sorts dans la Discipline}
+\newcommand{\labels@additionalmodels}{figurines supplémentaires}
+
+% Unit entry labels
+
+\newcommand{\labels@unitsize}{Taille de l'unité}
+\newcommand{\labels@basesize}{Socle}
+\newcommand{\labels@trooptype}{Type de troupe}
+\newcommand{\labels@specialrules}{Règles spéciales}
+\newcommand{\labels@equipment}{Équipement}
+\newcommand{\labels@options}{Options}
+\newcommand{\labels@commandgroup}{État-Major}
+\newcommand{\labels@mounts}{Montures}
+\newcommand{\labels@specialequipment}{Équipement spécial}
+
+% Command groups
+
+\newcommand{\labels@champion}{Champion}
+\newcommand{\labels@standardbearer}{Porte-étendard}
+\newcommand{\labels@musician}{Musicien}
+\newcommand{\labels@singlebannerallowance}{Une seule unité de ce type peut prendre une Bannière magique}
+\newcommand{\labels@condsinglebannerallowance}{Une seule unité de ce type peut prendre une Bannière magique si}
+\newcommand{\labels@bannerallowance}{Peut recevoir une Bannière magique}
+\newcommand{\labels@veteranbannerallowance}{Peut avoir le privilège de porter une Bannière magique de Renom}
+\newcommand{\labels@championallowance}{Peut recevoir des objets magiques}
+
+% Titles
+
+\newcommand{\labels@lords}{Seigneurs}
+\newcommand{\labels@heroes}{Héros}
+\newcommand{\labels@coreunits}{Unités de bases}
+\newcommand{\labels@specialunits}{Unités spéciales}
+\newcommand{\labels@rareunits}{Unités rares}
+\newcommand{\labels@armyspecialrules}{Règles spéciales de l'armée}
+\newcommand{\labels@armoury}{Armurerie}
+\newcommand{\labels@magicitems}{Objets magiques}
+\newcommand{\labels@magicweapons}{Armes magiques}
+\newcommand{\labels@magicarmor}{Armures magiques}
+\newcommand{\labels@talismans}{Talismans}
+\newcommand{\labels@enchanteditems}{Objets enchantés}
+\newcommand{\labels@arcaneitems}{Objets arcaniques}
+\newcommand{\labels@magicbanners}{Bannières magiques}
+\newcommand{\labels@quickrefsheet}{Résumé des caractéristiques}
+\newcommand{\labels@changelog}{Change Log}
+
+% Titlepage
+
+\newcommand{\labels@fantasybattles}{Batailles Fantastiques}
+\newcommand{\labels@NinthAge}{Le 9\ieme Âge}
+\newcommand{\labels@creators}{Une collaboration des créateurs de l'ETC et du Swedish Comp System}
+\newcommand{\labels@latexcredit}{Document réalisé à l'aide de \LaTeX .}
+
+
+%%% Technical commands
+
+\newcommand{\free}{gratuit}
+\newcommand{\upto}{jusqu'à}
+\newcommand{\Upto}{Jusqu'à}
+\newcommand{\unlimited}{sans limite de pts}
+\newcommand{\permodel}{/fig}
+\newcommand{\listlastchoice}{, ou}
+\newcommand{\notif}[1]{(pas #1)}
+\newcommand{\wordand}{et}
+\newcommand{\ifNmodelsorless}[1]{(#1 figurines ou moins)}
+\newcommand{\unitwith}{unité avec}
+
+
+%%% Special rules %%%
+
+\newnamemacro{\ambush}{\specialrule{Embuscade}}
+\newcommand{\armourpiercing}[1]{\specialrule{Perforant\ifblank{#1}{}{~(#1)}}}
+\newnamemacro{\blurry}{\specialrule{Camouflé}}
+\newcommand{\bodyguard}[1]{\specialrule{Garde du Corps\ifblank{#1}{}{~(#1)}}}
+\newcommand{\breathweapon}[1]{\specialrule{Attaque de Souffle\ifblank{#1}{}{ (#1)}}}
+\newnamemacro{\channel}{\specialrule{Canalisation}}
+\newnamemacro{\crushattack}{\specialrule{Attaque Écrasante}}
+\newnamemacro{\devastatingcharge}{\specialrule{Charge Dévastatrice}}
+\newnamemacro{\distracting}{\specialrule{Distrayant}}
+\newnamemacro{\engineer}{\specialrule{Ingénieur}}
+\newnamemacro{\ethereal}{\specialrule{Éthéré}}
+\newnamemacro{\fastcavalry}{\specialrule{Cavalerie Légère}}
+\newnamemacro{\fear}{\specialrule{Peur}}
+\newnamemacro{\fightinextrarank}{\specialrule{Combat avec un Rang Supplémentaire}}
+\newnamemacro{\fireborn}{\specialrule{Né du Feu}}
+\newnamemacro{\flamingattacks}{\specialrule{Attaques Enflammées}}
+\newnamemacro{\flammable}{\specialrule{Inflammable}}
+\newnamemacro{\freereform}{\specialrule{Reformation Gratuite}}
+\newnamemacro{\frenzy}{\specialrule{Frénésie}}
+\newcommand{\fly}[1]{\specialrule{Vol\ifblank{#1}{}{~(#1)}}}
+\newcommand{\grindingattacks}[1]{\specialrule{Attaques de Broyage\ifblank{#1}{}{~(#1)}}}
+\newnamemacro{\hatred}{\specialrule{Haine}}
+\newnamemacro{\hellfire}{\specialrule{Flammes de l'Enfer}}
+\newnamemacro{\hidden}{\specialrule{Caché}}
+\newnamemacro{\holyattacks}{\specialrule{Attaques Sacrées}}
+\newnamemacro{\immunetopsychology}{\specialrule{Immunisé à la Psychologie}}
+\newcommand{\impacthits}[1]{\specialrule{Touches d'Impact\ifblank{#1}{}{~(#1)}}}
+\newnamemacro{\insignificant}{\specialrule{Insignifiant}}
+\newnamemacro{\largetarget}{\specialrule{Grande Cible}}
+\newnamemacro{\lethalstrike}{\specialrule{Coup Fatal}}
+\newnamemacro{\lightningattacks}{\specialrule{Attaques Foudroyantes}}
+\newnamemacro{\lightningreflexes}{\specialrule{Réflexes Foudroyants}}
+\newcommand{\magicresistance}[1]{\specialrule{Résistance à la Magie\ifblank{#1}{}{~(#1)}}}
+\newnamemacro{\magicalattacks}{\specialrule{Attaques Magiques}}
+\newnamemacro{\metalshifting}{\specialrule{Fusion du Métal}}
+\newnamemacro{\moveorfire}{\specialrule{Mouvement ou Tir}}
+\newcommand{\multipleshots}[1]{\specialrule{Tirs Multiples\ifblank{#1}{}{ (#1)}}}
+\newcommand{\multiplewounds}[2]{\specialrule{Blessures Multiples\ifblank{#1}{}{ (#1\ifblank{#2}{)}{, #2)}}}}
+\newnamemacro{\notaleader}{\specialrule{Pas un Meneur}}
+\newnamemacro{\otherworldly}{\specialrule{D'Outre-Monde}}
+\newcommand{\pathmaster}[1]{\specialrule{Maître de la Discipline\ifblank{#1}{}{ (#1)}}}
+\newnamemacro{\poisonedattacks}{\specialrule{Attaques Empoisonnées}}
+\newnamemacro{\quicktofire}{\specialrule{Tir Rapide}}
+\newcommand{\randommovement}[1]{\specialrule{Mouvement Aléatoire\ifblank{#1}{}{~(#1)}}}
+\newcommand{\randomattacks}[1]{\specialrule{Attaques Aléatoires\ifblank{#1}{}{~(#1)}}}
+\newcommand{\regeneration}[1]{\specialrule{Régénération\ifblank{#1}{}{ (#1+)}}}
+\newnamemacro{\requirestwohands}{\specialrule{Arme à deux Mains}}
+\newnamemacro{\scythes}{\specialrule{Faux}}
+\newnamemacro{\scout}{\specialrule{Éclaireur}}
+\newnamemacro{\scouts}{\specialrule{Éclaireurs}}
+\newnamemacro{\slowtofire}{\specialrule{Tir Lent}}
+\newcommand{\stomp}[1]{\specialrule{Piétinement\ifblank{#1}{}{~(#1)}}}
+\newcommand{\strider}[1]{\specialrule{Guide\ifblank{#1}{}{~(#1)}}}
+\newnamemacro{\stubborn}{\specialrule{Tenace}}
+\newnamemacro{\stupidity}{\specialrule{Stupidité}}
+\newnamemacro{\skirmisher}{\specialrule{Tirailleur}}
+\newnamemacro{\skirmishers}{\specialrule{Tirailleurs}}
+\newnamemacro{\swiftstride}{\specialrule{Rapide}}
+\newnamemacro{\thunderouscharge}{\specialrule{Charge Tonitruante}}
+\newnamemacro{\terror}{\specialrule{Terreur}}
+\newnamemacro{\toxicattacks}{\specialrule{Attaques Toxiques}}
+\newnamemacro{\unbreakable}{\specialrule{Indémoralisable}}
+\newnamemacro{\undead}{\specialrule{Mort-Vivant}}
+\newnamemacro{\unstable}{\specialrule{Instable}}
+\newnamemacro{\unwieldy}{\specialrule{Encombrant}}
+\newnamemacro{\vanguard}{\specialrule{Avant-Garde}}
+\newnamemacro{\volleyfire}{\specialrule{Tir de Volée}}
+\newnamemacro{\warplatform}{\specialrule{Plateforme de Guerre}}
+\newcommand{\wardsave}[1]{\specialrule{Sauvegarde Invulnérable\ifblank{#1}{}{~(#1+)}}}
+\newnamemacro{\weaponmaster}{\specialrule{Maître d'Ar\-mes}}
+\newcommand{\wizardconclave}[1]{\specialrule{Conclave de Sorciers\ifblank{#1}{}{ (#1)}}}
+
+
+%%% Magic %%%
+
+\newnamemacro\battle{de Bataille}
+\newnamemacro\alchemy{de l'Alchimie}
+\newnamemacro\death{de la Mort}
+\newnamemacro\fire{du Feu}
+\newnamemacro\heavens{des Cieux}
+\newnamemacro\light{de la Lumière}
+\newnamemacro\nature{de la Nature}
+\newnamemacro\shadows{des Ombres}
+\newnamemacro\wilderness{de la Sauvagerie Bestiale}
+\newnamemacro\butchery{de la Boucherie}
+\newnamemacro\change{du Changement}
+\newnamemacro\thebiggreengods{des Grands Dieux Verts}
+\newnamemacro\thelittlegreengods{des Petits Dieux Verts}
+\newnamemacro\blackmagic{de la Magie Noire}
+\newnamemacro\disease{de la Maladie}
+\newnamemacro\lust{de la Luxure}
+\newnamemacro\necromancy{de la Nécromancie}
+\newnamemacro\ruin{de la Ruine}
+\newnamemacro\forge{de la Forge}
+\newnamemacro\sands{des Sables}
+\newnamemacro\whitemagic{de la Magie Blanche}
+
+\newcommand{\magiclevel}[1]{Niveau #1}
+\newcommand{\Level}{Niveau}
+
+\newnamemacro{\wizard}{Sorcier}
+\newnamemacro{\wizards}{Sorciers}
+
+\newcommand{\boundspell}[1]{Objet de sort, Puissance #1}
+
+
+%%% Other rules %%%
+
+\newnamemacro{\armoursave}{Sauvegarde d'Armure}
+\newnamemacro{\firstinrank}{Au Premier Rang}
+\newnamemacro{\hardcover}{Couvert Lourd}
+\newnamemacro{\holdyourground}{\specialrule{Tenir la Position}}
+\newnamemacro{\inspiringpresence}{\specialrule{Présence Charismatique}}
+\newnamemacro{\lightcover}{Couvert Léger}
+\newnamemacro{\monstrousrank}{Rang Monstrueux}
+\newnamemacro{\oneofakind}{Unique}
+\newnamemacro{\ordnance}{Artillerie}
+\newnamemacro{\parry}{Parade}
+\newnamemacro{\raisewounds}{Ressusciter des Figurines}
+\newnamemacro{\recoverwounds}{Récupérer des PVs}
+\newnamemacro{\aideddispel}{Dissipation Assistée}
+\newnamemacro{\rnf}{ordinaires}
+\newnamemacro{\general}{Général}
+
+
+%%% Equipment %%%
+
+\newcommand{\innatedefence}[1]{Protection innée\ifblank{#1}{}{~(#1+)}}
+\newcommand{\mountsprotection}[1]{Protection de monture\ifblank{#1}{}{~(#1+)}}
+\newnamemacro{\la}{Armure légère}
+\newnamemacro{\ha}{Armure lourde}
+\newnamemacro{\platearmour}{Armure de plates}
+\newnamemacro{\hw}{Arme de base}
+\newnamemacro{\ahw}{Arme de base additionnelle}
+\newnamemacro{\spear}{Lance}
+\newnamemacro{\halberd}{Hallebarde}
+\newnamemacro{\gw}{Arme lourde}
+\newnamemacro{\lance}{Lance de cavalerie}
+\newnamemacro{\lightlance}{Lance légère}
+\newnamemacro{\shield}{Bouclier}
+\newnamemacro{\barding}{Caparaçon}
+\newnamemacro{\throwingweapons}{Armes de jet}
+
+\newnamemacro{\boltthrower}{Baliste}
+\newnamemacro{\artilleryweapon}{Arme d'artillerie}
+
+
+%%% Troop types %%%
+
+\newnamemacro{\infantry}{Infanterie}
+\newnamemacro{\monstrousinfantry}{Infanterie Monstrueuse}
+\newnamemacro{\cavalry}{Cavalerie}
+\newnamemacro{\monstrouscavalry}{Cavalerie Monstrueuse}
+\newnamemacro{\swarm}{Nuée}
+\newnamemacro{\swarms}{Nuées}
+\newnamemacro{\warbeast}{Bête de Guerre}
+\newnamemacro{\warbeasts}{Bêtes de Guerre}
+\newnamemacro{\monster}{Monstre}
+\newnamemacro{\monsters}{Monstres}
+\newnamemacro{\monstrousbeast}{Bête Monstrueuse}
+\newnamemacro{\monstrousbeasts}{Bêtes Monstrueuses}
+\newnamemacro{\chariot}{Char}
+\newnamemacro{\chariots}{Chars}
+\newnamemacro{\riddenmonster}{Monstre Monté}
+\newnamemacro{\riddenmonsters}{Monstres Montés}
+
+
+%%% Profile wording
+
+\newcommand{\magicitemsallowance}{Peut prendre des Objets magiques}
+\newcommand{\anyofthefollowing}{\optionschoice{Peut prendre :}}
+\newcommand{\weapononechoice}{\optionschoice{Peut prendre une seule arme :}}
+\newcommand{\magiclevelchoice}{\optionschoice{Peut devenir (un seul choix) :}}
+\newcommand{\bsboption}{Peut devenir Porteur de la Grande Bannière}
+\newcommand{\maybeupgradedto}{Peut être augmenté en}
+\newcommand{\mustbecomeoneofthefollowing}{\optionschoice{Doit devenir l'un :}}
+\newcommand{\maytakeoneofthefollowing}{\optionschoice{Peut prendre l'un :}}
+\newcommand{\maytakeuptotwoofthefollowing}{\optionschoice{Peut prendre jusqu'à deux choix parmi :}}
+
+\newcommand{\mountssectionannouncement}{%
+La section Montures concerne les montures de Personnages. Les montures pour non-Personnages suivent les règles données dans leur description d'unité.
+}

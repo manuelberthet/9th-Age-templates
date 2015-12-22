@@ -8,6 +8,10 @@
 
 \usepackage[a4paper, top=1.6cm, bottom=2cm, left=1.6cm, right=1.6cm]{geometry} % Marge reduction.
 
+%% Language specific package
+%\usepackage[french]{babel}
+%\frenchbsetup{StandardLists=true} % Necessary to use enumitem with babel/french.
+
 %% Font and typing packages
 \usepackage{fontspec}
 % \setmainfont[Ligatures=TeX]{Arial} % default is Latin Modern
@@ -113,6 +117,35 @@
 }%
 
 
+%%% Database for automatic Quick Ref Sheet %%%
+
+\DTLnewdb{profiles} % Database containing name, category, multiprofile number, profilename (if multi), caraclist, trooptype, invocation for CV.
+\newcommand{\profilecategory}{\labels@lords} % Will be updated in relevant categories
+\newcounter{multiprofilecounter}
+
+\newcommand{\profiledtbfillname}[1]{\DTLnewdbentry{profiles}{name}{#1}}
+\newcommand{\profiledtbfillcategory}[1]{\DTLnewdbentry{profiles}{category}{#1}}
+\newcommand{\profiledtbfilltrooptype}[1]{\DTLnewdbentry{profiles}{trooptype}{#1}}
+\newcommand{\profiledtbfillinvocation}[1]{\DTLnewdbentry{profiles}{invocation}{#1}}
+
+\newcommand{\profiledtbfillcarac}[1]{%
+	\parselist{#1}{\locallists@profileslist}% Split of the different profiles in the case of a multiprofile.
+	\setcounter{multiprofilecounter}{0}%
+	\forlistloop{\stepcounter{multiprofilecounter}\profileanalyze}{\locallists@profileslist}%
+	\DTLnewdbentry{profiles}{multipleprofile}{\themultiprofilecounter}
+}
+\newcommand{\profileanalyze}[1]{%
+	\splitatinf{#1}\local@unitname\local@unitprofile%
+	\ifnumequal{\themultiprofilecounter}{1}{% then this is the first profile of a multiprofile or a single profile
+		\DTLnewdbentry{profiles}{profilename}{\local@unitname}%
+		\DTLnewdbentry{profiles}{caraclist}{\expandafter\caraclist\expandafter{\local@unitprofile}}% List of characteristics separated by &
+	}{% Else it is another profile of a multiprofile
+		\DTLnewdbentry{profiles}{profilename\themultiprofilecounter}{\local@unitname}%
+		\DTLnewdbentry{profiles}{caraclist\themultiprofilecounter}{\expandafter\caraclist\expandafter{\local@unitprofile}}% List of characteristics separated by &
+	}%
+}
+
+
 %%% Technical commands %%%
 
 \newcommand{\newrule}{\textcolor{green!50!black}}
@@ -130,11 +163,31 @@
 
 \newcommand{\armytitle}[1]{\noindent\begin{center}\Huge{\textbf{\antiquefont\expandafter\uppercase\expandafter{#1}}}\end{center}\medskip}
 \newcommand{\lordstitle}{\def\logolocalpath{../Layout/pics/logo_lord.png}\armytitle{\labels@lords}}
-\newcommand{\heroestitle}{\def\logolocalpath{../Layout/pics/logo_hero.png}\clearpage\armytitle{\labels@heroes}}
-\newcommand{\coreunitstitle}{\def\logolocalpath{../Layout/pics/logo_core.png}\clearpage\armytitle{\labels@coreunits}}
-\newcommand{\specialunitstitle}{\def\logolocalpath{../Layout/pics/logo_special.png}\clearpage\armytitle{\labels@specialunits}}
-\newcommand{\rareunitstitle}{\def\logolocalpath{../Layout/pics/logo_rare.png}\clearpage\armytitle{\labels@rareunits}}
-\newcommand{\mountstitle}{\def\logolocalpath{../Layout/pics/logo_mount.png}\clearpage\armytitle{\labels@mounts}}
+\newcommand{\heroestitle}{%
+\def\logolocalpath{../Layout/pics/logo_hero.png}%
+\clearpage\armytitle{\labels@heroes}%
+\renewcommand{\profilecategory}{\labels@heroes}%
+}
+\newcommand{\coreunitstitle}{%
+\def\logolocalpath{../Layout/pics/logo_core.png}%
+\clearpage\armytitle{\labels@coreunits}%
+\renewcommand{\profilecategory}{\labels@coreunits}%
+}
+\newcommand{\specialunitstitle}{%
+\def\logolocalpath{../Layout/pics/logo_special.png}%
+\clearpage\armytitle{\labels@specialunits}%
+\renewcommand{\profilecategory}{\labels@specialunits}%
+}
+\newcommand{\rareunitstitle}{%
+\def\logolocalpath{../Layout/pics/logo_rare.png}%
+\clearpage\armytitle{\labels@rareunits}%
+\renewcommand{\profilecategory}{\labels@rareunits}%
+}
+\newcommand{\mountstitle}{%
+\def\logolocalpath{../Layout/pics/logo_mount.png}%
+\clearpage\armytitle{\labels@mounts}%
+\renewcommand{\profilecategory}{\labels@mounts}%
+}
 
 \newcommand{\armyspecialrules}{\newpage\twocolumn\noindent\begin{center}\Huge{\textbf{\antiquefont\labels@armyspecialrules}}\end{center}}
 \newcommand{\armyspecialruleentry}[1]{\subsection*{\LARGE\antiquefont\textit{#1}}}
@@ -674,6 +727,13 @@
 	\end{multicols}
 	\unit@additional
 	\end{unitframe}
+	% Database filling for auto QRS
+	\DTLnewrow{profiles}%
+	\expandafter\profiledtbfillname\expandafter{\unit@name}%
+	\expandafter\profiledtbfillcategory\expandafter{\profilecategory}%
+	\expandafter\profiledtbfilltrooptype\expandafter{\unit@type}%
+	\expandafter\ifblank\expandafter{\unit@invocation}{}{\expandafter\profiledtbfillinvocation\expandafter{\unit@invocation}}%
+	\expandafter\profiledtbfillcarac\expandafter{\unit@profile}
 }
 
 

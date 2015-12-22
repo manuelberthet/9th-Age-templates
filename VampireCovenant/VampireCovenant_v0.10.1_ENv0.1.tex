@@ -2,7 +2,7 @@
 
 \newcommand{\booktitle}{Vampire Covenant}
 \newcommand{\version}{0.10.1}
-\newcommand{\englishversion}{0.1}
+\newcommand{\englishversion}{0.2}
 
 % Army special rules
 
@@ -12,7 +12,7 @@
 \newcommand{\awaken}[1]{\specialrule{Awaken\ifblank{#1}{}{ (#1)}}}
 \newcommand{\invocation}[1]{\specialrule{Invocation\ifblank{#1}{}{ (#1)}}}
 \newnamemacro{\reaper}{\specialrule{Reaper}}
-\newcommand{\vampiric}[1]{\specialrule{Vampiric\ifblank{#1}{}{ \newrule{(#1)}}}}
+\newcommand{\vampiric}[1]{\specialrule{Vampiric\ifblank{#1}{}{ \newrule{(#1+)}}}}
 \newnamemacro{\wakethedead}{\newrule{\specialrule{Wake the Dead}}}
 \newnamemacro{\necromanticaura}{\specialrule{\newrule{Necromantic} Aura}}
 
@@ -1226,7 +1226,7 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 
 \newlog{0.10.1}{%
 Cleaned up Quick Reference Sheet,
-Clarifications added on Von Karstein, Vampiric, Ashes to Ashes, Blade of Red Thirst and Wake the Dead,
+Clarifications added on Von Karnstein, Vampiric, Ashes to Ashes, Blade of Red Thirst and Wake the Dead,
 }
 
 \newlog{0.10.0}{%
