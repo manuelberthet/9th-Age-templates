@@ -15,7 +15,7 @@
 %% Font and typing packages
 \usepackage{fontspec}
 % \setmainfont[Ligatures=TeX]{Arial} % default is Latin Modern
-\newfontfamily\antiquefont[Ligatures=TeX]{Caslon Antique} % GW like font
+\newfontfamily\antiquefont[Ligatures=TeX]{Caslon Antique} % fancy font
 \usepackage{microtype}			% Greatly improves general appearance of the text.
 \usepackage{SIunits}			% Unit appearance.
 \usepackage{xspace}				% Define commands that appear not to eat spaces.
@@ -24,6 +24,7 @@
 %% Array utilities
 \usepackage{array}				% Additionnal options for arrays.
 \usepackage{colortbl}			% Additionnal options for coloring arrays.
+\usepackage{graphbox}		% To allow picture centering in tabular environnement.
 
 %% List utilities
 \usepackage[inline]{enumitem}   % Display inline lists.
@@ -121,28 +122,23 @@
 
 \DTLnewdb{profiles} % Database containing name, category, multiprofile number, profilename (if multi), caraclist, trooptype, invocation for CV.
 \newcommand{\profilecategory}{\labels@lords} % Will be updated in relevant categories
-\newcounter{multiprofilecounter}
 
 \newcommand{\profiledtbfillname}[1]{\DTLnewdbentry{profiles}{name}{#1}}
 \newcommand{\profiledtbfillcategory}[1]{\DTLnewdbentry{profiles}{category}{#1}}
 \newcommand{\profiledtbfilltrooptype}[1]{\DTLnewdbentry{profiles}{trooptype}{#1}}
 \newcommand{\profiledtbfillinvocation}[1]{\DTLnewdbentry{profiles}{invocation}{#1}}
+\newcommand{\profiledtbfillprofile}[1]{\DTLnewdbentry{profiles}{profile}{#1}}
+\newcommand{\profiledtbfillmultipleprofile}[1]{\DTLnewdbentry{profiles}{multipleprofile}{#1}}
+
+\newcommand{\void}[1]{}
+\newcounter{multiprofilecounter}
 
 \newcommand{\profiledtbfillcarac}[1]{%
+	\profiledtbfillprofile{#1}
 	\parselist{#1}{\locallists@profileslist}% Split of the different profiles in the case of a multiprofile.
 	\setcounter{multiprofilecounter}{0}%
-	\forlistloop{\stepcounter{multiprofilecounter}\profileanalyze}{\locallists@profileslist}%
-	\DTLnewdbentry{profiles}{multipleprofile}{\themultiprofilecounter}
-}
-\newcommand{\profileanalyze}[1]{%
-	\splitatinf{#1}\local@unitname\local@unitprofile%
-	\ifnumequal{\themultiprofilecounter}{1}{% then this is the first profile of a multiprofile or a single profile
-		\DTLnewdbentry{profiles}{profilename}{\local@unitname}%
-		\DTLnewdbentry{profiles}{caraclist}{\expandafter\caraclist\expandafter{\local@unitprofile}}% List of characteristics separated by &
-	}{% Else it is another profile of a multiprofile
-		\DTLnewdbentry{profiles}{profilename\themultiprofilecounter}{\local@unitname}%
-		\DTLnewdbentry{profiles}{caraclist\themultiprofilecounter}{\expandafter\caraclist\expandafter{\local@unitprofile}}% List of characteristics separated by &
-	}%
+	\forlistloop{\stepcounter{multiprofilecounter}\void}{\locallists@profileslist}%
+	\expandafter\profiledtbfillmultipleprofile\expandafter{\number\value{multiprofilecounter}}
 }
 
 
@@ -209,7 +205,7 @@
 
 \newcommand{\armylist}{\clearpage\onecolumn}
 
-\newcommand{\quickrefsheettitle}{\clearpage\armytitle{\labels@quickrefsheet}}
+\newcommand{\quickrefsheettitle}{\clearpage\newgeometry{top=1.6cm, bottom=2cm, left=1cm, right=1cm}\armytitle{\labels@quickrefsheet}}
 \newcommand{\changelogtitle}{\clearpage\armytitle{\labels@changelog}}
 
 \newcommand{\separator}{\noindent\textcolor{black!30}{\rule{\columnwidth}{1pt}}}
@@ -258,12 +254,12 @@
 \newcommand{\profilefirstline}[4]{#1 & #2 &   & #3 & #4 }
 
 % Start of a profile table. Includes the table commands, and the column labels. \profilecellsize is the size of the characteristics cells in the profile.
-\newcommand{\profilecellsize}{0.50cm}
+\newcommand{\profilecellsize}{0.56cm}
 \newcommand{\profilestart}{%
 	\noindent %
 	\begin{tabular}{@{}p{3cm}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}p{2.7cm}@{}p{3.3cm}@{}p{2cm}@{}}%
 	\textbf{\labels@profile} &%
-	\labels@M & \labels@WS & \labels@BS & \labels@S & \labels@T & \labels@W & \labels@I & \labels@A & \labels@Ld &%
+	\textbf{\labels@M} & \textbf{\labels@WS} & \textbf{\labels@BS} & \textbf{\labels@S} & \textbf{\labels@T} & \textbf{\labels@W} & \textbf{\labels@I} & \textbf{\labels@A} & \textbf{\labels@Ld} &%
 	&%
 	\textbf{\labels@trooptype} &%
 	\textbf{\labels@basesize}%
@@ -298,7 +294,7 @@
 	\noindent %
 	\begin{tabular}{@{}p{3cm}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{2.2cm}@{}p{0.5cm}@{}p{3.3cm}@{}p{2cm}@{}}%
 	\textbf{\labels@profile} &%
-	\labels@M & \labels@WS & \labels@BS & \labels@S & \labels@T & \labels@W & \labels@I & \labels@A & \labels@Ld & \textbf{\labels@Invocation} &%
+	\textbf{\labels@M} & \textbf{\labels@WS} & \textbf{\labels@BS} & \textbf{\labels@S} & \textbf{\labels@T} & \textbf{\labels@W} & \textbf{\labels@I} & \textbf{\labels@A} & \textbf{\labels@Ld} & \textbf{\labels@Invocation} &%
 	&%
 	\textbf{\labels@trooptype} &%
 	\textbf{\labels@basesize}%
@@ -737,7 +733,7 @@
 }
 
 
-%%% Changelogcommands %%%
+%%% Changelog commands %%%
 
 \newcommand{\newlog}[2]{%
 \vspace*{0.2cm}\noindent{\antiquefont\Large\textbf{V#1}}
