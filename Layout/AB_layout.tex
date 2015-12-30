@@ -632,26 +632,38 @@
 %%% Frames definition %%%
 
 % Unit's big frame.
-\tikzset{unitprice/.style={draw=black, fill=white, rectangle, rounded corners, right, minimum height=0.7cm, font=\bfseries}}
+\tikzset{unitprice/.style={draw=black, fill=white, rectangle, rounded corners, right, minimum height=0.7cm}}
 \tikzset{unittitle/.style={draw=black, fill=white, rectangle, rounded corners, right, minimum height=0.7cm, font=\bfseries}}
 \tikzset{unitlogo/.style={draw=white, fill=white, rectangle, right, minimum height=0.7cm}}
+\tikzset{unitsize/.style={draw=black, fill=white, rectangle, rounded corners, right, minimum height=0.7cm}}
 
 \newenvironment{unitframe}[2][]{%
 	\mdfsetup{%
-			  nobreak=true,%
+		nobreak=true,%
 	          linewidth=1pt,%
 	          roundcorner=5pt,%
 	          backgroundcolor=white,%
 	          innertopmargin=1.2\baselineskip,
 	          innerbottommargin=1.2\baselineskip,
 			  singleextra={
-				\expandafter\ifstrequal\expandafter{\unit@cost}{-}{}{%
+				\expandafter\ifstrequal\expandafter{\unit@cost}{-}{}{% STILL WORK IN PROGRESS NEED MACROS AND MORE IF CASE (solo model with additional models)
 					\node[unitprice,anchor=east,xshift=-0.5cm] at (P)%
-						{\large\pts{\unit@cost}};
+						{%
+							\large\pts{\textbf{\unit@cost}}%
+							\expandafter\ifblank\expandafter{\unit@costpermodel}{}{ + \textbf{\unit@costpermodel{}} p.a.m.}%
+						};
+					\node[unitsize, anchor=east, xshift=-4cm] at (P)%
+					{%
+						\expandafter\ifnumequal\expandafter{\unit@unitsize}{1}{%single model
+							\large{\textbf{single} model}%
+						}{%not single model					
+							\large{\textbf{\unit@unitsize}\expandafter\ifblank\expandafter{\unit@additionalmodels}{}{, up to \textbf{\unit@additionalmodels{}}}  models}%
+						}%
+					};
 				}%
-				\node[unittitle,xshift=0.3cm] at (P-|O)%
+				\node[unittitle,xshift=2.5cm] at (P-|O)%
 					 {\LARGE\antiquefont\uppercase\expandafter\expandafter\expandafter{\unit@name}};
-				\node[unitlogo, xshift=8.11cm, yshift=0.1cm] at (P-|O)%
+				\node[unitlogo, xshift=0.5cm, yshift=0.1cm] at (P-|O)%
 					{\includegraphics[width=1.2cm]{\logolocalpath}};
 			  }
 	}%
@@ -710,17 +722,14 @@
 		\raggedcolumns
 		{\setlength{\parskip}{0.1cm}
 		\vspace*{0.02cm}
-		\unitsize{\unit@unitsize}
-
-		\commonspecialrules{\unit@commontype}{\unit@commonspecialrules}
+		\expandafter\ifblank\expandafter{\unit@commonspecialrules}{}{\noindent\parbox{\columnwidth}{\commonspecialrules{\unit@commontype}{\unit@commonspecialrules}}}
 		
-		\specialrules{\unit@specialrules}
+		\expandafter\ifblank\expandafter{\unit@specialrules}{}{\noindent\parbox{\columnwidth}{\specialrules{\unit@specialrules}}}
 		
-		\magic{\unit@magiclevel}{\unit@magicpaths}
+		\expandafter\ifblank\expandafter{\unit@magiclevel}{}{\noindent\parbox{\columnwidth}{\magic{\unit@magiclevel}{\unit@magicpaths}}}
 		
-		\equipment{\unit@equipment}
+		\expandafter\ifblank\expandafter{\unit@equipment}{}{\noindent\parbox{\columnwidth}{\equipment{\unit@equipment}}}
 		}
-		\expandafter\ifblank\expandafter{\unit@additionalmodels}{}{\preto{\unit@options}{\Upto{ }\unit@additionalmodels\/ \labels@additionalmodels =\permodel < \unit@costpermodel,}}
 		\vspace*{0.15cm}
 		\mounts{\unit@mounts}
 		\options{\unit@options}
