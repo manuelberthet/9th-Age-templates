@@ -10,7 +10,8 @@
 
 \newcommand{\QRSstarttab}[1]{%
 	\noindent%
-	\begin{tabular}{cp{3.2cm}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}}%
+	\setlength{\tabcolsep}{2pt}%
+	\begin{tabular}{@{}cp{3.2cm}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}}%
 
 	& \textbf{#1} & \textbf{\labels@M} & \textbf{\labels@WS} & \textbf{\labels@BS} & \textbf{\labels@S} & \textbf{\labels@T} & \textbf{\labels@W} & \textbf{\labels@I} & \textbf{\labels@A} & \textbf{\labels@Ld}%
 }%
@@ -67,7 +68,7 @@
 	\global\booltrue{QRSisempty}%
 	\DTLforeach*[#1]%
 	{profiles}{\rowname=name, \rowtrooptype=trooptype, \rowcategory=category, \rowprofile=profile, \rowmulti=multipleprofile}{%
-		\global\boolfalse{QRSisempty}%\dtlbreak%
+		\global\boolfalse{QRSisempty}\dtlbreak%
 	}%
 }%
 

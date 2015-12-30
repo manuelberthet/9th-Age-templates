@@ -73,7 +73,14 @@
 \newcommand{\labels@fantasybattles}{Fantasy Battles}
 \newcommand{\labels@NinthAge}{The 9th Age}
 \newcommand{\labels@creators}{A collaboration between ETC and Swedish Comp System}
-\newcommand{\labels@latexcredit}{Layout designed using \LaTeX .}
+\newcommand{\labels@secondpageannouncement}{%
+	\labels@fantasybattles{} : \labels@NinthAge{} is a community-made miniatures wargame. All relevant rules, as well as feedback and suggestions, can be found and given here :
+	\newline\url{http://www.the-ninth-age.com/}
+}
+\newcommand{\labels@rulechanges}{%
+	Rules changes between versions are colour coded like this paragraph. See change log at end of document.
+}
+\newcommand{\labels@latexcredit}{Layout designed with \LaTeX .}
 
 
 %%% Technical commands
@@ -93,9 +100,9 @@
 %%% Special rules %%%
 
 \newnamemacro{\ambush}{\specialrule{Ambush}}
-\newcommand{\armourpiercing}[1]{\specialrule{Armour Piercing\ifblank{#1}{}{~(#1)}}}
+\newcommand{\armourpiercing}[1]{\specialrule{Armour Piercing\ifblank{#1}{}{ (#1)}}}
 \newnamemacro{\blurry}{\specialrule{Blurry}}
-\newcommand{\bodyguard}[1]{\specialrule{Bodyguard\ifblank{#1}{}{~(#1)}}}
+\newcommand{\bodyguard}[1]{\specialrule{Bodyguard\ifblank{#1}{}{ (#1)}}}
 \newcommand{\breathweapon}[1]{\specialrule{Breath Weapon\ifblank{#1}{}{ (#1)}}}
 \newnamemacro{\channel}{\specialrule{Channel}}
 \newnamemacro{\crushattack}{\specialrule{Crush Attack}}
@@ -111,20 +118,20 @@
 \newnamemacro{\flammable}{\specialrule{Flammable}}
 \newnamemacro{\freereform}{\specialrule{Free Reform}}
 \newnamemacro{\frenzy}{\specialrule{Frenzy}}
-\newcommand{\fly}[1]{\specialrule{Fly\ifblank{#1}{}{~(#1)}}}
-\newcommand{\grindingattacks}[1]{\specialrule{Grinding Attacks\ifblank{#1}{}{~(#1)}}}
+\newcommand{\fly}[1]{\specialrule{Fly\ifblank{#1}{}{ (#1)}}}
+\newcommand{\grindingattacks}[1]{\specialrule{Grinding Attacks\ifblank{#1}{}{ (#1)}}}
 \newnamemacro{\hatred}{\specialrule{Hatred}}
 \newnamemacro{\hellfire}{\specialrule{Hellfire}}
 \newnamemacro{\hidden}{\specialrule{Hidden}}
 \newnamemacro{\holyattacks}{\specialrule{Holy Attacks}}
 \newnamemacro{\immunetopsychology}{\specialrule{Immune to Psychology}}
-\newcommand{\impacthits}[1]{\specialrule{Impact Hits\ifblank{#1}{}{~(#1)}}}
+\newcommand{\impacthits}[1]{\specialrule{Impact Hits\ifblank{#1}{}{ (#1)}}}
 \newnamemacro{\insignificant}{\specialrule{Insignificant}}
 \newnamemacro{\largetarget}{\specialrule{Large Target}}
 \newnamemacro{\lethalstrike}{\specialrule{Lethal Strike}}
 \newnamemacro{\lightningattacks}{\specialrule{Lightning Attacks}}
 \newnamemacro{\lightningreflexes}{\specialrule{Lightning Reflexes}}
-\newcommand{\magicresistance}[1]{\specialrule{Magic Resistance\ifblank{#1}{}{~(#1)}}}
+\newcommand{\magicresistance}[1]{\specialrule{Magic Resistance\ifblank{#1}{}{ (#1)}}}
 \newnamemacro{\magicalattacks}{\specialrule{Magical Attacks}}
 \newnamemacro{\metalshifting}{\specialrule{Metalshifting}}
 \newnamemacro{\moveorfire}{\specialrule{Move or Fire}}
@@ -135,16 +142,16 @@
 \newcommand{\pathmaster}[1]{\specialrule{Pathmaster\ifblank{#1}{}{ (#1)}}}
 \newnamemacro{\poisonedattacks}{\specialrule{Poisoned Attacks}}
 \newnamemacro{\quicktofire}{\specialrule{Quick to Fire}}
-\newcommand{\randommovement}[1]{\specialrule{Random Movement\ifblank{#1}{}{~(#1)}}}
-\newcommand{\randomattacks}[1]{\specialrule{Random Attacks\ifblank{#1}{}{~(#1)}}}
+\newcommand{\randommovement}[1]{\specialrule{Random Movement\ifblank{#1}{}{ (#1)}}}
+\newcommand{\randomattacks}[1]{\specialrule{Random Attacks\ifblank{#1}{}{ (#1)}}}
 \newcommand{\regeneration}[1]{\specialrule{Regeneration\ifblank{#1}{}{ (#1+)}}}
 \newnamemacro{\requirestwohands}{\specialrule{Requires Two Hands}}
 \newnamemacro{\scythes}{\specialrule{Scythes}}
 \newnamemacro{\scout}{\specialrule{Scout}}
 \newnamemacro{\scouts}{\specialrule{Scouts}}
 \newnamemacro{\slowtofire}{\specialrule{Slow to Fire}}
-\newcommand{\stomp}[1]{\specialrule{Stomp\ifblank{#1}{}{~(#1)}}}
-\newcommand{\strider}[1]{\specialrule{Strider\ifblank{#1}{}{~(#1)}}}
+\newcommand{\stomp}[1]{\specialrule{Stomp\ifblank{#1}{}{ (#1)}}}
+\newcommand{\strider}[1]{\specialrule{Strider\ifblank{#1}{}{ (#1)}}}
 \newnamemacro{\stubborn}{\specialrule{Stubborn}}
 \newnamemacro{\stupidity}{\specialrule{Stupidity}}
 \newnamemacro{\skirmisher}{\specialrule{Skirmisher}}
@@ -160,7 +167,7 @@
 \newnamemacro{\vanguard}{\specialrule{Vanguard}}
 \newnamemacro{\volleyfire}{\specialrule{Volley Fire}}
 \newnamemacro{\warplatform}{\specialrule{War Platform}}
-\newcommand{\wardsave}[1]{\specialrule{Ward Save\ifblank{#1}{}{~(#1+)}}}
+\newcommand{\wardsave}[1]{\specialrule{Ward Save\ifblank{#1}{}{ (#1+)}}}
 \newnamemacro{\weaponmaster}{\specialrule{Weapon Master}}
 \newcommand{\wizardconclave}[1]{\specialrule{Wizard Conclave\ifblank{#1}{}{ (#1)}}}
 
@@ -219,8 +226,8 @@
 
 %%% Equipment %%%
 
-\newcommand{\innatedefence}[1]{Innate Defence\ifblank{#1}{}{~(#1+)}}
-\newcommand{\mountsprotection}[1]{Mount's Protection\ifblank{#1}{}{~(#1+)}}
+\newcommand{\innatedefence}[1]{Innate Defence\ifblank{#1}{}{ (#1+)}}
+\newcommand{\mountsprotection}[1]{Mount's Protection\ifblank{#1}{}{ (#1+)}}
 \newnamemacro{\la}{Light Armour}
 \newnamemacro{\ha}{Heavy Armour}
 \newnamemacro{\platearmour}{Plate Armour}

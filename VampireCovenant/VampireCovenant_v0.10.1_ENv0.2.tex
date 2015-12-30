@@ -140,7 +140,7 @@
 % Profile rules
 
 \newcommand{\unlivingshieldrule}{%
-Close combat attacks allocated against a \necromancer{} or \necromancerlord{} in base to base contact with a model with this special rule must instead be allocated at the model with this special rule if it passes a Weapon Skill test (determine for each attack separately). This ability cannot be used if the \necromancer{}, \necromancerlord{} or the model with this special rule fights in a Challenge.
+Close combat attacks allocated against a \necromancer{} or \necromancerlord{} in base to base contact with a model with this special rule must instead be allocated at the model with this special rule if it passes a Weapon Skill test (determine for each attack separately). This ability cannot be used if the \necromancer{}, \necromancerlord{} or the model with this special rule fights in a challenge.
 
 The \unlivingshield{} option may only be taken in armies without any character model with the \vampiric{} special rule.
 }
@@ -219,7 +219,7 @@ The model gets +1 Weapon Skill, increasing the strength of its \innatedefence{} 
 
 \input{../Layout/AB_titlepage.tex}
 
-\armyspecialrules
+\startarmyspecialrules
 
 \armyspecialruleentry{\masterofundeath}
 
@@ -262,14 +262,15 @@ Each time after an Augment spell from Path of \necromancy{} (including the \necr
 \newrule{Units with this special rule and friendly units within range reduce the number of wounds caused by the \ashestoashes{} and \unstable{} special rules by 1. Units with this special rule has a range equal to \distance{6}. The Battle Standard Bearer automatically has this special rule but with the range of its \holdyourground{} instead.}
 
 
-\armynewsection{\bloodlines}
+\closearmyspecialrules
+
+\startarmynewsection{\bloodlines}
 
 \vampirelords{} and \vampireheroes{} may purchase unique upgrades called \bloodpowers{}, separated in two categories called \bloodlinepowers{} and \ancientbloodpowers{}. Vampires may also be upgraded to become part of a \bloodline{}, granting them additional bonuses and sometimes restrictions. The \vampirelords{} and \vampireheroes{} of an army must either belong to the same \bloodline{} or none at all.
 
 \armynewsubsection{\bloodline{} Vampires}
 
-May only purchase powers that are specific to that \bloodline{}. \bloodlinepowers{} may be picked by any
-Vampire and \ancientbloodpowers{} may only be taken by \vampirelords{}. \bloodlinepowers{} can be duplicated, \ancientbloodpowers{} are \oneofakind{}.
+May only purchase powers that are specific to that \bloodline{}. \bloodlinepowers{} may be picked by any Vampire and \ancientbloodpowers{} may only be taken by \vampirelords{}. \bloodlinepowers{} can be duplicated, \ancientbloodpowers{} are \oneofakind{}.
 
 \armynewsubsection{Independent Vampires}
 
@@ -283,9 +284,7 @@ Certain unit entries in this army book bear the mention \bloodties{}, followed b
 
 \armynewsubsection{\brotherhood{} \bloodline\dotfill \pts{35/25}}
 
-A \brotherhood{} Vampire gains +2 Weapon Skill and wears \platearmour{}. He is restricted to purchasing
-only one additional Magic Level and may only use Path of \necromancy{}. A \brotherhood{} Vampire cannot
-refuse challenges and must issue one whenever possible, unless another Vampire from the same \bloodline{} does it first.
+A \brotherhood{} Vampire gains +2 Weapon Skill and wears \platearmour{}. He is restricted to purchasing only one additional Magic Level and may only use Path of \necromancy{}. A \brotherhood{} Vampire cannot refuse challenges and must issue one whenever possible, unless another Vampire from the same \bloodline{} does it first.
 
 \bloodties{}: \vampireknights{}.
 
@@ -295,8 +294,7 @@ refuse challenges and must issue one whenever possible, unless another Vampire f
 
 \pricelistitem{\newrule{Perfect Warrior}}{35} \textbf{\bloodlinepower}. The Vampire has the \weaponmaster{} and \lethalstrike{} special rules. It is equipped with an \ahw , a \halberd , a \gw , a \lance{} and a \shield{}.
 
-\pricelistitem{\newrule{Eternal Duellist}}{30} \textbf{\bloodlinepower}. The Vampire may re-roll to hit and to
-wound rolls in challenges.
+\pricelistitem{\newrule{Eternal Duellist}}{30} \textbf{\bloodlinepower}. The Vampire may re-roll to hit and to wound rolls in challenges.
 
 \endpricelist
 
@@ -313,8 +311,7 @@ The Vampire's model has +1 Wound, \regeneration{\newrule{5}} and \hatred{}. The 
 \pricelistitem{\newrule{Ghoul Lord}}{65} \textbf{\ancientbloodpower}. The Vampire gains the special rules \poisonedattacks and \armourpiercing{1}. All \ghouls{} in the same unit as the Vampire have \hatred{} and
 \armourpiercing{1}.
 
-\pricelistitem{Curse of the Blood}{70} \textbf{\bloodlinepower}. The Vampire gains the special rule
-\regeneration{5}. If the Vampire already has \regeneration{} then its save is increased by \newrule{1} point to a maximum of 4+. All \ghouls{} in the same unit as the Vampire, and any mount ridden by the Vampire, gains the special rules \regeneration{6}. If they already have \regeneration{} then their save is increased by 1 point to a maximum of 4+.
+\pricelistitem{Curse of the Blood}{70} \textbf{\bloodlinepower}. The Vampire gains the special rule \regeneration{5}. If the Vampire already has \regeneration{} then its save is increased by \newrule{1} point to a maximum of 4+. All \ghouls{} in the same unit as the Vampire, and any mount ridden by the Vampire, gains the special rules \regeneration{6}. If they already have \regeneration{} then their save is increased by 1 point to a maximum of 4+.
 
 \pricelistitem{\newrule{Bat Form}}{\newrule{65/40}} \textbf{\bloodlinepower}. The Vampire gains the special rules \thunderouscharge{} and \fly{8}.
 
@@ -326,7 +323,7 @@ The Vampire's model has +1 Wound, \regeneration{\newrule{5}} and \hatred{}. The 
 
 The presence of one or more \vonkarnstein{} Vampires grants +1 Combat Score. Undead units joined by the Vampire may march as if they had the \vampiric{} special rule. The range of \inspiringpresence{} and \holdyourground{} of the Vampire is increased by \distance{6}. In addition, the Vampire may re-roll failed \vampiric{} rolls.
 
-\bloodties{}: \darkcoach .
+\bloodties{}: \darkcoach{}.
 
 \startpricelist
 
@@ -344,7 +341,7 @@ The presence of one or more \vonkarnstein{} Vampires grants +1 Combat Score. Und
 
 The Vampire has +2 Ballistic Skill, -1 Attack, \lightningreflexes{} and \throwingweapons{}. If the Vampire is not wearing any Armour it also has the \distracting{} special rule.
 
-\bloodties{}: \courtofthedamned .
+\bloodties{}: \courtofthedamned{}.
 
 \startpricelist
 
@@ -362,9 +359,9 @@ The Vampire has +2 Ballistic Skill, -1 Attack, \lightningreflexes{} and \throwin
 
 The Vampire is a Level 4/2 \wizard{}, has -1 Attack, -2 Weapon Skill, cannot take any kind of Armour, generates an additional spell and has the \awaken{\zombies , \skeletons} special rule.
 
-A \nosferatu Vampire may generate spells from more than one Path of Magic. Which Paths and how many spells from each Path will be generated has to be stated on the army list.
+A \nosferatu{} Vampire may generate spells from more than one Path of Magic. Which Paths and how many spells from each Path will be generated has to be stated on the army list.
 
-\bloodties{}: \wraiths .
+\bloodties{}: \wraiths{}.
 
 \startpricelist
 
@@ -372,11 +369,14 @@ A \nosferatu Vampire may generate spells from more than one Path of Magic. Which
 
 \pricelistitem{\newrule{Arcane Knowledge}}{25} \textbf{\bloodlinepower}. Non-vortex spells cast by the Vampire gain an additional \distance{3} range. Damage spells instead gain an additional \distance{6}.
 
-\pricelistitem{Forbidden Path}{20} \textbf{\bloodlinepower}. Select a Battle Magic Path other than Path of \nature . The Vampire can generate spells from this Path in addition to those normally available to it.
+\pricelistitem{Forbidden Path}{20} \textbf{\bloodlinepower}. Select a Battle Magic Path other than Path of \nature{}. The Vampire can generate spells from this Path in addition to those normally available to it.
 
 \endpricelist
 
-\armymagicitems
+
+\closearmynewsection
+
+\startarmymagicitems
 
 \armymagicweapons
 
@@ -384,7 +384,7 @@ A \nosferatu Vampire may generate spells from more than one Path of Magic. Which
 
 \pricelistitem{\newrule{Bow of Nepharet}}{45} This is a \boltthrower{} \artilleryweapon{} with the following profile: \range{36}, Strength 6, \armourpiercing{1}, \multiplewounds{D3}{}.
 
-\pricelistitem{Blade of Red Thirst}{40} \newrule{Vampires only}. Type: \hw . \newrule{The model gains \vampiric{5} if mounted on a \largetarget{} and \vampiric{3} otherwise}. The Model part makes a \vampiric{} roll for each \newrule{unsaved} wound cause by this weapon instead of just one. Any excess wounds Raised can be used to \raisewounds{} on the unit that the model is part of.
+\pricelistitem{Blade of Red Thirst}{40} \newrule{Vampires only}. Type: \hw{}. \newrule{The model gains \vampiric{5} if mounted on a \largetarget{} and \vampiric{3} otherwise}. The Model part makes a \vampiric{} roll for each \newrule{unsaved} wound cause by this weapon instead of just one. Any excess wounds Raised can be used to \raisewounds{} on the unit that the model is part of.
 
 \endpricelist
 
@@ -435,786 +435,16 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 
 \endpricelist
 
+\closearmymagicitems
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%																						%%%%%
-%%%%% TRANSLATORS SHOULDN'T HAVE TO EDIT THE CODE PAST THIS LINE - TRANSLATION IS AUTOMATED %%%%%
-%%%%%					(unless you want to edit the changelog)								%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START OF THE ARMYLIST - Translators shouldn't have to edit it %%%
+
+\input{VampireCovenant_armylist.tex}
 
 
-
-\armylist
-
-\lordstitle
-
-\showunit{
-	name={\vampirelord},
-	cost={200},
-	profile={ < 6 7 5 5 5 3 7 5 10},
-	type=\infantry ,
-	basesize=20x20,
-	unitsize=1,
-	commontype=\vampiriccommonrules ,
-	commonspecialrules={\undead,\fear,\vampiric{6}},
-	specialrules={\awaken{\zombies},\masterofundeath},
-	magiclevel=1,
-	magicpaths={\necromancy, \shadows, \death},
-	options={
-		\bloodlinechoice = \unlimited,
-		\bloodpowerchoice = \unlimited,
-		\magicitemsallowance = \upto < 100,
-		\magiclevelchoice{
-			\magiclevel{2}=30,
-			\magiclevel{3}=75,
-		},
-		\anyofthefollowing{
-			\la =5,
-			\ha =10,
-			\shield =5,
-		},
-		\weapononechoice{
-			\ahw =5,
-			\halberd =10,
-			\gw =15,
-			\lance =\newrule{20},
-		}
-	},
-	mounts={\skeletalsteed =20, \monstrousrevenant =100, \courtofthedamned{} \only{\lamia}=190, \shriekinghorror{} \only{\strigoi}=200, \zombiedragon =280}
-}
-
-\showunit{
-	name={\necromancerlord},
-	cost={150},
-	profile={ < 4 3 3 3 4 3 3 1 8},
-	type= \infantry ,
-	basesize=20x20,
-	unitsize=1,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead},
-	specialrules={\awaken{\zombies , \skeletons}, \masterofundeath},
-	magiclevel=3,
-	magicpaths={\necromancy, \fire, \death},
-	options={
-		\magicitemsallowance = \upto < 100,
-		\magiclevel{4}=60,
-	},
-	mounts={\skeletalsteed =20, \monstrousrevenant =100, \cadaverwagon =100}
-}
-
-\heroestitle
-
-
-\showunit {
-	name={\vampirehero},
-	cost=80,
-	profile={ < 6 6 4 5 4 2 6 4 8},
-	type=\infantry ,
-	basesize=20x20,
-	unitsize=1,
-	commontype=\vampiriccommonrules ,
-	commonspecialrules={\undead,\fear,\vampiric{6}},
-	specialrules={\awaken{\zombies}, \masterofundeath},
-	magicpaths={\necromancy, \shadows, \death},
-	options={
-		\bloodlinechoice =\unlimited,
-		\bloodpowerchoice =\unlimited,		
-		\magicitemsallowance = \upto < 50,
-		\bsboption{} \notif{\strigoi}= 25,
-		\magiclevelchoice{
-			\magiclevel{1}=25,
-			\magiclevel{2}=55,
-		},
-		\anyofthefollowing{
-			\la =5,
-			\ha =10,
-			\shield =5,
-		},
-		\weapononechoice{
-			\ahw =5,
-			\halberd =5,
-			\gw =10,
-			\lance =\newrule{15},
-		}
-	},
-	mounts={\skeletalsteed =20, \monstrousrevenant =120}
-}
-
-
-\showunit{
-	name={\necromancer},
-	cost={60},
-	profile={ < 4 3 3 3 3 2 3 1 7},
-	type= \infantry ,
-	basesize=20x20,
-	unitsize=1,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead},
-	specialrules={\awaken{\zombies, \skeletons}, \masterofundeath},
-	magiclevel=1,
-	magicpaths={\necromancy, \fire, \death},
-	options={
-		\magicitemsallowance = \upto < 50,
-		\magiclevel{2}=30,
-	},
-	mounts={\skeletalsteed = \newrule{20}, \cadaverwagon = 100}
-}
-
-\showunit{
-	name={\barrowking},
-	cost=80,
-	profile={ < 4 4 - 4 5 3 4 3 9},
-	type=\infantry ,
-	basesize=20x20,
-	unitsize=1,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead},
-	specialrules={\multiplewounds{2}{\infantry, \cavalry, \warbeasts}, \lethalstrike, \notaleader, \newrule{\magicalattacks}},
-	equipment={\ha, \shield},
-	options={
-		\magicitemsallowance = \upto < 50,
-		\bsboption = 25,
-		\weapononechoice{
-			\ahw =5,
-			\halberd =5,
-			\lance =5,
-			\gw =10,
-		},
-		\maybeupgradedto{} \unlivingshield = 15
-	},
-	mounts={\skeletalsteed = \newrule{20}},
-	unitrules={
-		\unitrule{\unlivingshield}{\unlivingshieldrule}
-	}
-}
-
-\showunit {
-	name={\fellwraith},
-	cost=65,
-	profile={\fellwraith < 6 3 - 3 3 2 2 \newrule{3} 5,
-		     \banshee < 6 3 - 3 3 2 3 \newrule{1} 5
-	},
-	type=\infantry ,
-	basesize=20x20,
-	unitsize=1,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\ethereal, \reaper, \notaleader, \terror},
-	options={
-		\mustbecomeoneofthefollowing{
-			\fellwraith = \free,
-			\banshee = 30
-		}
-	},
-	additional={%
-		\separator
-		\begin{multicols}{2}
-		\begin{center} \LARGE\antiquefont\fellwraith \end{center}
-		
-		{\setlength{\parskip}{0.1cm}
-			\noindent\textbf{\labels@specialrules :}\expandafter\ruleslist\expandafter{%
-				\armourpiercing{6}%
-			}.
-		
-			\noindent\textbf{\labels@equipment :}\expandafter\equipmentlist\expandafter{%
-				\gw%
-			}.
-		}
-
-		\vspace*{0.15cm}\mountsframestart\expandafter\mountslist\expandafter{%
-			\newrule{\skeletalsteed} = \newrule{20}%
-		}\mountsframeend
-			
-		\columnbreak
-		\begin{center} \LARGE\antiquefont\banshee \end{center}
-		
-		\noindent\textbf{\labels@specialrules :}\expandafter\ruleslist\expandafter{%
-			\chillingshriek{2, 8}%
-		}.
-		\end{multicols}
-	},
-}
-
-
-\coreunitstitle
-
-\showunit{
-	name={\zombies},
-	cost=60,
-	profile={ < 4 1 0 3 3 1 1 1 2},
-	invocation={2D6+3},
-	type=\infantry ,
-	basesize=20x20,
-	unitsize=20,
-	additionalmodels=40,
-	costpermodel=3,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	commandgroup={musician=10, banner=10}
-}
-
-\showunit{
-	name={\skeletons},
-	cost=40,
-	profile={< 4 2 2 3 3 1 2 1 6},
-	invocation={1D6+3},
-	type=\infantry ,
-	basesize=20x20,
-	unitsize=10,
-	additionalmodels=50,
-	costpermodel=4,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	equipment={\la},
-	options={
-		\spear = \free,
-		\shield = \permodel < 1
-	},
-	commandgroup={champion=10, musician=10, banner=10, veteranbannerallowance=\newrule{25}}
-}
-
-\showunit{
-	name={\ghouls},
-	cost=90,
-	profile={< 4 3 - 3 4 1 3 2 6},
-	invocation={1D6+3},
-	type= \infantry ,
-	basesize=20x20,
-	unitsize=10,
-	additionalmodels=30,
-	costpermodel=9,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\poisonedattacks},
-	options={
-		\skirmishers{} \ifNmodelsorless{15}= \permodel < 1,
-		\bloodties{\strigoi}:\newline\vanguard{}*= \permodel < 2,
-	},
-	commandgroup={champion=10, musician=10, bannerrestriction=\unitwith{} \vanguard , banner=10, musicianrestriction=\unitwith{} \vanguard , veteranbannerallowance = \newrule{25}},
-	additional={%
-		\vspace*{0.1cm}		
-		* \strigoivanguardnote
-	}
-}
-
-\showunit{
-	name={\direwolves},
-	cost=40,
-	profile={
-		< 9 3 0 3 3 1 3 1 3},
-	invocation={1D3+3},
-	type=\warbeast ,
-	basesize=25x50,
-	unitsize=5,
-	additionalmodels=10,
-	costpermodel=7,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\vanguard, \thunderouscharge},
-	commandgroup={champion=10}
-}
-
-\showunit{
-	name={\batswarm},
-	cost=60,
-	profile={
-		< 1 2 - 2 2 4 3 4 3},
-	invocation={1D6+3},
-	type=\swarm ,
-	basesize=40x40,
-	unitsize=2,
-	additionalmodels=8,
-	costpermodel=15,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\fly{6}},
-	unitrules={
-		\unitrule{\stormofwings}{\stormofwingsrule}
-	}
-}
-
-\specialunitstitle
-
-
-\showunit{
-	name={\barrowknights},
-	cost=120,
-	profile={\knight < 4 3 - 4 4 1 3 1 6,
-			  \steed < 8 2 - 3 3 1 2 1 3
-	},
-	invocation= 2 ,
-	type=\cavalry ,
-	basesize=25x50,
-	unitsize=5,
-	additionalmodels=10,
-	costpermodel=24,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\magicalattacks, \multiplewounds{2}{\infantry , \cavalry , \warbeasts}, \lethalstrike{} \only{\knight}, \ethereal{} \only{\steed}},
-	equipment={\ha , \shield , \lance , \mountsprotection{5}},
-	commandgroup={champion=10, musician=10, banner=10, bannerallowance=50}
-}
-
-\showunit{
-	name={\barrowguards},
-	cost=100,
-	profile={
-		< 4 3 - 4 4 1 3 1 8},
-	invocation= 1D3+3 ,
-	type=\infantry,
-	basesize=20x20,
-	unitsize=10,
-	additionalmodels=30,
-	costpermodel=10,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\magicalattacks, \multiplewounds{2}{\infantry , \cavalry , \warbeasts},\lethalstrike, \bodyguard{\general, \barrowking}},
-	equipment={\ha},
-	options={
-		\shield = \permodel < 1,
-		\weapononechoice{
-			\halberd = \permodel < 2,
-			\gw = \permodel < 2
-		},
-	},
-	commandgroup={champion=10, musician=10, banner=10, bannerallowance=50}
-}
-
-\showunit{
-	name={\ghasts},
-	cost=110,
-	profile={< 6 3 - 4 5 3 2 3 5},
-	invocation= 2 ,
-	type=\monstrousinfantry ,
-	basesize=40x40,
-	unitsize=3,
-	additionalmodels=7,
-	costpermodel=48,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\poisonedattacks, \fear,  \regeneration{5}},
-	commandgroup={champion=10}
-}
-
-\showunit{
-	name={\vampirespawn},
-	cost=126,
-	profile={
-		< 6 4 - 5 4 3 4 3 8},
-	invocation= 2 ,
-	type=\monstrousinfantry ,
-	basesize=40x40,
-	unitsize=3,
-	additionalmodels=5,
-	costpermodel=42,
-	commontype=\vampiriccommonrules ,
-	commonspecialrules={\undead, \vampiric{6}, \fear},
-	specialrules={\frenzy, \skirmishers, \fly{9}},
-	commandgroup={champion=10}
-}
-
-\showunit{
-	name={\phantomhost},
-	cost=70,
-	profile={< 6 3 - 3 3 4 1 4 4},
-	invocation= 1D3+3 ,
-	type=\infantry,
-	basesize=40x40,
-	unitsize=2,
-	additionalmodels=4,
-	costpermodel=35,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\ethereal, \fear}
-}
-
-\showunit{
-	name={\greatbats},
-	cost=40,
-	profile={
-		< 1 3 - 3 3 2 3 2 3},
-	invocation= 1D3+3 ,
-	type=\warbeast ,
-	basesize=40x40,
-	unitsize=2,
-	additionalmodels=7,
-	costpermodel=14,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\skirmishers, \fly{10}},
-}
-
-\showunit{
-	name={\varkolak},
-	cost=\newrule{165},
-	profile={
-		< 8 5 - 6 5 4 4 5 7},
-	invocation= 1 ,
-	type=\monstrousbeast ,
-	basesize=50x50,
-	unitsize=1,
-	commontype=\vampiriccommonrules ,
-	commonspecialrules={\undead, \vampiric{3}, \fear},
-	specialrules={\hatred, \regeneration{4}},
-	options={
-		\maytakeoneofthefollowing{
-			\vanguard{}= 20,
-			\stomp{1D3+1}= 20,
-			\fly{8}= 40,
-		}
-	}
-}
-
-\showunit{
-	name={\cadaverwagon},
-	cost=80,
-	profile={
-		\cadaverwagon < - - - 4 4 4 - - -,
-   		\cadavermaster < - 3 - 3 - -  3 1 5,
-		\shamblinghorde < 4 1 - 3 3 -  1 * -	
-	},
-	invocation= 1 ,
-	type=\chariot ,
-	basesize=50x100,
-	unitsize=1,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\randomattacks{2D6} \only{\shamblinghorde}, \wakethedead, \cart, \regeneration{4}},
-	equipment={\mountsprotection{5}},
-	options={
-		\endlesshorde = 25,
-		\maytakeoneofthefollowing{
-			\bonepyre = 10,
-			\bringoutyourdead = 15,
-			\necromanticaura = 20
-		}
-	},
-	unitrules={
-		\unitrule{\cart}{\cartrule}
-		\unitrule{\endlesshorde}{\endlesshorderule}
-		\unitrule{\bonepyre}{\bonepyrerule}
-		\unitrule{\bringoutyourdead}{\bringoutyourdeadrule}
-	}
-}
-
-\rareunitstitle
-
-
-\showunit{
-	name={\vampireknights},
-	cost=225,
-	profile={
-		\knight < 4 5 3 5 4 2 5 2 8,
-		\undeadmount < 8 3 0 4 3 1 2 1 3
-	},
-	invocation= 2 ,
-	type=\cavalry ,
-	basesize=25x50,
-	unitsize=5,
-	additionalmodels=5,
-	costpermodel=45,
-	commontype=\vampiriccommonrules ,
-	commonspecialrules={\undead,\fear,\vampiric{6}},
-	equipment={\lance , \ha , \shield , \mountsprotection{6}, \barding},
-	options={
-		\bloodties{\brotherhood}:\newline\platearmour{} \wordand{} \devastatingcharge{}= \permodel < 15
-	},
-	commandgroup={champion=10, musician=10, banner=10, bannerallowance=75}
-}
-
-\showunit{
-	name={\wraiths},
-	cost=\newrule{150},
-	profile={
-		< 6 3 - 3 3 2 2 2 5
-	},
-	invocation= 2,
-	type=\infantry,
-	basesize=20x20,
-	unitsize=5,
-	additionalmodels=\newrule{3},
-	costpermodel=\newrule{30},
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\wizardconclave{\Level{} \newrule{2}, \deathsignaturespell{} (Path of \death), \newrule{\shadowssignaturespell{} (Path of \shadows)}}, \ethereal,  \bodyguard{\fellwraith , \banshee}, \reaper, \armourpiercing{6}, \terror, \skirmishers},
-	equipment={\gw},
-	commandgroup={champion=70, championprerestriction=\bloodties{\nosferatu}:},
-}
-
-\showunit{
-	name={\mountedwraiths},
-	cost=150,
-	profile={\rider < 6 3 - 3 3 1 2 1 5,
-	         \steed < 8 2 - 3 3 1 2 1 3
-	},
-	invocation= 2,
-	type=\cavalry ,
-	basesize=25x50,
-	unitsize=5,
-	additionalmodels=5,
-	costpermodel=30,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\flamingattacks{} \only{\rider}, \ethereal, \reaper, \armourpiercing{6} \only{\rider}, \freereform, \terror},
-	equipment={\gw , \mountsprotection{6}},
-	commandgroup={champion=10}
-}
-
-\showunit{
-	name={\wingedreapers},
-	cost=150,
-	profile={
-        	< 6 5 3 5 5 4 4 3 10,
-	},
-	invocation= 2,
-	type=\monstrousinfantry ,
-	basesize=50x75,
-	unitsize=2,
-	additionalmodels=3,
-	costpermodel=75,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\necromanticaura, \undeadconstructs, \lethalstrike, \terror, \fly{6}},
-	equipment={\innatedefence{5}},
-	options={
-			\la = \permodel < 10,
-		\weapononechoice{
-			\ahw = \permodel < 5,
-			\halberd = \permodel < 10
-		}
-	},
-	unitrules={
-		\unitrule{\undeadconstructs}{\undeadconstructsrule}
-	},
-}
-
-\showunit{
-	name={\altarofundeath},
-	cost=200,
-	profile={
-		\altarofundeath < -  - - 5 5 5 - - -,
-       	\master{} (1) < -  3 1 3 - - 3 1 5,
-		\banshee{} (0)[1] < -  3 - 3 - 2 3 3 5,
-		\ghoststeeds{} (1) < 8 3 - 3 - - 2 * 4
-	},
-	invocation= 1,
-	type=\chariot ,
-	basesize=50x100,
-	unitsize=1,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\randomattacks{2D6} \only{\ghoststeeds}, \auraofundeath, \chillingshriek{2,8} \only{\banshee},  \ethereal{} \only{\ghoststeeds}, \largetarget , \terror , \regeneration{4}},
-	equipment={\innatedefence{5}},
-	options={
-		\maytakeoneofthefollowing{
-			\banshee{} (1)= 20,
-			\darktome = 20
-		}
-	},
-	unitrules={
-		\unitrule{\darktome}{\darktomerule}
-		\unitrule{\auraofundeath}{\auraofundeathrule}
-	}
-}
-
-\showunit{
-	name={\shriekinghorror},
-	cost=200,
-	profile={
-        	< 6 4 - 5 6 6 2 4 4,
-	},
-	invocation= 1,
-	type=\monster ,
-	basesize=100x150,
-	unitsize=1,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\chillingshriek{6, 4}, \regeneration{6}, \fly{8}},
-}
-
-\showunit{
-	name={\darkcoach},
-	cost=190,
-	profile={
-		\darkcoach 				< - - - 5 6 4 - - -,
-        \fellwraith{} (1) 		< - 3 - 3 - - 3 3 5,
-		\awakenedvampire{} (*) 	< - 6 - 5 - - 6 4 8,
-		\undeadmount{} (2) 		< 8 3 - 4 - - 2 1 -
-	},
-	invocation= 1,
-	type=\chariot ,
-	basesize=50x100,
-	unitsize=1,
-	commontype=\vampiriccommonrules ,
-	commonspecialrules={\undead , \vampiric{4}},
-	specialrules={\soulsyphon, \scythes, \wardsave{4}, \terror},
-	equipment={\ha, \mountsprotection{5}, \gw{} \only{\fellwraith}},
-	options={
-		\bloodties{\vonkarnstein}:\newline\stubborn = 30
-	},
-	unitrules={
-		\unitrule{\soulsyphon}{\soulsyphonrule}
-	},
-	additional={\soulsyphonchart},
-}
-
-\showunit{
-	name={\courtofthedamned},
-	cost=190,
-	profile={
-		\courtofthedamned 	< - - - 5 5 5 - - -,
-       	\paramours{} (3) 	< - 5 5 5 - - 6 2 7,
-		\ghoststeeds{} (1) 	< 8 3 - 3 - - 2 * 4
-	},
-	invocation= 1,
-	type=\chariot ,
-	basesize=50x100,
-	unitsize=1,
-	commontype=\vampiriccommonrules ,
-	commonspecialrules={\undead , \vampiric{6}},
-	specialrules={\randomattacks{2D6} \only{\ghoststeeds}, \ethereal{} \only{\ghoststeeds}, \largetarget, \wardsave{4}, \terror},
-	equipment={\throwingweapons{} \only{\paramours}, \innatedefence{5}},
-	options={
-		\bloodties{\lamia}:\newline\wakethedead = 25
-	}
-}
-
-
-\mountstitle
-
-\mountssectionannouncement
-
-\showunit{
-	name={\skeletalsteed},
-	cost={-},
-	profile={
-        		 < 8 2 - 3 3 1 2 1 3,
-	},
-	type=\warbeast ,
-	basesize=25x50,
-	unitsize=1,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead},
-	specialrules={\ethereal{} \only{\steed}},
-	equipment={\mountsprotection{6}},
-	options={
-		\maytakeoneofthefollowing{
-			\mountsprotection{5}= \newrule{15},
-			\fly{8} \newrule{\onlyasvampiresmount}= \newrule{35}
-		}
-	}
-}
-
-\showunit{
-	name={\monstrousrevenant},
-	cost={-},
-	profile={
-		< 6  4 - 5 5 4 2 4 4,
-	},
-	type=\monstrousbeast ,
-	basesize=50x50,
-	unitsize=1,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead},
-	specialrules={\largetarget, \fear},
-	options={%
-		\maytakeuptotwoofthefollowing{
-			\poisonedattacks = 5,
-			\lethalstrike = 10,
-			\vampiric{5}= 15,
-			\randomattacks{D6+2}= 30,
-			\fly{8}= 40
-		},
-	}
-}
-
-
-\showunit{
-	name={\shriekinghorror},
-	cost={-},
-	profile={
-        	< 6 4 - 5 6 6 2 4 4,
-	},
-	type=Monstre,
-	basesize=100x150,
-	unitsize=1,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead},
-	specialrules={\chillingshriek{6,4}, \regeneration{6}, \fly{8}},
-}
-
-\showunit{
-	name={\cadaverwagon},
-	cost=80,
-	profile={
-		\cadaverwagon < - - - 4 4 4 - - -,
-		\shamblinghorde < 4 1 - 3 3 -  1 * -	
-	},
-	type=\chariot ,
-	basesize=50x100,
-	unitsize=1,
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead},
-	specialrules={\randomattacks{2D6} \only{\shamblinghorde}, \wakethedead, \cart, \regeneration{4}},
-	equipment={\mountsprotection{5}},
-	options={
-		\endlesshorde = 25,
-		\maytakeoneofthefollowing{
-			\bonepyre = 10,
-			\bringoutyourdead = 15,
-			\necromanticaura = 20
-		}
-	},
-	unitrules={
-		\unitrule{\cart}{\cartrule}
-		\unitrule{\endlesshorde}{\endlesshorderule}
-		\unitrule{\bonepyre}{\bonepyrerule}
-		\unitrule{\bringoutyourdead}{\bringoutyourdeadrule}
-	}
-}
-
-\showunit{
-	name={\courtofthedamned},
-	cost=190,
-	profile={
-		\courtofthedamned 	< - - - 5 5 5 - - -,
-       	\paramours{} (2) 	< - 5 5 5 - - 6 2 7,
-		\ghoststeeds{} (1) 	< 8 3 - 3 - - 2 * 4
-	},
-	type=\chariot ,
-	basesize=50x100,
-	unitsize=1,
-	commontype=\vampiriccommonrules ,
-	commonspecialrules={\undead , \vampiric{6}},
-	specialrules={\randomattacks{2D6} \only{\ghoststeeds}, \ethereal{} \only{\ghoststeeds}, \largetarget, \wardsave{4}, \terror},
-	equipment={\throwingweapons{} \only{\paramours}, \innatedefence{5}},
-	options={
-		\bloodties{\lamia}:\newline\wakethedead = 25
-	}
-}
-
-\showunit{
-	name={\zombiedragon},
-	cost={-},
-	profile={
-		< 6  4 - 6 6 6 2 5 4,
-	},
-	type=\monster ,
-	basesize=50x100,
-	unitsize={1},
-	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead},
-	specialrules={\breathweapon{\Strength{} 2, \armourpiercing{6}}, \distracting, \regeneration{6}, \fly{7}},
-	equipment={\innatedefence{4}},
-	options={
-		\maybeupgradedto{} \colossalzombiedragon{}= 40
-	},
-	unitrules={
-		\unitrule{\colossalzombiedragon}{\colossalzombiedragonrule}
-	}
-}
+%%% Quick Reference Sheet - AB_qrs.tex is automatic and shouldn't be edited %%%
 
 \quickrefsheettitle
 

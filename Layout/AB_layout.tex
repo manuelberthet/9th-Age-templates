@@ -185,12 +185,16 @@
 \renewcommand{\profilecategory}{\labels@mounts}%
 }
 
-\newcommand{\armyspecialrules}{\newpage\twocolumn\noindent\begin{center}\Huge{\textbf{\antiquefont\labels@armyspecialrules}}\end{center}}
+\newcommand{\startarmyspecialrules}{\newpage\armytitle{\labels@armyspecialrules}\begin{multicols}{2}\raggedcolumns}
+\newcommand{\closearmyspecialrules}{\end{multicols}}
 \newcommand{\armyspecialruleentry}[1]{\subsection*{\LARGE\antiquefont\textit{#1}}}
 
-\newcommand{\armyarmoury}{\newpage\noindent\begin{center}\Huge{\textbf{\antiquefont\labels@armoury}}\end{center}}
+\newcommand{\startarmyarmoury}{\newpage\armytitle{\labels@armoury}\begin{multicols}{2}\raggedcolumns}
+\newcommand{\closearmyarmoury}{\end{multicols}}
 
-\newcommand{\armymagicitems}{\newpage\noindent\begin{center}\Huge{\textbf{\antiquefont\labels@magicitems}}\end{center}}
+\newcommand{\startarmymagicitems}{\newpage\armytitle{\labels@magicitems}\begin{multicols}{2}\raggedcolumns}
+\newcommand{\closearmymagicitems}{\end{multicols}}
+
 \newcommand{\armymagicweapons}{\subsection*{\LARGE\antiquefont\labels@magicweapons}}
 \newcommand{\armymagicarmor}{\subsection*{\LARGE\antiquefont\labels@magicarmor}}
 \newcommand{\armytalismans}{\subsection*{\LARGE\antiquefont\labels@talismans}}
@@ -198,23 +202,24 @@
 \newcommand{\armyarcaneitems}{\subsection*{\LARGE\antiquefont\labels@arcaneitems}}
 \newcommand{\armymagicbanners}{\subsection*{\LARGE\antiquefont\labels@magicbanners}}
 
-\newcommand{\armynewsection}[1]{\newpage\noindent\begin{center}\Huge{\textbf{\antiquefont#1}}\end{center}\vspace*{0.2cm}}
+\newcommand{\startarmynewsection}[1]{\newpage\armytitle{#1}\begin{multicols}{2}\raggedcolumns}
+\newcommand{\closearmynewsection}{\end{multicols}}
 
 \newcommand{\armynewsubsection}[1]{\subsection*{\LARGE\antiquefont#1}}
 \newcommand{\armynewsubsubsection}[1]{\subsubsection*{\antiquefont#1}}
 
-\newcommand{\armylist}{\clearpage\onecolumn}
+\newcommand{\armylist}{\clearpage}
 
 \newcommand{\quickrefsheettitle}{\clearpage\newgeometry{top=1.6cm, bottom=2cm, left=1cm, right=1cm}\armytitle{\labels@quickrefsheet}}
 \newcommand{\changelogtitle}{\clearpage\armytitle{\labels@changelog}}
 
-\newcommand{\separator}{\noindent\textcolor{black!30}{\rule{\columnwidth}{1pt}}}
+\newcommand{\separator}{\noindent\begin{center}\textcolor{black!30}{\rule{0.7\columnwidth}{2pt}}\end{center}}
 
 
 %%% Custom lists and description for first sections of the army books
 
-\newcommand{\startpricelist}{\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0.1cm]}
-\def\endpricelist{\end{description}}
+\newcommand{\startpricelist}{\begin{samepage}\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0.1cm]}
+\def\endpricelist{\end{description}\end{samepage}}
 \newcommand{\pricelistitem}[2]{\item \option{\textbf{#1}}{#2}\newline}
 
 \newenvironment{customitemize}{\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0cm]}{\end{description}}
@@ -640,8 +645,10 @@
 	          innertopmargin=1.2\baselineskip,
 	          innerbottommargin=1.2\baselineskip,
 			  singleextra={
-				\node[unitprice,anchor=east,xshift=-0.5cm] at (P)%
-					{\large\pts{\unit@cost}};
+				\expandafter\ifstrequal\expandafter{\unit@cost}{-}{}{%
+					\node[unitprice,anchor=east,xshift=-0.5cm] at (P)%
+						{\large\pts{\unit@cost}};
+				}%
 				\node[unittitle,xshift=0.3cm] at (P-|O)%
 					 {\LARGE\antiquefont\uppercase\expandafter\expandafter\expandafter{\unit@name}};
 				\node[unitlogo, xshift=8.11cm, yshift=0.1cm] at (P-|O)%
