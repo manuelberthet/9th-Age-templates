@@ -632,10 +632,9 @@
 %%% Frames definition %%%
 
 % Unit's big frame.
-\tikzset{unitprice/.style={draw=black, fill=white, rectangle, rounded corners, right, minimum height=0.7cm}}
-\tikzset{unittitle/.style={draw=black, fill=white, rectangle, rounded corners, right, minimum height=0.7cm, font=\bfseries}}
+\tikzset{unitprice/.style={draw=white, fill=white, rectangle, rounded corners, right, minimum height=0.7cm}}
+\tikzset{unittitle/.style={draw=white, fill=white, rectangle, rounded corners, right, minimum height=0.7cm, font=\bfseries}}
 \tikzset{unitlogo/.style={draw=white, fill=white, rectangle, right, minimum height=0.7cm}}
-\tikzset{unitsize/.style={draw=black, fill=white, rectangle, rounded corners, right, minimum height=0.7cm}}
 
 \newenvironment{unitframe}[2][]{%
 	\mdfsetup{%
@@ -649,21 +648,12 @@
 				\expandafter\ifstrequal\expandafter{\unit@cost}{-}{}{% STILL WORK IN PROGRESS NEED MACROS AND MORE IF CASE (solo model with additional models)
 					\node[unitprice,anchor=east,xshift=-0.5cm] at (P)%
 						{%
-							\large\pts{\textbf{\unit@cost}}%
-							\expandafter\ifblank\expandafter{\unit@costpermodel}{}{ + \textbf{\unit@costpermodel{}} p.a.m.}%
+							{\Large\pts{\textbf{\unit@cost}}}%
 						};
-					\node[unitsize, anchor=east, xshift=-4cm] at (P)%
-					{%
-						\expandafter\ifnumequal\expandafter{\unit@unitsize}{1}{%single model
-							\large{\textbf{single} model}%
-						}{%not single model					
-							\large{\textbf{\unit@unitsize}\expandafter\ifblank\expandafter{\unit@additionalmodels}{}{, up to \textbf{\unit@additionalmodels{}}}  models}%
-						}%
-					};
 				}%
-				\node[unittitle,xshift=2.5cm] at (P-|O)%
-					 {\LARGE\antiquefont\uppercase\expandafter\expandafter\expandafter{\unit@name}};
-				\node[unitlogo, xshift=0.5cm, yshift=0.1cm] at (P-|O)%
+				\node[unittitle,xshift=0.5cm] at (P-|O)%
+					 {\fontsize{16}{19.2}\selectfont\antiquefont\uppercase\expandafter\expandafter\expandafter{\unit@name}};
+				\node[unitlogo, xshift=8.1cm, yshift=0.1cm] at (P-|O)%
 					{\includegraphics[width=1.2cm]{\logolocalpath}};
 			  }
 	}%
@@ -708,7 +698,11 @@
 	\defunit{#1}
 	\begin{unitframe}[\unit@name]{\unit@cost}
 	\mdfsetup{style=defaultoptions}
-	\vspace*{0.25cm}
+	\expandafter\ifnumequal\expandafter{\unit@unitsize}{1}{%single model
+		{\hspace*{0.25cm}\large\textbf{Single} model}%
+	}{%not single model					
+		{\hspace*{0.25cm}\large\textbf{\unit@unitsize} models\expandafter\ifblank\expandafter{\unit@additionalmodels}{}{ and up to \textbf{\unit@additionalmodels{}}}  additional models \hfill\textbf{\unit@costpermodel{}} pts/model\hspace*{0.1cm}}%
+	}%
 	\begin{mdframed}
 		\expandafter\ifblank\expandafter{\unit@invocation}{%
 			\expandafter\profile\expandafter{\unit@profile}
