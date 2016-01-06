@@ -252,7 +252,7 @@
 % Element of a table that contains the characteristics of a model (or part of a model)
 \newcommand\caraclist[1]{
 	\parselist[ ]{#1}{\locallists@caraclist}%
-	\forlistloop{&}{\locallists@caraclist}%
+	\forlistloop{&\bfseries}{\locallists@caraclist}%
 }
 
 % Line of a profile table, including bottom line. It is meant to contain the name of the model (or part), its characteristics (preferably, the second argument should contain the \carac macro), troop type and base size.
@@ -263,11 +263,11 @@
 \newcommand{\profilestart}{%
 	\noindent %
 	\begin{tabular}{@{}p{3cm}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}p{2.7cm}@{}p{3.3cm}@{}p{2cm}@{}}%
-	\textbf{\labels@profile} &%
-	\textbf{\labels@M} & \textbf{\labels@WS} & \textbf{\labels@BS} & \textbf{\labels@S} & \textbf{\labels@T} & \textbf{\labels@W} & \textbf{\labels@I} & \textbf{\labels@A} & \textbf{\labels@Ld} &%
+	 &% \textbf{\labels@profile}
+	\labels@M & \labels@WS & \labels@BS & \labels@S & \labels@T & \labels@W & \labels@I & \labels@A & \labels@Ld &%
 	&%
-	\textbf{\labels@trooptype} &%
-	\textbf{\labels@basesize}%
+	\labels@trooptype &%
+	\labels@basesize%
 }
 
 % End of a profile table.
@@ -298,11 +298,11 @@
 \newcommand{\invocprofilestart}{%
 	\noindent %
 	\begin{tabular}{@{}p{3cm}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{2.2cm}@{}p{0.5cm}@{}p{3.3cm}@{}p{2cm}@{}}%
-	\textbf{\labels@profile} &%
-	\textbf{\labels@M} & \textbf{\labels@WS} & \textbf{\labels@BS} & \textbf{\labels@S} & \textbf{\labels@T} & \textbf{\labels@W} & \textbf{\labels@I} & \textbf{\labels@A} & \textbf{\labels@Ld} & \textbf{\labels@Invocation} &%
+	 &% \textbf{\labels@profile}
+	\labels@M & \labels@WS & \labels@BS & \labels@S & \labels@T & \labels@W & \labels@I & \labels@A & \labels@Ld & \labels@Invocation &%
 	&%
-	\textbf{\labels@trooptype} &%
-	\textbf{\labels@basesize}%
+	\labels@trooptype &%
+	\labels@basesize%
 }
 
 \newcommand{\invocprofileitem}[1]{%
@@ -341,7 +341,7 @@
 %%% Special rules %%%
 
 % Formatting for a special rule. Currently italicized.
-\newcommand{\specialrule}[1]{\textit{#1}}
+\newcommand{\specialrule}[1]{#1} % \textit{}
 \newcommand{\only}[1]{\textnormal{(#1 \labels@only)}}
 
 % Special rules listing for a unit, with alphabetical order.
@@ -353,8 +353,8 @@
 }
 
 % Special rules entry.
-\newcommand{\specialrules}[1]{\unitentry{#1}{\textbf{\labels@specialrules :}\expandafter\ruleslist\expandafter{#1}.}}
-\newcommand{\commonspecialrules}[2]{\unitentry{#2}{\textbf{#1:}\expandafter\ruleslist\expandafter{#2}.}}
+\newcommand{\specialrules}[1]{\unitentry{#1}{\textit{\labels@specialrules :}\expandafter\ruleslist\expandafter{#1}.}}
+\newcommand{\commonspecialrules}[2]{\unitentry{#2}{\textit{#1:}\expandafter\ruleslist\expandafter{#2}.}}
 
 
 %%% Magical abilities %%%
@@ -368,7 +368,7 @@
 }
 
 % Magic entry.
-\newcommand{\magic}[2]{\unitentry{#2}{\textbf{\labels@magic : }\ifdefempty{#1}{}{\magiclevel{#1}. }\labels@pathsused\expandafter\pathslist\expandafter{#2}.}}
+\newcommand{\magic}[2]{\unitentry{#2}{\textit{\labels@magic : }\ifdefempty{#1}{}{\magiclevel{#1}. }\labels@pathsused\expandafter\pathslist\expandafter{#2}.}}
 
 
 %%% Equipment %%%
@@ -382,7 +382,7 @@
 }
 
 % Equipment entry.
-\newcommand{\equipment}[1]{\unitentry{#1}{\textbf{\labels@equipment :}\expandafter\equipmentlist\expandafter{#1}.}}
+\newcommand{\equipment}[1]{\unitentry{#1}{\textit{\labels@equipment :}\expandafter\equipmentlist\expandafter{#1}.}}
 
 
 %%% Options %%%
@@ -611,7 +611,7 @@
 \define@key{unit}{cost}{\def\unit@cost{#1}}
 \define@key{unit}{invocation}{\def\unit@invocation{#1}}
 \define@key{unit}{costpermodel}{\def\unit@costpermodel{#1}}
-\define@key{unit}{additionalmodels}{\def\unit@additionalmodels{#1}}
+\define@key{unit}{maxmodels}{\def\unit@maxmodels{#1}}
 \define@key{unit}{type}{\def\unit@type{#1}}
 \define@key{unit}{unitsize}{\def\unit@unitsize{#1}}
 \define@key{unit}{basesize}{\def\unit@basesize{#1}}
@@ -639,23 +639,24 @@
 \newenvironment{unitframe}[2][]{%
 	\mdfsetup{%
 		nobreak=true,%
-	          linewidth=1pt,%
-	          roundcorner=5pt,%
-	          backgroundcolor=white,%
-	          innertopmargin=1.2\baselineskip,
-	          innerbottommargin=1.2\baselineskip,
-			  singleextra={
-				\expandafter\ifstrequal\expandafter{\unit@cost}{-}{}{% STILL WORK IN PROGRESS NEED MACROS AND MORE IF CASE (solo model with additional models)
-					\node[unitprice,anchor=east,xshift=-0.5cm] at (P)%
-						{%
-							{\Large\pts{\textbf{\unit@cost}}}%
-						};
+		linewidth=1pt,%
+		linecolor=black!30,%
+		roundcorner=5pt,%
+		backgroundcolor=white,%
+		innertopmargin=1.2\baselineskip,
+		innerbottommargin=1.2\baselineskip,
+		singleextra={
+			\expandafter\ifstrequal\expandafter{\unit@cost}{-}{}{%
+				\node[unitprice,anchor=east,xshift=-0.5cm] at (P)%
+					{%
+						{\Large\pts{\textbf{\unit@cost}}}%
+					};
 				}%
 				\node[unittitle,xshift=0.5cm] at (P-|O)%
-					 {\fontsize{16}{19.2}\selectfont\antiquefont\uppercase\expandafter\expandafter\expandafter{\unit@name}};
+					{\fontsize{16}{19.2}\selectfont\antiquefont\uppercase\expandafter\expandafter\expandafter{\unit@name}};
 				\node[unitlogo, xshift=8.1cm, yshift=0.1cm] at (P-|O)%
 					{\includegraphics[width=1.2cm]{\logolocalpath}};
-			  }
+		}
 	}%
 	\begin{mdframed}[]\relax%
 }%
@@ -664,20 +665,21 @@
 }
 
 % Inner small frames for options, special rules definition, ...
-\tikzset{innertitle/.style={fill=white, rectangle, rounded corners, right, minimum height=8pt, font=\bfseries, xshift=0.5cm}}
+\tikzset{innertitle/.style={fill=white, rectangle, rounded corners, right, minimum height=8pt, xshift=0.5cm}}
 
 \newenvironment{innerframe}[1][]{%
 	\mdfsetup{%
-				innerleftmargin=5pt,%
-				innerrightmargin=5pt,%
-	          linewidth=0.5pt,%
-	          roundcorner=5pt,%
-	          backgroundcolor=white,%
-	          innertopmargin=\baselineskip,
-			  singleextra={
-				\node[innertitle] at (P-|O)%
-					{#1};
-			  }
+		innerleftmargin=5pt,%
+		innerrightmargin=5pt,%
+		linecolor=black!30,%
+		linewidth=0.5pt,%
+		roundcorner=5pt,%
+		backgroundcolor=white,%
+		innertopmargin=\baselineskip,
+		singleextra={
+		\node[innertitle] at (P-|O)%
+			{\textit{#1}};
+		}
 	}%
 	\vspace*{-0.2cm}\begin{mdframed}[]\relax%
 }%
@@ -689,7 +691,7 @@
 
 \newcommand{\defunit}{
 	\setkeys{unit}{%
-		name=, profile=, cost=, invocation=, costpermodel=, additionalmodels=, type=, unitsize=, basesize=, commonspecialrules=, commontype=, specialrules=, magiclevel=, magicpaths=, equipment=, unitequipment=, options=, mounts=, commandgroup=, unitrules=, additional=%
+		name=, profile=, cost=, invocation=, costpermodel=, maxmodels=, type=, unitsize=, basesize=, commonspecialrules=, commontype=, specialrules=, magiclevel=, magicpaths=, equipment=, unitequipment=, options=, mounts=, commandgroup=, unitrules=, additional=%
 	}%
 	\setkeys{unit}%
 }
@@ -698,10 +700,15 @@
 	\defunit{#1}
 	\begin{unitframe}[\unit@name]{\unit@cost}
 	\mdfsetup{style=defaultoptions}
-	\expandafter\ifnumequal\expandafter{\unit@unitsize}{1}{%single model
-		{\hspace*{0.25cm}\large\textbf{Single} model}%
-	}{%not single model					
-		{\hspace*{0.25cm}\large\textbf{\unit@unitsize} models\expandafter\ifblank\expandafter{\unit@additionalmodels}{}{ and up to \textbf{\unit@additionalmodels{}}}  additional models \hfill\textbf{\unit@costpermodel{}} pts/model\hspace*{0.1cm}}%
+	\expandafter\ifnumequal\expandafter{\unit@unitsize}{1}{% single model
+		% Can you add model to this single model ?
+		\expandafter\ifblank\expandafter{\unit@maxmodels}{% no		
+			{\hspace*{0.25cm}\large\textbf{Single} model}%
+		}{% yes
+			{\hspace*{0.25cm}\large \textbf{1} model, up to \textbf{\unit@maxmodels{}}} models \hfill\textbf{\unit@costpermodel{}} pts/model\hspace*{0.1cm}%
+		}%
+	}{% not single model					
+		{\hspace*{0.25cm}\large\textbf{\unit@unitsize} models\expandafter\ifblank\expandafter{\unit@maxmodels}{}{, up to \textbf{\unit@maxmodels{}}} models \hfill\textbf{\unit@costpermodel{}} pts/model\hspace*{0.1cm}}%
 	}%
 	\begin{mdframed}
 		\expandafter\ifblank\expandafter{\unit@invocation}{%
