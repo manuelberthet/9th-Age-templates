@@ -1,9 +1,4 @@
 
-%%% TO DO LIST %%%
-
-% Automatic characteristics sheet at the end of the armybook.
-
-
 \documentclass[a4paper,8pt]{extarticle} % extarticle allows to use font size of 8pt.
 
 \usepackage[a4paper, top=1.6cm, bottom=2cm, left=1.6cm, right=1.6cm]{geometry} % Marge reduction.
@@ -24,7 +19,7 @@
 %% Array utilities
 \usepackage{array}				% Additionnal options for arrays.
 \usepackage{colortbl}			% Additionnal options for coloring arrays.
-\usepackage{graphbox}		% To allow picture centering in tabular environnement.
+\usepackage[table]{xcolor}		% Auto alternate grey-white rows.
 
 %% List utilities
 \usepackage[inline]{enumitem}   % Display inline lists.
@@ -92,22 +87,22 @@
 %%% Commands for alphabetical order sorting %%%
 
 \newcommand{\sortitem}[2][\relax]{%
-  \DTLnewrow{list}% Create a new entry
-  \ifx#1\relax
-    \DTLnewdbentry{list}{sortlabel}{#2}% Add entry sortlabel (no optional argument)
-  \else
-    \DTLnewdbentry{list}{sortlabel}{#1}% Add entry sortlabel (optional argument)
-  \fi%
-  \DTLnewdbentry{list}{description}{#2}% Add entry description
+	\DTLnewrow{list}% Create a new entry
+	\ifx#1\relax%
+		\DTLnewdbentry{list}{sortlabel}{#2}% Add entry sortlabel (no optional argument)
+	\else%
+		\DTLnewdbentry{list}{sortlabel}{#1}% Add entry sortlabel (optional argument)
+	\fi%
+		\DTLnewdbentry{list}{description}{#2}% Add entry description
 }
 \newenvironment{sortedlist}{%
-  \DTLifdbexists{list}{\DTLcleardb{list}}{\DTLnewdb{list}}% Create new/discard old list
+	\DTLifdbexists{list}{\DTLcleardb{list}}{\DTLnewdb{list}}% Create new/discard old list
 }{%
-  \DTLsort{sortlabel}{list}% Sort list
-  \begin{itemize*}[label={}, itemjoin={,}]%
-    \DTLforeach*{list}{\theDesc=description}{%
-      \item\theDesc}% Print each item
-  \end{itemize*}%
+	\DTLsort{sortlabel}{list}% Sort list
+	\begin{itemize*}[label={}, itemjoin={,}]%
+		\DTLforeach*{list}{\theDesc=description}{%
+		\item\theDesc}% Print each item
+	\end{itemize*}%
 }
 
 \pdfstringdefDisableCommands{\def\textcolor#1{}}
@@ -192,15 +187,15 @@
 \newcommand{\startarmyarmoury}{\newpage\armytitle{\labels@armoury}\begin{multicols}{2}\raggedcolumns}
 \newcommand{\closearmyarmoury}{\end{multicols}}
 
-\newcommand{\startarmymagicitems}{\newpage\armytitle{\labels@magicitems}\begin{multicols}{2}\raggedcolumns}
-\newcommand{\closearmymagicitems}{\end{multicols}}
+\newcommand{\startarmymagicalitems}{\newpage\armytitle{\labels@magicalitems}\begin{multicols}{2}\raggedcolumns}
+\newcommand{\closearmymagicalitems}{\end{multicols}}
 
-\newcommand{\armymagicweapons}{\subsection*{\LARGE\antiquefont\labels@magicweapons}}
-\newcommand{\armymagicarmor}{\subsection*{\LARGE\antiquefont\labels@magicarmor}}
+\newcommand{\armymagicalweapons}{\subsection*{\LARGE\antiquefont\labels@magicalweapons}}
+\newcommand{\armymagicalarmour}{\subsection*{\LARGE\antiquefont\labels@magicalarmour}}
 \newcommand{\armytalismans}{\subsection*{\LARGE\antiquefont\labels@talismans}}
 \newcommand{\armyenchanteditems}{\subsection*{\LARGE\antiquefont\labels@enchanteditems}}
 \newcommand{\armyarcaneitems}{\subsection*{\LARGE\antiquefont\labels@arcaneitems}}
-\newcommand{\armymagicbanners}{\subsection*{\LARGE\antiquefont\labels@magicbanners}}
+\newcommand{\armymagicalbanners}{\subsection*{\LARGE\antiquefont\labels@magicalbanners}}
 
 \newcommand{\startarmynewsection}[1]{\newpage\armytitle{#1}\begin{multicols}{2}\raggedcolumns}
 \newcommand{\closearmynewsection}{\end{multicols}}
@@ -225,7 +220,6 @@
 \newenvironment{customitemize}{\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0cm]}{\end{description}}
 \newenvironment{customsubitemize}{\begin{itemize}[label={-}, labelsep=0.1cm, topsep=0cm, parsep=0cm, itemsep=0cm, leftmargin=0.4cm, labelindent=0cm]}{\end{itemize}}
 
-
 %%% Table parameters %%%
 
 \newcolumntype{M}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -233,13 +227,13 @@
 
 %%%  Lists handling %%%
 
-\newcommand{\addlocallist}{\listadd\locallists@dummy}
-\NewDocumentCommand{\parsespacelist}{ >{\SplitList{ }} m } {%
+\newcommand{\addlocallist}{\listadd\locallists@dummy}%
+\NewDocumentCommand{\parsespacelist}{>{\SplitList{ }} m }{%
 	\ProcessList{#1}{\addlocallist}%
-}
-\NewDocumentCommand{\parsecommalist}{ >{\SplitList{,}} m } {%
+}%
+\NewDocumentCommand{\parsecommalist}{>{\SplitList{,}} m }{%
 	\ProcessList{#1}{\addlocallist}%
-}
+}%
 \newcommand{\parselist}[3][,]{%
 	\renewcommand\addlocallist{\listadd#3}%
   	\undef#3%
@@ -251,6 +245,11 @@
 
 % Element of a table that contains the characteristics of a model (or part of a model)
 \newcommand\caraclist[1]{
+	\parselist[ ]{#1}{\locallists@caraclist}%
+	\forlistloop{&}{\locallists@caraclist}%
+}
+
+\newcommand\caraclistbold[1]{
 	\parselist[ ]{#1}{\locallists@caraclist}%
 	\forlistloop{&\bfseries}{\locallists@caraclist}%
 }
@@ -278,7 +277,7 @@
 \newcommand{\profileitem}[1]{%
 	\tabularnewline%
 	\splitatinf{#1}\local@unitname\local@unitprofile%
-	\local@unitname \expandafter\caraclist\expandafter{\local@unitprofile}%
+	\local@unitname \expandafter\caraclistbold\expandafter{\local@unitprofile}%
 	&%
 	& \ifbool{profilefirst}{\unit@type}{}%
 	& \ifbool{profilefirst}{\unit{\unit@basesize}{\milli\meter}}{}%
@@ -308,7 +307,7 @@
 \newcommand{\invocprofileitem}[1]{%
 	\tabularnewline%
 	\splitatinf{#1}\local@unitname\local@unitprofile%
-	\local@unitname \expandafter\caraclist\expandafter{\local@unitprofile}%
+	\local@unitname \expandafter\caraclistbold\expandafter{\local@unitprofile}%
 	& \ifbool{profilefirst}{\unit@invocation}{} &%
 	& \ifbool{profilefirst}{\unit@type}{}%
 	& \ifbool{profilefirst}{\unit{\unit@basesize}{\milli\meter}}{}%
@@ -333,11 +332,6 @@
 \newcommand{\unitentry}[2]{\ifdefempty{#1}{}{\noindent #2}}
 
 
-%%% Unit size %%%
-
-\newcommand{\unitsize}[1]{\unitentry{#1}{\textbf{\labels@unitsize :} #1}}
-
-
 %%% Special rules %%%
 
 % Formatting for a special rule. Currently italicized.
@@ -353,8 +347,8 @@
 }
 
 % Special rules entry.
-\newcommand{\specialrules}[1]{\unitentry{#1}{\textit{\labels@specialrules :}\expandafter\ruleslist\expandafter{#1}.}}
-\newcommand{\commonspecialrules}[2]{\unitentry{#2}{\textit{#1:}\expandafter\ruleslist\expandafter{#2}.}}
+\newcommand{\specialrules}[1]{\unitentry{#1}{\textit{\labels@specialrules\spacebeforecolon{}:}\newline\hspace*{-\fontdimen2\font}\expandafter\ruleslist\expandafter{#1}.}}
+\newcommand{\commonspecialrules}[2]{\unitentry{#2}{\textit{#1\spacebeforecolon{}:}\newline\hspace*{-\fontdimen2\font}\expandafter\ruleslist\expandafter{#2}.}}
 
 
 %%% Magical abilities %%%
@@ -368,7 +362,10 @@
 }
 
 % Magic entry.
-\newcommand{\magic}[2]{\unitentry{#2}{\textit{\labels@magic : }\ifdefempty{#1}{}{\magiclevel{#1}. }\labels@pathsused\expandafter\pathslist\expandafter{#2}.}}
+\newcommand{\magic}[2]{\unitentry{#2}{\textit{\labels@magic\spacebeforecolon{}: }\newline\ifdefempty{#1}{}{\magiclevel{#1}. }\labels@pathsused\expandafter\pathslist\expandafter{#2}.}}
+
+% Wizard Conclave.
+\newcommand{\magicwizardconclave}[1]{\unitentry{#1}{\textit{\labels@magic\spacebeforecolon{}: }\newline #1.}}
 
 
 %%% Equipment %%%
@@ -382,7 +379,7 @@
 }
 
 % Equipment entry.
-\newcommand{\equipment}[1]{\unitentry{#1}{\textit{\labels@equipment :}\expandafter\equipmentlist\expandafter{#1}.}}
+\newcommand{\equipment}[1]{\unitentry{#1}{\textit{\labels@equipment\spacebeforecolon{}:}\newline\hspace*{-\fontdimen2\font}\expandafter\equipmentlist\expandafter{#1}.}}
 
 
 %%% Options %%%
@@ -483,7 +480,7 @@
 \define@key{commandgroup}{championrestriction}    {\def\commandgroup@championrestriction{#1}}
 \define@key{commandgroup}{banner}                 {\def\commandgroup@banner{#1}}
 \define@key{commandgroup}{bannerallowance}        {\def\commandgroup@bannerallowance{#1}}
-\define@key{commandgroup}{veteranbannerallowance}  	  {\def\commandgroup@veteranbannerallowance{#1}}
+\define@key{commandgroup}{veteranstandardbearer}  {\def\commandgroup@veteranstandardbearer{#1}}
 \define@key{commandgroup}{singlebannerallowance}  {\def\commandgroup@singlebannerallowance{#1}}
 \define@key{commandgroup}{condsinglebannerallowance}  {\def\commandgroup@condsinglebannerallowance{#1}}
 \define@key{commandgroup}{banneroption}           {\def\commandgroup@banneroption{#1}}
@@ -493,7 +490,7 @@
 \newcommand{\defcommandgroup}{%
 	\setkeys{commandgroup}{restriction=,
 	                       champion=, championallowance=, championoption=, championprerestriction=, 
-	                       championrestriction=, banner=, bannerallowance=, veteranbannerallowance=, 
+	                       championrestriction=, banner=, bannerallowance=, veteranstandardbearer=, 
 	                       singlebannerallowance=, condsinglebannerallowance=, banneroption=, 
 	                       bannerrestriction=, musician=, musicianrestriction=}%
 	\setkeys{commandgroup}%
@@ -509,7 +506,7 @@
 	\ifstrempty{#1}{}{\commandgroupframestart\vspace*{-0.2cm}%
 		\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0cm, itemsep=0cm, parsep=0cm]%
 			% Command group title, including restrictions applying to all the command group
-			\item \textbf{\expandafter\ifblank\expandafter{\commandgroup@restriction}{}{ \only{\commandgroup@restriction}~: }} 
+			\item \textbf{\expandafter\ifblank\expandafter{\commandgroup@restriction}{}{ \only{\commandgroup@restriction}\spacebeforecolon{}: }} 
 			% Champion handling.
 			\ifdefempty{\commandgroup@champion}{}{% We have a champion!
 			\ifdefempty{\commandgroup@championprerestriction}{% There is no prerestriction to have a champion
@@ -544,7 +541,9 @@
 				    % Magical banner, if all units of this type can take one.
 					\ifdefempty{\commandgroup@bannerallowance}{}{\par\option[\upto]{\hspace*{0.3cm}- \labels@bannerallowance}{\commandgroup@bannerallowance}}%
 					% Magical banner, if Veteran.
-					\ifdefempty{\commandgroup@veteranbannerallowance}{}{\par\option[\upto]{\hspace*{0.3cm}- \labels@veteranbannerallowance}{\commandgroup@veteranbannerallowance}}%
+					\ifdefempty{\commandgroup@veteranstandardbearer}{}{\par\hspace*{0.3cm}- \labels@veteranstandardbearer%
+					\expandafter\ifstrequal\expandafter{\commandgroup@veteranstandardbearer}{*}{*}{}%
+					}%
 					% Magical banner, if only one unit of this type can take one.
 					\ifdefempty{\commandgroup@singlebannerallowance}{}{\par\option[\upto]{\hspace*{0.3cm}- \labels@singlebannerallowance}{\commandgroup@singlebannerallowance}}%
 					% Magical banner, if only one unit of this type can take one, but with condtions.
@@ -577,7 +576,7 @@
 \newcommand{\unitrulesframeend}{\end{innerframe}}
 
 % Unit rules specific commands.
-\newcommand{\unitrule}[2]{\item[#1~:]#2}
+\newcommand{\unitrule}[2]{\item[#1\spacebeforecolon{}:]#2}
 
 % Unit rule entry.
 \newcommand{\unitrules}[1]{\ifdefempty{#1}{}{\unitrulesframestart\vspace*{-0.05cm}\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0.1cm, itemsep=0cm, parsep=0cm]#1\end{description}\unitrulesframeend}}
@@ -590,7 +589,7 @@
 \newcommand{\unitequipmentframeend}{\end{innerframe}}
 
 % Special equipment specific commands.
-\newcommand{\equipmentdef}[2]{\item[#1~:]#2}
+\newcommand{\equipmentdef}[2]{\item[#1\spacebeforecolon{}:]#2}
 
 % Special equipment entry.
 \newcommand{\unitequipment}[1]{\ifdefempty{#1}{}{\unitequipmentframestart\vspace*{-0.05cm}\begin{description}[leftmargin=0.3cm, labelindent=0cm, labelsep=0.1cm, itemsep=0cm, parsep=0cm]#1\end{description}\unitequipmentframeend}}
@@ -621,6 +620,7 @@
 \define@key{unit}{magiclevel}{\def\unit@magiclevel{#1}}
 \define@key{unit}{magicpaths}{\def\unit@magicpaths{#1}}
 \define@key{unit}{equipment}{\def\unit@equipment{#1}}
+\define@key{unit}{wizardconclave}{\def\unit@wizardconclave{#1}}
 \define@key{unit}{unitequipment}{\def\unit@unitequipment{#1}}
 \define@key{unit}{options}{\def\unit@options{#1}}
 \define@key{unit}{mounts}{\def\unit@mounts{#1}}
@@ -649,7 +649,7 @@
 			\expandafter\ifstrequal\expandafter{\unit@cost}{-}{}{%
 				\node[unitprice,anchor=east,xshift=-0.5cm] at (P)%
 					{%
-						{\Large\pts{\textbf{\unit@cost}}}%
+						{\huge\pts{\textbf{\unit@cost}}}%
 					};
 				}%
 				\node[unittitle,xshift=0.5cm] at (P-|O)%
@@ -691,7 +691,7 @@
 
 \newcommand{\defunit}{
 	\setkeys{unit}{%
-		name=, profile=, cost=, invocation=, costpermodel=, maxmodels=, type=, unitsize=, basesize=, commonspecialrules=, commontype=, specialrules=, magiclevel=, magicpaths=, equipment=, unitequipment=, options=, mounts=, commandgroup=, unitrules=, additional=%
+		name=, profile=, cost=, invocation=, costpermodel=, maxmodels=, type=, unitsize=, basesize=, commonspecialrules=, commontype=, specialrules=, magiclevel=, magicpaths=, equipment=, wizardconclave=, unitequipment=, options=, mounts=, commandgroup=, unitrules=, additional=%
 	}%
 	\setkeys{unit}%
 }
@@ -700,29 +700,29 @@
 	\defunit{#1}
 	\begin{unitframe}[\unit@name]{\unit@cost}
 	\mdfsetup{style=defaultoptions}
-	\expandafter\ifnumequal\expandafter{\unit@unitsize}{1}{% single model
+	\expandafter\ifstrequal\expandafter{\unit@unitsize}{1}{% single model
 		% Can you add model to this single model ?
 		\expandafter\ifblank\expandafter{\unit@maxmodels}{% no		
-			{\hspace*{0.25cm}\large\textbf{Single} model}%
+			{\hspace*{0.25cm}\large\labels@Singlemodel}%
 		}{% yes
-			{\hspace*{0.25cm}\large \textbf{1} model, up to \textbf{\unit@maxmodels{}}} models \hfill\textbf{\unit@costpermodel{}} pts/model\hspace*{0.1cm}%
+			{\hspace*{0.25cm}\large \From{} \textbf{1} \wordto{} \textbf{\unit@maxmodels{}}} \labels@models \hfill\textbf{\unit@costpermodel{}} \pts{\textbf{\unit@costpermodel{}}}\permode\hspace*{0.1cm}%
 		}%
 	}{% not single model					
-		{\hspace*{0.25cm}\large\textbf{\unit@unitsize} models\expandafter\ifblank\expandafter{\unit@maxmodels}{}{, up to \textbf{\unit@maxmodels{}}} models \hfill\textbf{\unit@costpermodel{}} pts/model\hspace*{0.1cm}}%
+		{\hspace*{0.25cm}\large \From{} \textbf{\unit@unitsize}  \wordto{} \expandafter\ifblank\expandafter{\unit@maxmodels}{}{\textbf{\unit@maxmodels{}}} \labels@models \hfill\pts{\textbf{\unit@costpermodel{}}}\permodel\hspace*{0.1cm}}%
 	}%
-	\begin{mdframed}
+	\vspace*{-0.1cm}
+	\noindent\begin{center}\textcolor{black!30}{\rule{\columnwidth}{1pt}}\end{center}
 		\expandafter\ifblank\expandafter{\unit@invocation}{%
 			\expandafter\profile\expandafter{\unit@profile}
 		}{%
 			\expandafter\invocprofile\expandafter{\unit@profile}
 		}
-	\end{mdframed}
+	\noindent\begin{center}\textcolor{black!30}{\rule{\columnwidth}{1pt}}\end{center}
 	\vspace*{-0.2cm}
 	\setlength\multicolsep{0pt}
 	\begin{multicols}{2}
 		\raggedcolumns
-		{\setlength{\parskip}{0.1cm}
-		\vspace*{0.02cm}
+		{\setlength{\parskip}{0.2cm}
 		\expandafter\ifblank\expandafter{\unit@commonspecialrules}{}{\noindent\parbox{\columnwidth}{\commonspecialrules{\unit@commontype}{\unit@commonspecialrules}}}
 		
 		\expandafter\ifblank\expandafter{\unit@specialrules}{}{\noindent\parbox{\columnwidth}{\specialrules{\unit@specialrules}}}
@@ -730,15 +730,17 @@
 		\expandafter\ifblank\expandafter{\unit@magiclevel}{}{\noindent\parbox{\columnwidth}{\magic{\unit@magiclevel}{\unit@magicpaths}}}
 		
 		\expandafter\ifblank\expandafter{\unit@equipment}{}{\noindent\parbox{\columnwidth}{\equipment{\unit@equipment}}}
+		
+		\expandafter\ifblank\expandafter{\unit@wizardconclave}{}{\noindent\parbox{\columnwidth}{\magicwizardconclave{\unit@wizardconclave}}}
 		}
-		\vspace*{0.15cm}
+		\vspace{0.1cm}
 		\mounts{\unit@mounts}
 		\options{\unit@options}
 		\expandafter\ifblank\expandafter{\unit@commandgroup}{}{\expandafter\commandgroup\expandafter{\unit@commandgroup}}
 		\unitrules{\unit@unitrules}
 		\unitequipment{\unit@unitequipment}
 	\end{multicols}
-	\unit@additional
+	\vspace*{0.1cm}\unit@additional
 	\end{unitframe}
 	% Database filling for auto QRS
 	\DTLnewrow{profiles}%

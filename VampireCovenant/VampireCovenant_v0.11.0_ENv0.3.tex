@@ -1,20 +1,20 @@
 \input{../Layout/AB_layout.tex}
 
 \newcommand{\booktitle}{Vampire Covenant}
-\newcommand{\version}{0.10.1}
-\newcommand{\englishversion}{0.2}
+\newcommand{\version}{0.11.0}
+\newcommand{\englishversion}{0.3}
 
 % Army special rules
 
-\newnamemacro{\masterofundeath}{\newrule{\specialrule{Master of Undeath}}}
-\newnamemacro{\ashestoashes}{\specialrule{Ashes to Ashes}}
-\newcommand{\chillingshriek}[1]{\specialrule{Chilling Shriek\ifblank{#1}{}{ (#1)}}}
-\newcommand{\awaken}[1]{\specialrule{Awaken\ifblank{#1}{}{ (#1)}}}
-\newcommand{\invocation}[1]{\specialrule{Invocation\ifblank{#1}{}{ (#1)}}}
-\newnamemacro{\reaper}{\specialrule{Reaper}}
-\newcommand{\vampiric}[1]{\specialrule{Vampiric\ifblank{#1}{}{ \newrule{(#1+)}}}}
-\newnamemacro{\wakethedead}{\newrule{\specialrule{Wake the Dead}}}
-\newnamemacro{\necromanticaura}{\specialrule{\newrule{Necromantic} Aura}}
+\newnamemacro{\masterofundeath}{Master of Undeath}
+\newnamemacro{\ashestoashes}{Ashes to Ashes}
+\newcommand{\chillingshriek}[1]{Chilling Shriek\ifblank{#1}{}{ (#1)}}
+\newcommand{\awaken}[1]{Awaken\ifblank{#1}{}{ (#1)}}
+\newcommand{\invocation}[1]{Invocation\ifblank{#1}{}{ (#1)}}
+\newnamemacro{\reaper}{Reaper}
+\newcommand{\vampiric}[1]{Vampiric\ifblank{#1}{}{ (#1+)}}
+\newnamemacro{\wakethedead}{Wake the Dead}
+\newnamemacro{\necromanticaura}{Necromantic Aura}
 
 % Army common type special rules
 
@@ -25,34 +25,34 @@
 
 \newnamemacro{\bloodpower}{Blood Power}
 \newnamemacro{\bloodpowers}{Blood Powers}
-\newnamemacro{\bloodlinepower}{\newrule{Bloodline Power}}
-\newnamemacro{\bloodlinepowers}{\newrule{Bloodline Powers}}
-\newnamemacro{\ancientbloodpower}{\newrule{Ancient Blood Power}}
-\newnamemacro{\ancientbloodpowers}{\newrule{Ancient Blood Powers}}
+\newnamemacro{\bloodlinepower}{Bloodline Power}
+\newnamemacro{\bloodlinepowers}{Bloodline Powers}
+\newnamemacro{\ancientbloodpower}{Ancient Blood Power}
+\newnamemacro{\ancientbloodpowers}{Ancient Blood Powers}
 \newnamemacro{\bloodline}{Bloodline}
 \newnamemacro{\bloodlines}{Bloodlines}
-\newcommand{\bloodtie}[1]{\newrule{Blood Tie}\ifblank{#1}{}{ (#1)}}
-\newcommand{\bloodties}[1]{\newrule{Blood Ties}\ifblank{#1}{}{ (#1)}}
-\newnamemacro{\brotherhood}{\newrule{Brotherhood of the Dragon}}
+\newcommand{\bloodtie}[1]{Blood Tie\ifblank{#1}{}{ (#1)}}
+\newcommand{\bloodties}[1]{Blood Ties\ifblank{#1}{}{ (#1)}}
+\newnamemacro{\brotherhood}{Brotherhood of the Dragon}
 \newnamemacro{\strigois}{Strigois}
 \newnamemacro{\strigoi}{Strigoi}
-\newnamemacro{\vonkarnstein}{\newrule{Von Karnstein}}
-\newnamemacro{\lamia}{\newrule{Lamia}}
+\newnamemacro{\vonkarnstein}{Von Karnstein}
+\newnamemacro{\lamia}{Lamia}
 \newnamemacro{\nosferatu}{Nosferatu}
 
 % Other rules
 
-\newnamemacro{\unlivingshield}{\specialrule{Unliving Shield}}
-\newnamemacro{\stormofwings}{\specialrule{Storm of Wings}}
-\def\endlesshorde{\specialrule{Endless Horde}} % \def necessary: a \newcommand name can't start with "end"
-\newnamemacro{\bonepyre}{\specialrule{\newrule{Bone Pyre}}}
-\newnamemacro{\bringoutyourdead}{\specialrule{\newrule{Bring Out Your Dead}}}
-\newnamemacro{\cart}{\specialrule{Cart}}
-\newnamemacro{\undeadconstructs}{\specialrule{Undead Constructs}}
-\newnamemacro{\darktome}{\specialrule{\newrule{Dark Tome}}}
-\newnamemacro{\auraofundeath}{\specialrule{\newrule{Aura of Undeath}}}
-\newnamemacro{\soulsyphon}{\specialrule{\newrule{Soul Syphon}}}
-\newnamemacro{\colossalzombiedragon}{\specialrule{Colossal Zombie Dragon}}
+\newnamemacro{\unlivingshield}{Unliving Shield}
+\newnamemacro{\stormofwings}{Storm of Wings}
+\def\endlesshorde{Endless Horde} % \def necessary: a \newcommand name can't start with "end"
+\newnamemacro{\bonepyre}{Bone Pyre}
+\newnamemacro{\bringoutyourdead}{Bring Out Your Dead}
+\newnamemacro{\cart}{Cart}
+\newnamemacro{\undeadconstructs}{Undead Constructs}
+\newnamemacro{\darktome}{Dark Tome}
+\newnamemacro{\auraofundeath}{Aura of Undeath}
+\newnamemacro{\soulsyphon}{Soul Syphon}
+\newnamemacro{\colossalzombiedragon}{Colossal Zombie Dragon}
 
 %%% Names
 
@@ -70,12 +70,12 @@
 \newnamemacro{\vampirelord}{Vampire Count}
 \newnamemacro{\vampirelords}{Vampire Counts}
 \newnamemacro{\necromancerlord}{Necromancer Lord}
-\newnamemacro{\vampirehero}{\newrule{Vampire Courtier}}
-\newnamemacro{\vampireheroes}{\newrule{Vampire Courtiers}}
+\newnamemacro{\vampirehero}{Vampire Courtier}
+\newnamemacro{\vampireheroes}{Vampire Courtiers}
 \newnamemacro{\barrowking}{Barrow King}
 \newnamemacro{\barrowkings}{Barrow Kings}
 \newnamemacro{\necromancer}{Necromancer}
-\newnamemacro{\fellwraith}{\newrule{Fell Wraith}}
+\newnamemacro{\fellwraith}{Fell Wraith}
 \newnamemacro{\banshee}{Banshee}
 
 % Core
@@ -84,32 +84,32 @@
 \newnamemacro{\zombies}{Zombies}
 \newnamemacro{\skeletons}{Skeletons}
 \newnamemacro{\ghouls}{Ghouls}
-\newnamemacro{\direwolves}{\newrule{Dire Wolves}}
+\newnamemacro{\direwolves}{Dire Wolves}
 \newnamemacro{\batswarm}{Bat Swarm}
 \newnamemacro{\batswarms}{Bat Swarms}
 
 % Special
 
-\newnamemacro{\barrowguards}{\newrule{Barrow Guards}}
+\newnamemacro{\barrowguards}{Barrow Guards}
 \newnamemacro{\barrowknights}{Barrow Knights}
 \newnamemacro{\greatbats}{Great Bats}
-\newnamemacro{\ghasts}{\newrule{Ghasts}}
+\newnamemacro{\ghasts}{Ghasts}
 \newnamemacro{\cadaverwagon}{Cadaver Wagon}
 \newnamemacro{\cadaverwagons}{Cadaver Wagons}
-\newnamemacro{\varkolak}{\newrule{Varkolak}}
-\newnamemacro{\phantomhost}{\newrule{Phantom Host}}
-\newnamemacro{\vampirespawn}{\newrule{Vampire Spawn}}
+\newnamemacro{\varkolak}{Varkolak}
+\newnamemacro{\phantomhost}{Phantom Host}
+\newnamemacro{\vampirespawn}{Vampire Spawn}
 
 % Rare
 
 \newnamemacro{\vampireknights}{Vampire Knights}
 \newnamemacro{\darkcoach}{Dark Coach}
-\newnamemacro{\courtofthedamned}{\newrule{Court of the Damned}}
-\newnamemacro{\wraiths}{\newrule{Wraiths}}
-\newnamemacro{\mountedwraiths}{\newrule{Mounted Wraiths}}
-\newnamemacro{\wingedreapers}{\newrule{Winged Reapers}}
-\newnamemacro{\altarofundeath}{\newrule{Altar of Undeath}}
-\newnamemacro{\shriekinghorror}{\newrule{Shrieking Horror}}
+\newnamemacro{\courtofthedamned}{Court of the Damned}
+\newnamemacro{\wraiths}{Wraiths}
+\newnamemacro{\mountedwraiths}{Mounted Wraiths}
+\newnamemacro{\wingedreapers}{Winged Reapers}
+\newnamemacro{\altarofundeath}{Altar of Undeath}
+\newnamemacro{\shriekinghorror}{Shrieking Horror}
 
 % Mounts
 
@@ -150,7 +150,11 @@ Enemy units in base contact with one or more \batswarm{} suffer a -1 penalty to 
 }
 
 \newcommand{\strigoivanguardnote}{%
-\newrule{\strigoi{} Vampires in the same unit can make a \vanguard{} movement with this unit.}
+\strigoi{} Vampires in the same unit can make a \vanguard{} movement with this unit.
+}
+
+\newcommand{\vampirespawnskirmishersoption}{%
+May upgrade to \skirmishers{} if no more than 3 models
 }
 
 \newcommand{\cartrule}{%
@@ -158,7 +162,7 @@ The \cadaverwagon{} may perform a March moves despite being a \chariot{} but doe
 }
 
 \def\endlesshorderule{%
-The \cadaverwagon{} gains the \warplatform{} special rule but may only join units of \zombies{}. The \cadaverwagon{} may issue challenges as if it was the Champion of any \zombie{} unit it joins. \newrule{If this upgrade is taken model changes its base to \unit{60x100}{\milli\meter}}.
+The \cadaverwagon{} gains the \warplatform{} special rule but may only join units of \zombies{}. The \cadaverwagon{} may issue challenges as if it was the Champion of any \zombie{} unit it joins. If this upgrade is taken model changes its base to \unit{60x100}{\milli\meter}.
 }
 
 \newcommand{\bonepyrerule}{%
@@ -169,12 +173,16 @@ Enemy \wizards{} within \distance{24} of one or more \cadaverwagons{} with this 
 Friendly \wizards{} Raise 2 additional wounds to targets of Small height, or 1 additional wound to targets of Medium height, when casting \necromancysignaturespell{} within \distance{6} of one or more \cadaverwagons{} with this upgrade.
 }
 
+\newcommand{\vampireknightsmaxsize}{%
+Max. unit size is decreased to 6
+}
+
 \newcommand{\undeadconstructsrule}{%
 Models with this special rule suffer one less wound from the \unstable{} and \ashestoashes{} special rules.
 }
 
 \newcommand{\darktomerule}{%
-Friendly \wizards{} within \distance{12} of at least one \altarofundeath{} with \darktome{} may add +2 to all casting attempts from the Path of \necromancy{}. \wizards{} that suffer a miscast within \distance{12} of a \altarofundeath{} with \darktome{} count as having used two additional power dices for their casting roll (up to a maximum of 5).
+Friendly \wizards{} within \distance{12} of at least one \altarofundeath{} with \darktome{} may add +2 to all casting attempts from the Path of \necromancy{} \newrule{(to a maximum of +3)}. \wizards{} that suffer a miscast within \distance{12} of a \altarofundeath{} with \darktome{} count as having used two additional power dices for their casting roll (up to a maximum of 5).
 }
 
 \newcommand{\auraofundeathrule}{%
@@ -225,13 +233,13 @@ The model gets +1 Weapon Skill, increasing the strength of its \innatedefence{} 
 
 \newrule{Only models with this special rule can be chosen as General. The General is automatically designated as Master and must exchange one spell for \necromancysignaturespell{}, regardless of which Path it uses.}
 
-\newrule{At the start of any of your player turns in which the army does not have a living Master you must nominate a character with this special rule and knowledge of at least one spell from the Path of \necromancy{}. If that character passes a Leadership test it immediately becomes the new Master.}
-
 \armyspecialruleentry{\ashestoashes}
 
-\newrule{At the end of the phase in which the General is killed, and each time a Leadership test is failed for gaining a new Master (or if there is no eligible character to take the test), all units with the majority of the models having this special rule must take a Leadership Test. If failed the unit suffers 1 wound for each point by which the test was failed with. These wounds are distributed following the rules for \unstable{} but can never be assigned to models without this special rule.}
+\newrule{At the end of any phase in which the Master is removed as a casualty, every unit in the army with one or more models with \ashestoashes{} must pass a Leadership test or suffer an amount of wounds with no saves of any kind allowed equal to the amount by which the test was failed. These wounds are distributed following the rules for \unstable{} except they can never be distributed to models that do not have \ashestoashes{}. This is reduced by one wound if the unit received \holdyourground{}.}
 
-\armyspecialruleentry{\newrule{\chillingshriek{X, Y}}}
+\newrule{At the beginning of your next Player's Turn following the death of the Master, a new Master may be selected. In order to do so, the Player must nominate another eligible character who is a \wizard{} using the Path of \necromancy{}. This character is your new Master. If the army does not have any  eligible character, every unit with the \ashestoashes{} rule must once again pass a Leadership test or suffer wounds as described above. This effect will repeat itself at the start of each of the owning Player's turn until the game ends.}
+
+\armyspecialruleentry{\chillingshriek{X, Y}}
 
 Part of a model with this special rule may perform a shooting \newrule{special} attack with \range{8}. It can be used after marching and hits automatically. The target suffers X hits with strength equal to Y plus the current number of Wounds of the shooting part of model, where X and Y are the number within the brackets. When rolling to wound, compare the Strength with the target's Leadership instead of Toughness. Wounds caused are \armourpiercing{6} and \magicalattacks{}. In the combat phase the model may replace its normal attacks to instead scream at one unit that it is in base contact with it.
 
@@ -245,13 +253,13 @@ Models with this special rule can heal wounds back with \necromancysignaturespel
 
 \armyspecialruleentry{\reaper}
 
-\newrule{Units consisting solely of models with this special rule may move through \removedrule{enemy} units during the Remaining Moves Sub-Phase. All Models in such units can make a single close combat attack against a single unengaged enemy unit which has been moved through. These attacks hit automatically and are distributed towards the unit as a whole.}
+Units consisting solely of models with this special rule may move through units during the Remaining Moves Sub-Phase. All Models in such units can make a single close combat attack against a single unengaged enemy unit which has been moved through. These attacks hit automatically and are distributed towards the unit as a whole.
 
 \armyspecialruleentry{\vampiric{X}}
 
 Models with this special rule can make march moves as normal even when outside the range of the General's \inspiringpresence{}. They still have to test Leadership if they are within \distance{8} of enemy units. 
 
-\newrule{At the end of the close combat phase, units with this special rule can make a single \vampiric{} roll if a model part with this special rule caused at least one wound during the phase. Roll a D6 for each \vampiric{} roll. On the roll of X+ a single wound is Raised to the unit, where X is the number stated within the brackets (a \result{1} is always a failure). Characters must cause wounds and roll for Raised wounds separately from any unit they are joined to.}
+At the end of the close combat phase, units with this special rule can make a single \vampiric{} roll if a model part with this special rule caused at least one wound during the phase. Roll a D6 for each \vampiric{} roll. On the roll of X+ a single wound is Raised to the unit, where X is the number stated within the brackets (a \result{1} is always a failure). Characters must cause wounds and roll for Raised wounds separately from any unit they are joined to.
 
 \armyspecialruleentry{\wakethedead}
 
@@ -259,12 +267,12 @@ Each time after an Augment spell from Path of \necromancy{} (including the \necr
 
 \armyspecialruleentry{\necromanticaura}
 
-\newrule{Units with this special rule and friendly units within range reduce the number of wounds caused by the \ashestoashes{} and \unstable{} special rules by 1. Units with this special rule has a range equal to \distance{6}. The Battle Standard Bearer automatically has this special rule but with the range of its \holdyourground{} instead.}
-
+\newrule{All friendly units within \distance{6} of one or more models with this special rule reduce the number of wounds caused by the \ashestoashes{} and \unstable{} by 1. Models with the \necromanticaura{} cannot benefit themselves from \necromanticaura{}.}
 
 \closearmyspecialrules
 
-\startarmynewsection{\bloodlines}
+
+\startarmynewsection{Vampiric bloodlines}
 
 \vampirelords{} and \vampireheroes{} may purchase unique upgrades called \bloodpowers{}, separated in two categories called \bloodlinepowers{} and \ancientbloodpowers{}. Vampires may also be upgraded to become part of a \bloodline{}, granting them additional bonuses and sometimes restrictions. The \vampirelords{} and \vampireheroes{} of an army must either belong to the same \bloodline{} or none at all.
 
@@ -287,7 +295,7 @@ Certain unit entries in this army book bear the mention \bloodties{}, followed b
 \armynewsubsection{\brotherhood{} \bloodline\dotfill \pts{35/25}}
 
 \noindent\parbox{\columnwidth}{
-A \brotherhood{} Vampire gains +2 Weapon Skill and wears \platearmour{}. He is restricted to purchasing only one additional Magic Level and may only use Path of \necromancy{}. A \brotherhood{} Vampire cannot refuse challenges and must issue one whenever possible, unless another Vampire from the same \bloodline{} does it first.
+A \brotherhood{} Vampire gains +2 Weapon Skill and wears \platearmour{}. He is restricted to purchasing only one additional Magic Level and may only use Path of \necromancy{}. A \brotherhood{} Vampire cannot refuse challenges and must issue one whenever possible, unless another \newrule{character} does it first.
 
 \bloodties{}: \vampireknights{}.
 }
@@ -296,28 +304,28 @@ A \brotherhood{} Vampire gains +2 Weapon Skill and wears \platearmour{}. He is r
 
 \pricelistitem{Crimson Rage}{65} \textbf{\ancientbloodpower}. For each unsaved wound the Vampire causes in close combat, it immediately makes another close combat attack. These additional attacks cannot confer more attacks.
 
-\pricelistitem{\newrule{Perfect Warrior}}{35} \textbf{\bloodlinepower}. The Vampire has the \weaponmaster{} and \lethalstrike{} special rules. It is equipped with an \ahw , a \halberd , a \gw , a \lance{} and a \shield{}.
+\pricelistitem{Perfect Warrior}{35} \textbf{\bloodlinepower}. The Vampire has the \weaponmaster{} and \lethalstrike{} special rules. It is equipped with an \ahw , a \halberd , a \gw , a \lance{} and a \shield{}.
 
-\pricelistitem{\newrule{Eternal Duellist}}{30} \textbf{\bloodlinepower}. The Vampire may re-roll to hit and to wound rolls in challenges.
+\pricelistitem{Eternal Duellist}{30} \textbf{\bloodlinepower}. The Vampire may re-roll to hit and to wound rolls in challenges.
 
 \endpricelist
 
 \armynewsubsection{\strigoi{} \bloodline\dotfill \pts{50/40}}
 
 \noindent\parbox{\columnwidth}{
-The Vampire's model has +1 Wound, \regeneration{\newrule{5}} and \hatred{}. The Vampire cannot select any mount except for the \shriekinghorror{}, may not wear any kind of Armour, can only purchase a single additional Magic Level and must use Path of \wilderness{} or \necromancy{}.
+The Vampire's model has +1 Wound, \regeneration{5} and \hatred{}. The Vampire cannot select any mount except for the \shriekinghorror{}, may not wear any kind of Armour, can only purchase a single additional Magic Level and must use Path of \wilderness{} or \necromancy{}.
 
 \bloodties{}: \ghouls{}.
 }
 
 \startpricelist
 
-\pricelistitem{\newrule{Ghoul Lord}}{65} \textbf{\ancientbloodpower}. The Vampire gains the special rules \poisonedattacks and \armourpiercing{1}. All \ghouls{} in the same unit as the Vampire have \hatred{} and
+\pricelistitem{Ghoul Lord}{65} \textbf{\ancientbloodpower}. The Vampire gains the special rules \poisonedattacks and \armourpiercing{1}. All \ghouls{} in the same unit as the Vampire have \hatred{} and
 \armourpiercing{1}.
 
-\pricelistitem{Curse of the Blood}{70} \textbf{\bloodlinepower}. The Vampire gains the special rule \regeneration{5}. If the Vampire already has \regeneration{} then its save is increased by \newrule{1} point to a maximum of 4+. All \ghouls{} in the same unit as the Vampire, and any mount ridden by the Vampire, gains the special rules \regeneration{6}. If they already have \regeneration{} then their save is increased by 1 point to a maximum of 4+.
+\pricelistitem{Curse of the Blood}{70} \textbf{\bloodlinepower}. The Vampire has \regeneration{5}. All \ghouls{} in the same unit as the Vampire and any mount ridden by the Vampire gains \regeneration{6}. \newrule{If any model affected by this rule} already has \regeneration{} then their \regeneration{} Save is increased by 1 point to a maximum of 4+.
 
-\pricelistitem{\newrule{Bat Form}}{\newrule{65/40}} \textbf{\bloodlinepower}. The Vampire gains the special rules \thunderouscharge{} and \fly{8}.
+\pricelistitem{Bat Form}{65/40} \textbf{\bloodlinepower}. The Vampire gains the special rules \thunderouscharge{} and \fly{8}.
 
 \endpricelist
 
@@ -333,11 +341,11 @@ The presence of one or more \vonkarnstein{} Vampires grants +1 Combat Score. Und
 
 \startpricelist
 
-\pricelistitem{\newrule{Storm Caller}}{50} \textbf{\ancientbloodpower}. All units within \distance{12} of the Vampire gains the \blurry{} special rule. Once per game the Vampire can grant \lightningattacks{} and \armourpiercing{2} to itself and all models part of the same unit. This ability is activated at the start of a combat round and lasts until the end of the player turn.
+\pricelistitem{Storm Caller}{50} \textbf{\ancientbloodpower}. All units within \distance{12} of the Vampire gain \newrule{\hardtarget{}}. Once per game the Vampire can grant \lightningattacks{} and \armourpiercing{2} to itself and all models part of the same unit. This ability is activated at the start of a combat round and lasts until the end of the player turn.
 
-\pricelistitem{Refined Taste}{25} \textbf{\bloodlinepower}. The Vampire has the \vampiric{2} special rule. \newrule{If mounted on a \largetarget{} it instead has \vampiric{4}}.
+\pricelistitem{Refined Taste}{25} \textbf{\bloodlinepower}. The Vampire has the \vampiric{2} special rule. If mounted on a \largetarget{} it instead has \vampiric{4}.
 
-\pricelistitem{\newrule{Hour of the Wolf}}{20} \textbf{\bloodlinepower}. The Vampire gains the \awaken{\zombies , \direwolves , \batswarms , \greatbats} special rule. The Vampire gains \swiftstride{} and confers this special rule to any unit it joins.
+\pricelistitem{Hour of the Wolf}{20} \textbf{\bloodlinepower}. The Vampire gains the \awaken{\zombies , \direwolves , \batswarms , \greatbats} special rule. The Vampire gains \swiftstride{} and confers this special rule to any unit it joins.
 
 \endpricelist
 
@@ -353,15 +361,15 @@ The Vampire has +2 Ballistic Skill, -1 Attack, \lightningreflexes{} and \throwin
 
 \startpricelist
 
-\pricelistitem{Commandment}{50} \textbf{\ancientbloodpower}. All Rank and File models in any unit joined by the Vampire have Weapon Skill 5. If the Vampire is not engaged in combat itself, it can instead choose to grant this bonus to a single friendly unit within \distance{6}.
+\pricelistitem{Commandment}{50} \textbf{\ancientbloodpower}. All Rank and File models in any unit joined by the Vampire have Weapon Skill 5. If the Vampire is not engaged in combat itself, it can instead, \newrule{at the start of the Close Combat Phase,} choose to grant this bonus to a single friendly unit within \distance{6}.
 
-\pricelistitem{\newrule{Mask of Innocence}}{25} \textbf{\bloodlinepower}. Enemy units in base contact with one or more Vampire with this power have -1 Leadership.
+\pricelistitem{Mask of Innocence}{25} \textbf{\bloodlinepower}. Enemy units in base contact with one or more Vampire with this power have -1 Leadership.
 
-\pricelistitem{\newrule{Mesmerizing Gaze}}{25} \textbf{\bloodlinepower}. Units charging at or fleeing from units containing at least one Vampire with this power roll an additional dice for their charge or flee move and discard the highest.
+\pricelistitem{Mesmerizing Gaze}{25} \textbf{\bloodlinepower}. Units charging at or fleeing from units containing at least one Vampire with this power roll an additional dice for their charge or flee move and discard the highest.
 
 \endpricelist
 
-\armynewsubsection{\nosferatu{} \bloodline\dotfill \pts{\newrule{140/70}}}
+\armynewsubsection{\nosferatu{} \bloodline\dotfill \pts{140/70}}
 
 \noindent\parbox{\columnwidth}{
 The Vampire is a Level 4/2 \wizard{}, has -1 Attack, -2 Weapon Skill, cannot take any kind of Armour, generates an additional spell and has the \awaken{\zombies , \skeletons} special rule.
@@ -373,9 +381,9 @@ A \nosferatu{} Vampire may generate spells from more than one Path of Magic. Whi
 
 \startpricelist
 
-\pricelistitem{\newrule{Unbearable Scrutiny}}{50} \textbf{\ancientbloodpower}. At the start of each Magic Phase, the Player may nominate an enemy \wizard{} within \distance{18} of the Vampire and within Line of Sight. That \wizard{} cannot add his Magic Level or use \aideddispel{} against spells cast by this Vampire during this phase.
+\pricelistitem{Unbearable Scrutiny}{50} \textbf{\ancientbloodpower}. At the start of each Magic Phase, the Player may nominate an enemy \wizard{} within \distance{18} of the Vampire and within Line of Sight. That \wizard{} cannot add his Magic Level \removedrule{or use \aideddispel{}} against spells cast by this Vampire during this phase.
 
-\pricelistitem{\newrule{Arcane Knowledge}}{25} \textbf{\bloodlinepower}. Non-vortex spells cast by the Vampire gain an additional \distance{3} range. Damage spells instead gain an additional \distance{6}.
+\pricelistitem{Arcane Knowledge}{25} \textbf{\bloodlinepower}. Non-vortex spells cast by the Vampire gain an additional \distance{3} range. Damage spells instead gain an additional \distance{6}.
 
 \pricelistitem{Forbidden Path}{20} \textbf{\bloodlinepower}. Select a Battle Magic Path other than Path of \nature{}. The Vampire can generate spells from this Path in addition to those normally available to it.
 
@@ -384,23 +392,23 @@ A \nosferatu{} Vampire may generate spells from more than one Path of Magic. Whi
 
 \closearmynewsection
 
-\startarmymagicitems
+\startarmymagicalitems
 
-\armymagicweapons
+\armymagicalweapons
 
 \startpricelist
 
-\pricelistitem{\newrule{Bow of Nepharet}}{45} This is a \boltthrower{} \artilleryweapon{} with the following profile: \range{36}, Strength 6, \armourpiercing{1}, \multiplewounds{D3}{}.
+\pricelistitem{Bow of Nepharet}{45} This is a \boltthrower{} \artilleryweapon{} with the following profile: \range{36}, Strength 6, \armourpiercing{1}, \multiplewounds{D3}{}.
 
-\pricelistitem{Blade of Red Thirst}{40} \newrule{Vampires only}. Type: \hw{}. \newrule{The model gains \vampiric{5} if mounted on a \largetarget{} and \vampiric{3} otherwise}. The Model part makes a \vampiric{} roll for each \newrule{unsaved} wound cause by this weapon instead of just one. Any excess wounds Raised can be used to \raisewounds{} on the unit that the model is part of.
+\pricelistitem{Blade of Red Thirst}{40} Vampires only. Type: \hw{}. The model gains \vampiric{5} if mounted on a \largetarget{} and \vampiric{3} otherwise. The Model part makes a \vampiric{} roll for each unsaved wound cause by this weapon instead of just one. Any excess wounds Raised can be used to \raisewounds{} on the unit that the model is part of.
 
 \endpricelist
 
-\armymagicarmor
+\armymagicalarmour
 
 \startpricelist
 
-\pricelistitem{\newrule{Red Plate of Gilles de Raux}}{\newrule{40}} Type : \platearmour . Wearer has +1 Wound.
+\pricelistitem{Red Plate of Gilles de Raux}{40} Type : \platearmour{}. Wearer has +1 Wound.
 
 \endpricelist
 
@@ -408,7 +416,7 @@ A \nosferatu{} Vampire may generate spells from more than one Path of Magic. Whi
 
 \startpricelist
 
-\pricelistitem{\newrule{Mantle of Night}}{40} \newrule{Models on foot only}. Enemy models in base contact with wearer, and all models allocating close combat attacks at the wearer, do not gain strength bonuses \newrule{of the +X type} conferred by mundane or magical weapons.
+\pricelistitem{Mantle of Night}{40} Models on foot only. Enemy models in base contact with wearer, and all models allocating close combat attacks at the wearer do not gain strength bonuses of the +X type conferred by mundane or magical weapons.
 
 \endpricelist
 
@@ -416,7 +424,7 @@ A \nosferatu{} Vampire may generate spells from more than one Path of Magic. Whi
 
 \startpricelist
 
-\pricelistitem{\newrule{Tullius' Teeth}}{\newrule{50}} \removedrule{Models on foot only}. Wearer and other \rnf{} models in its unit have the \distracting{} special rule.
+\pricelistitem{Tullius' Teeth}{50} Wearer and other \rnf{} models in its unit have the \distracting{} special rule.
 
 \endpricelist
 
@@ -426,24 +434,24 @@ A \nosferatu{} Vampire may generate spells from more than one Path of Magic. Whi
 
 \pricelistitem{Unholy Tome}{35} \boundspell{4}. Contains the spell \necromancyspelltwo{} from Path of \necromancy .
 
-\pricelistitem{\newrule{Staff of the Vengeful Dead}}{35} \boundspell{3}. If cast successfully this item
+\pricelistitem{Staff of the Vengeful Dead}{35} \boundspell{3}. If cast successfully this item
 casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} models in target unit gain +1 Attack.
 
-\pricelistitem{\newrule{Eye of Setesh}}{20} At the end of any Magic Phase, the play may save one unused Magic Dice and add it to the pool of Magic Dice in the next Magic Phase (immediately after rolling Winds of Magic).
+\pricelistitem{Eye of Setesh}{20} At the end of any Magic Phase, the play may save one unused Magic Dice and add it to the pool of Magic Dice in the next Magic Phase (immediately after rolling \newrule{Magic Flux}).
 
 \endpricelist
 
-\armymagicbanners
+\armymagicalbanners
 
 \startpricelist
 
-\pricelistitem{\newrule{Black Standard of Zagvozd}}{75} The unit carrying this banner has \bodyguard{\vampirelord , \vampirehero}. \vampireknights{} carrying this banner have the \stubborn{} special rule instead. All models in the unit carrying this banner also have \wardsave{4} against all Ranged Attacks.
+\pricelistitem{Black Standard of Zagvozd}{75} The unit carrying this banner has \bodyguard{\vampirelord , \vampirehero}. \vampireknights{} carrying this banner have the \stubborn{} special rule instead. All models in the unit carrying this banner also have \wardsave{4} against all Ranged Attacks.
 
-\pricelistitem{\newrule{Banner of the Barrows Kings}}{50} \barrowknights , \barrowguards{} and \barrowkings{} in this unit have +1 to Hit in close combat.
+\pricelistitem{Banner of the Barrows Kings}{50} \barrowknights , \barrowguards{} and \barrowkings{} in this unit have +1 to Hit in close combat.
 
 \endpricelist
 
-\closearmymagicitems
+\closearmymagicalitems
 
 
 
@@ -457,14 +465,81 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 \quickrefsheettitle
 
 \input{../Layout/AB_qrs.tex}
+\bigskip
+\noindent\begin{center}\Large{\textbf{\labels@Invocation}}\end{center}
+\medskip
+
+\newcommand{\QRSinvoctable}[2]{%
+\rowcolors{1}{white}{black!10}
+\noindent\begin{tabular}{p{3cm}@{}>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{1cm}@{}}%
+\antiquefont\Large{\textbf{#1\spacebeforecolon{}:}}&\vspace*{-0.2cm}%
+\DTLforeach*[#2]{profiles}{\rowname=name, \rowtrooptype=trooptype, \rowcategory=category, \rowinvocation=invocation}{%
+\tabularnewline\rowname{} & \rowinvocation{}}%
+\tabularnewline%
+\end{tabular}
+\medskip
+}
+
+\begin{multicols}{4}
+\QRSinvoctable{\infantry}{\DTLiseq{\rowtrooptype}{\infantry}\and\not\DTLiseq{\rowcategory}{\labels@heroes}\and\not\DTLiseq{\rowcategory}{\labels@lords}}
+
+\QRSinvoctable{\monstrousinfantry}{\DTLiseq{\rowtrooptype}{\monstrousinfantry}}
+
+\QRSinvoctable{\warbeasts}{\DTLiseq{\rowtrooptype}{\warbeast}\and\not\DTLiseq{\rowcategory}{\labels@mounts}}
+
+\QRSinvoctable{\monstrousbeasts}{\DTLiseq{\rowtrooptype}{\monstrousbeast}\and\not\DTLiseq{\rowcategory}{\labels@mounts}}
+
+\QRSinvoctable{\monsters}{\DTLiseq{\rowtrooptype}{\monster}\and\not\DTLiseq{\rowcategory}{\labels@mounts}}
+
+\QRSinvoctable{\swarms}{\DTLiseq{\rowtrooptype}{\swarm}}
+
+\rowcolors{1}{white}{white}
+\noindent\begin{tabular}{p{3cm}@{}>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{1cm}@{}}%
+\textbf{\wordAll{} \cavalry}& 2 \tabularnewline
+\end{tabular}
+\medskip
+
+\noindent\begin{tabular}{p{3cm}@{}>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{1cm}@{}}%
+\textbf{\wordAll{} \chariots}& 1 \tabularnewline
+\end{tabular}
+\medskip
+\end{multicols}
+
+\restoregeometry
 
 \changelogtitle
 
 \startchangelog
 
+\newlog{0.11.0}{%
+Armywide special rules streamlined with UD,
+Curse of the Blood,
+Wizard levels price,
+Zombie dragon price,
+Vampire spawn,
+Phantom host,
+Fell Wraith,
+Vampire knights unit size,
+Barrow guard Ld,
+Wraith,
+Winged Reapers,
+Dark tome,
+Mundane weapon cost streamlined,
+Dragon one of a kind,
+Unbearable scrutiny,
+Ghouls command option,
+Renamed Magic Items to Magical Items,
+Renamed Winds of Magic to Magic Flux,
+Renamed Blurry to Hard Target,
+}
+
+\newlog{0.10.2}{%
+Mantle of Night wording update,
+}
+
 \newlog{0.10.1}{%
 Cleaned up Quick Reference Sheet,
-Clarifications added on Von Karnstein, Vampiric, Ashes to Ashes, Blade of Red Thirst and Wake the Dead,
+Clarifications added on Von Karnstein{,} Vampiric{,} Ashes to Ashes{,} Blade of Red Thirst and Wake the Dead,
 }
 
 \newlog{0.10.0}{%

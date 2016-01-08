@@ -6,29 +6,27 @@
 
 \providebool{whiterow}
 
-\newcommand{\QRSrowcolor}{\ifbool{whiterow}{\global\boolfalse{whiterow}}{\rowcolor{black!15}\global\booltrue{whiterow}}}
+\newcommand{\QRSrowcolor}{\ifbool{whiterow}{\global\boolfalse{whiterow}}{\rowcolor{black!10}\global\booltrue{whiterow}}}
 
 \newcommand{\QRSstarttab}[1]{%
 	\noindent%
 	\setlength{\tabcolsep}{2pt}%
 	\begin{tabular}{@{}cp{3.2cm}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}@{}M{\profilecellsize}}%
 
-	& \textbf{#1} & \labels@M & \labels@WS & \labels@BS & \labels@S & \labels@T & \labels@W & \labels@I & \labels@A & \labels@Ld%
+	& \antiquefont\large{\textbf{#1}} & \textbf{\labels@M} & \textbf{\labels@WS} & \textbf{\labels@BS} & \textbf{\labels@S} & \textbf{\labels@T} & \textbf{\labels@W} & \textbf{\labels@I} & \textbf{\labels@A} & \textbf{\labels@Ld}%
 }%
 
-\newcommand{\QRSclosetab}{\end{tabular}\smallskip}%
-
-\newcommand{\QRSlogowidth}{0.4cm}
+\newcommand{\QRSclosetab}{\end{tabular}\bigskip}%
 
 \newcommand{\QRSprintline}[4]{%
 	\tabularnewline%
 	\ifnumequal{\rowmulti}{1}{\QRSrowcolor}{}%
-	\DTLifeq*{\rowcategory}{\labels@lords}{\includegraphics[align=c, width=\QRSlogowidth]{../Layout/pics/logo_lord.png}}{}%
-	\DTLifeq*{\rowcategory}{\labels@heroes}{\includegraphics[align=c, width=\QRSlogowidth]{../Layout/pics/logo_hero.png}}{}%
-	\DTLifeq*{\rowcategory}{\labels@coreunits}{\includegraphics[align=c, width=\QRSlogowidth]{../Layout/pics/logo_core.png}}{}%
-	\DTLifeq*{\rowcategory}{\labels@specialunits}{\includegraphics[align=c, width=\QRSlogowidth]{../Layout/pics/logo_special.png}}{}%
-	\DTLifeq*{\rowcategory}{\labels@rareunits}{\includegraphics[align=c, width=\QRSlogowidth]{../Layout/pics/logo_rare.png}}{}%
-	\DTLifeq*{\rowcategory}{\labels@mounts}{\includegraphics[align=c, width=\QRSlogowidth]{../Layout/pics/logo_mount.png}}{}%
+	\DTLifeq*{\rowcategory}{\labels@lords}{\antiquefont\bfseries \labels@lordsInitial}{}%
+	\DTLifeq*{\rowcategory}{\labels@heroes}{\antiquefont\bfseries \labels@heroesInitial}{}%
+	\DTLifeq*{\rowcategory}{\labels@coreunits}{\antiquefont\bfseries \labels@coreunitsInitial}{}%
+	\DTLifeq*{\rowcategory}{\labels@specialunits}{\antiquefont\bfseries \labels@specialunitsInitial}{}%
+	\DTLifeq*{\rowcategory}{\labels@rareunits}{\antiquefont\bfseries \labels@rareunitsInitial}{}%
+	\DTLifeq*{\rowcategory}{\labels@mounts}{\antiquefont\bfseries \labels@mountsInitial}{}%
 	&%
 	\ifnumequal{\rowmulti}{1}{%no Multiprofile
 		\rowname%
@@ -189,7 +187,3 @@
 }% 
 
 \end{multicols}
-
-
-
-\restoregeometry

@@ -7,7 +7,7 @@
 
 \showunit{
 	name={\vampirelord},
-	cost={200},
+	cost={\newrule{205}},
 	profile={ < 6 7 5 5 5 3 7 5 10},
 	type=\infantry ,
 	basesize=20x20,
@@ -18,31 +18,31 @@
 	magiclevel=1,
 	magicpaths={\necromancy, \shadows, \death},
 	options={
+		\magiclevelchoice{
+			\magiclevel{2}=\newrule{25},
+			\magiclevel{3}=\newrule{95},
+		},
+		\magicalitemsallowance = \upto < 100,
 		\bloodlinechoice = \unlimited,
 		\bloodpowerchoice = \unlimited,
-		\magicitemsallowance = \upto < 100,
-		\magiclevelchoice{
-			\magiclevel{2}=30,
-			\magiclevel{3}=75,
-		},
-		\anyofthefollowing{
+		\Maytakea{} \shield =5,
+		\armouronechoice{
 			\la =5,
 			\ha =10,
-			\shield =5,
 		},
 		\weapononechoice{
-			\ahw =5,
-			\halberd =10,
-			\gw =15,
-			\lance =\newrule{20},
+			\ahw =\newrule{10},
+			\halberd =\newrule{15},
+			\gw =\newrule{20},
+			\lance =20,
 		}
 	},
-	mounts={\skeletalsteed =20, \monstrousrevenant =100, \courtofthedamned{} \only{\lamia}=190, \shriekinghorror{} \only{\strigoi}=200, \zombiedragon =280}
+	mounts={\skeletalsteed =20, \monstrousrevenant =100, \courtofthedamned{} \only{\lamia}=190, \shriekinghorror{} \only{\strigoi}=200, \zombiedragon =\newrule{270}}
 }
 
 \showunit{
 	name={\necromancerlord},
-	cost={150},
+	cost={\newrule{175}},
 	profile={ < 4 3 3 3 4 3 3 1 8},
 	type= \infantry ,
 	basesize=20x20,
@@ -53,8 +53,8 @@
 	magiclevel=3,
 	magicpaths={\necromancy, \fire, \death},
 	options={
-		\magicitemsallowance = \upto < 100,
-		\magiclevel{4}=60,
+		\magiclevel{4}=\newrule{35},
+		\magicalitemsallowance = \upto < 100,
 	},
 	mounts={\skeletalsteed =20, \monstrousrevenant =100, \cadaverwagon =100}
 }
@@ -74,24 +74,24 @@
 	specialrules={\awaken{\zombies}, \masterofundeath},
 	magicpaths={\necromancy, \shadows, \death},
 	options={
-		\bloodlinechoice =\unlimited,
-		\bloodpowerchoice =\unlimited,		
-		\magicitemsallowance = \upto < 50,
 		\bsboption{} \notif{\strigoi}= 25,
 		\magiclevelchoice{
-			\magiclevel{1}=25,
-			\magiclevel{2}=55,
+			\magiclevel{1}=\newrule{40},
+			\magiclevel{2}=\newrule{65},
 		},
-		\anyofthefollowing{
+		\magicalitemsallowance = \upto < 50,
+		\bloodlinechoice =\unlimited,
+		\bloodpowerchoice =\unlimited,		
+		\Maytakea{} \shield =5,
+		\armouronechoice{
 			\la =5,
 			\ha =10,
-			\shield =5,
 		},
 		\weapononechoice{
 			\ahw =5,
-			\halberd =5,
+			\halberd =\newrule{10},
 			\gw =10,
-			\lance =\newrule{15},
+			\lance =15,
 		}
 	},
 	mounts={\skeletalsteed =20, \monstrousrevenant =120}
@@ -100,7 +100,7 @@
 
 \showunit{
 	name={\necromancer},
-	cost={60},
+	cost={\newrule{65}},
 	profile={ < 4 3 3 3 3 2 3 1 7},
 	type= \infantry ,
 	basesize=20x20,
@@ -111,10 +111,10 @@
 	magiclevel=1,
 	magicpaths={\necromancy, \fire, \death},
 	options={
-		\magicitemsallowance = \upto < 50,
-		\magiclevel{2}=30,
+		\magiclevel{2}=\newrule{25},
+		\magicalitemsallowance = \upto < 50,
 	},
-	mounts={\skeletalsteed = \newrule{20}, \cadaverwagon = 100}
+	mounts={\skeletalsteed = 20, \cadaverwagon = 100}
 }
 
 \showunit{
@@ -125,21 +125,21 @@
 	basesize=20x20,
 	unitsize=1,
 	commontype=\undeadcommonrules ,
-	commonspecialrules={\undead},
-	specialrules={\multiplewounds{2}{\infantry, \cavalry, \warbeasts}, \lethalstrike, \notaleader, \newrule{\magicalattacks}},
+	commonspecialrules={\undead, \newrule{\ashestoashes}},
+	specialrules={\multiplewounds{2}{\infantry, \cavalry, \warbeasts}, \lethalstrike, \notaleader, \magicalattacks},
 	equipment={\ha, \shield},
 	options={
-		\magicitemsallowance = \upto < 50,
 		\bsboption = 25,
+		\magicalitemsallowance = \upto < 50,
 		\weapononechoice{
-			\ahw =5,
-			\halberd =5,
-			\lance =5,
-			\gw =10,
+			\ahw =\newrule{3},
+			\halberd =\newrule{4},
+			\lance =\newrule{6},
+			\gw =\newrule{6},
 		},
 		\maybeupgradedto{} \unlivingshield = 15
 	},
-	mounts={\skeletalsteed = \newrule{20}},
+	mounts={\skeletalsteed = 20},
 	unitrules={
 		\unitrule{\unlivingshield}{\unlivingshieldrule}
 	}
@@ -147,9 +147,9 @@
 
 \showunit {
 	name={\fellwraith},
-	cost=65,
-	profile={\fellwraith < 6 3 - 3 3 2 2 \newrule{3} 5,
-		     \banshee < 6 3 - 3 3 2 3 \newrule{1} 5
+	cost=\newrule{55},
+	profile={\fellwraith < 6 3 - 3 3 2 2 3 5,
+		     \banshee < 6 3 - 3 3 2 3 1 5
 	},
 	type=\infantry ,
 	basesize=20x20,
@@ -164,31 +164,30 @@
 		}
 	},
 	additional={%
-		\separator
+		\setlength{\columnseprule}{1pt}
+		\renewcommand{\columnseprulecolor}{\color{black!30}}
 		\begin{multicols}{2}
-		\begin{center} \LARGE\antiquefont\fellwraith \end{center}
+		\begin{center} \LARGE\antiquefont\fellwraith{} \end{center}%
 		
-		{\setlength{\parskip}{0.1cm}
-			\noindent\textbf{\labels@specialrules :}\expandafter\ruleslist\expandafter{%
-				\armourpiercing{6}%
-			}.
-		
-			\noindent\textbf{\labels@equipment :}\expandafter\equipmentlist\expandafter{%
-				\gw%
-			}.
-		}
+		\def\tempspecialrules{\armourpiercing{6}}%
+		\specialrules{\tempspecialrules}
 
-		\vspace*{0.15cm}\mountsframestart\expandafter\mountslist\expandafter{%
-			\newrule{\skeletalsteed} = \newrule{20}%
-		}\mountsframeend
+		\def\tempoptions{%
+			\newrule{\Maytakea{} \gw{}} = 10,
+			\newrule{\magicalweaponallowance} = \upto < 50,		
+		}%
+		\vspace*{0.15cm}\options{\tempoptions}
+
+		\def\tempmounts{\skeletalsteed{} \newrule{with \freereform{}} = 20}%	
+		\mounts{\tempmounts}
 			
 		\columnbreak
-		\begin{center} \LARGE\antiquefont\banshee \end{center}
-		
-		\noindent\textbf{\labels@specialrules :}\expandafter\ruleslist\expandafter{%
-			\chillingshriek{2, 8}%
-		}.
+		\begin{center} \LARGE\antiquefont\banshee{} \end{center}
+
+		\def\tempspecialrules{\chillingshriek{2, 8}}%
+		\specialrules{\tempspecialrules}%
 		\end{multicols}
+		\setlength{\columnseprule}{0pt}
 	},
 }
 
@@ -227,7 +226,10 @@
 		\spear = \free,
 		\shield = \permodel < 1
 	},
-	commandgroup={champion=10, musician=10, banner=10, veteranbannerallowance=\newrule{25}}
+	commandgroup={champion=10, musician=10, banner=10, veteranstandardbearer=*},
+	additional={%
+		* \veteranstandardbearernote
+	}
 }
 
 \showunit{
@@ -245,11 +247,10 @@
 	specialrules={\poisonedattacks},
 	options={
 		\skirmishers{} \ifNmodelsorless{15}= \permodel < 1,
-		\bloodties{\strigoi}:\newline\vanguard{}*= \permodel < 2,
+		\bloodties{\strigoi}\spacebeforecolon{}:\newline\vanguard{}*= \permodel < 2,
 	},
-	commandgroup={champion=10, musician=10, bannerrestriction=\unitwith{} \vanguard , banner=10, musicianrestriction=\unitwith{} \vanguard , veteranbannerallowance = \newrule{25}},
+	commandgroup={champion=10, musician=\newrule{10}, banner=\newrule{10}, veteranstandardbearer =yessir},
 	additional={%
-		\vspace*{0.1cm}		
 		* \strigoivanguardnote
 	}
 }
@@ -296,8 +297,8 @@
 \showunit{
 	name={\barrowknights},
 	cost=120,
-	profile={\knight < 4 3 - 4 4 1 3 1 6,
-			  \steed < 8 2 - 3 3 1 2 1 3
+	profile={\knight < 4 3 - 4 4 1 3 1 \newrule{7},
+			 \steed < 8 2 - 3 3 1 2 1 3
 	},
 	invocation= 2 ,
 	type=\cavalry ,
@@ -316,7 +317,7 @@
 	name={\barrowguards},
 	cost=100,
 	profile={
-		< 4 3 - 4 4 1 3 1 8},
+		< 4 3 - 4 4 1 3 1 \newrule{7}},
 	invocation= 1D3+3 ,
 	type=\infantry,
 	basesize=20x20,
@@ -328,10 +329,10 @@
 	specialrules={\magicalattacks, \multiplewounds{2}{\infantry , \cavalry , \warbeasts},\lethalstrike, \bodyguard{\general, \barrowking}},
 	equipment={\ha},
 	options={
-		\shield = \permodel < 1,
-		\weapononechoice{
+		\maytakeoneofthefollowing{
 			\halberd = \permodel < 2,
-			\gw = \permodel < 2
+			\gw = \permodel < 2,
+			\shield = \permodel < 1,
 		},
 	},
 	commandgroup={champion=10, musician=10, banner=10, bannerallowance=50}
@@ -355,19 +356,22 @@
 
 \showunit{
 	name={\vampirespawn},
-	cost=126,
+	cost=\newrule{117},
 	profile={
 		< 6 4 - 5 4 3 4 3 8},
 	invocation= 2 ,
 	type=\monstrousinfantry ,
 	basesize=40x40,
 	unitsize=3,
-	maxmodels=8,
-	costpermodel=42,
+	maxmodels=\newrule{6},
+	costpermodel=\newrule{39},
 	commontype=\vampiriccommonrules ,
 	commonspecialrules={\undead, \vampiric{6}, \fear},
-	specialrules={\frenzy, \skirmishers, \fly{9}},
-	commandgroup={champion=10}
+	specialrules={\frenzy, \fly{9}},
+	commandgroup={champion=10},
+	options={
+		\newrule{\vampirespawnskirmishersoption} = \permodel < 3,
+	}
 }
 
 \showunit{
@@ -379,7 +383,7 @@
 	basesize=40x40,
 	unitsize=2,
 	maxmodels=6,
-	costpermodel=35,
+	costpermodel=\newrule{30},
 	commontype=\undeadcommonrules ,
 	commonspecialrules={\undead, \ashestoashes},
 	specialrules={\ethereal, \fear}
@@ -468,39 +472,41 @@
 	type=\cavalry ,
 	basesize=25x50,
 	unitsize=5,
-	maxmodels=10,
+	maxmodels=\newrule{8},
 	costpermodel=45,
 	commontype=\vampiriccommonrules ,
 	commonspecialrules={\undead,\fear,\vampiric{6}},
 	equipment={\lance , \ha , \shield , \mountsprotection{6}, \barding},
 	options={
-		\bloodties{\brotherhood}:\newline\platearmour{} \wordand{} \devastatingcharge{}= \permodel < 15
+		\bloodties{\brotherhood}\spacebeforecolon{}:\newline\platearmour{} \wordand{} \devastatingcharge{}= \permodel < 15,
+		\hspace*{0.3cm}\newrule{\vampireknightsmaxsize} =,
 	},
 	commandgroup={champion=10, musician=10, banner=10, bannerallowance=75}
 }
 
 \showunit{
 	name={\wraiths},
-	cost=\newrule{150},
+	cost=\newrule{90},
 	profile={
 		< 6 3 - 3 3 2 2 2 5
 	},
 	invocation= 2,
 	type=\infantry,
 	basesize=20x20,
-	unitsize=5,
-	maxmodels=\newrule{8},
-	costpermodel=\newrule{30},
+	unitsize=\newrule{3},
+	maxmodels=8,
+	costpermodel=30,
 	commontype=\undeadcommonrules ,
 	commonspecialrules={\undead, \ashestoashes},
-	specialrules={\wizardconclave{\Level{} \newrule{2}, \deathsignaturespell{} (Path of \death), \newrule{\shadowssignaturespell{} (Path of \shadows)}}, \ethereal,  \bodyguard{\fellwraith , \banshee}, \reaper, \armourpiercing{6}, \terror, \skirmishers},
+	specialrules={\ethereal,  \bodyguard{\fellwraith , \banshee}, \reaper, \armourpiercing{6}, \terror, \skirmishers},
 	equipment={\gw},
-	commandgroup={champion=70, championprerestriction=\bloodties{\nosferatu}:},
+	wizardconclave={\wizardconclave{\deathsignaturespell{} (\Pathof{} \death), \shadowssignaturespell{} (\Pathof{} \shadows)}},
+	commandgroup={champion=70, championprerestriction=\bloodties{\nosferatu}\spacebeforecolon{}:},
 }
 
 \showunit{
 	name={\mountedwraiths},
-	cost=150,
+	cost=\newrule{135},
 	profile={\rider < 6 3 - 3 3 1 2 1 5,
 	         \steed < 8 2 - 3 3 1 2 1 3
 	},
@@ -509,7 +515,7 @@
 	basesize=25x50,
 	unitsize=5,
 	maxmodels=10,
-	costpermodel=30,
+	costpermodel=\newrule{35},
 	commontype=\undeadcommonrules ,
 	commonspecialrules={\undead, \ashestoashes},
 	specialrules={\flamingattacks{} \only{\rider}, \ethereal, \reaper, \armourpiercing{6} \only{\rider}, \freereform, \terror},
@@ -519,7 +525,7 @@
 
 \showunit{
 	name={\wingedreapers},
-	cost=150,
+	cost=\newrule{160},
 	profile={
         	< 6 5 3 5 5 4 4 3 10,
 	},
@@ -607,7 +613,7 @@
 	specialrules={\soulsyphon, \scythes, \wardsave{4}, \terror},
 	equipment={\ha, \mountsprotection{5}, \gw{} \only{\fellwraith}},
 	options={
-		\bloodties{\vonkarnstein}:\newline\stubborn = 30
+		\bloodties{\vonkarnstein}\spacebeforecolon{}:\newline\stubborn = 30
 	},
 	unitrules={
 		\unitrule{\soulsyphon}{\soulsyphonrule}
@@ -632,7 +638,7 @@
 	specialrules={\randomattacks{2D6} \only{\ghoststeeds}, \ethereal{} \only{\ghoststeeds}, \largetarget, \wardsave{4}, \terror},
 	equipment={\throwingweapons{} \only{\paramours}, \innatedefence{5}},
 	options={
-		\bloodties{\lamia}:\newline\wakethedead = 25
+		\bloodties{\lamia}\spacebeforecolon{}:\newline\wakethedead = 25
 	}
 }
 
@@ -657,7 +663,7 @@
 	options={
 		\maytakeoneofthefollowing{
 			\mountsprotection{5}= \newrule{15},
-			\fly{8} \newrule{\onlyasvampiresmount}= \newrule{35}
+			\fly{8} \onlyasvampiresmount= \newrule{35}
 		}
 	}
 }
@@ -746,12 +752,12 @@
 	specialrules={\randomattacks{2D6} \only{\ghoststeeds}, \ethereal{} \only{\ghoststeeds}, \largetarget, \wardsave{4}, \terror},
 	equipment={\throwingweapons{} \only{\paramours}, \innatedefence{5}},
 	options={
-		\bloodties{\lamia}:\newline\wakethedead = 25
+		\bloodties{\lamia}\spacebeforecolon{}:\newline\wakethedead = 25
 	}
 }
 
 \showunit{
-	name={\zombiedragon},
+	name={\zombiedragon{} \newrule{(\oneofakind)}},
 	cost={-},
 	profile={
 		< 6  4 - 6 6 6 2 5 4,
