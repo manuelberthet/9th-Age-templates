@@ -471,7 +471,7 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 
 \newcommand{\QRSinvoctable}[2]{%
 \rowcolors{1}{white}{black!10}
-\noindent\begin{tabular}{p{3cm}@{}>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{1cm}@{}}%
+\noindent\begin{tabular}{p{2.7cm}>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{1cm}@{}}%
 \antiquefont\Large{\textbf{#1\spacebeforecolon{}:}}&\vspace*{-0.2cm}%
 \DTLforeach*[#2]{profiles}{\rowname=name, \rowtrooptype=trooptype, \rowcategory=category, \rowinvocation=invocation}{%
 \tabularnewline\rowname{} & \rowinvocation{}}%
@@ -494,12 +494,12 @@ casts an Augment, Lasts one turn spell with range \distance{6}. All \undead{} mo
 \QRSinvoctable{\swarms}{\DTLiseq{\rowtrooptype}{\swarm}}
 
 \rowcolors{1}{white}{white}
-\noindent\begin{tabular}{p{3cm}@{}>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{1cm}@{}}%
+\noindent\begin{tabular}{p{2.7cm}>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{1cm}@{}}%
 \textbf{\wordAll{} \cavalry}& 2 \tabularnewline
 \end{tabular}
 \medskip
 
-\noindent\begin{tabular}{p{3cm}@{}>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{1cm}@{}}%
+\noindent\begin{tabular}{p{2.7cm}>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{1cm}@{}}%
 \textbf{\wordAll{} \chariots}& 1 \tabularnewline
 \end{tabular}
 \medskip
